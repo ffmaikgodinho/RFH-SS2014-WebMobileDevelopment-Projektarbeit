@@ -1,18 +1,15 @@
 <!DOCTYPE HTML> 
 <html>
 	<head>
-		<title>Registrieren</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<title>Eintrag anlegen</title>
+		<!--<link rel="stylesheet" type="text/css" href="style.css">-->
 	</head>
 	<body> 
 		<?php 
 			$userErr = "";
 			$passwordErr = "";
-			$emailErr = "";
-			
-			 if(isset($_POST['submit'])) { 
-				$regex_email = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/'; 
 				
+			 if(isset($_POST['submit'])) { 		
 				 // Validierung
 				if (empty($_POST["user"])) {
 					$userErr = "Die Angabe eines Namens ist erforderlich.";
@@ -29,18 +26,18 @@
 				if (empty($_POST["email"])) {
 					$email = "";
 				} else {
-					if (preg_match($regex_email, $_POST["email"])) {
-						$email = $_POST["email"];
-					} else { 
-						$email = "";
-						$emailErr = "Die E-Mail Adresse ist ung&uuml;ltig.";
-					}
+					$email = $_POST["email"];
 				}
 				 
 				 // Account anlegen
-				 if (isset($user) AND isset($password_md5) AND empty($emailErr)) {
-					$query = "INSERT INTO user (user, email, password)
-							VALUES ('$user', '$email', '$password_md5')";
+				 if (isset($user) AND isset($password_md5)) {
+					if (isset($email)) {
+						$query = "INSERT INTO user (user, email, password)
+									VALUES ('$user', '$email', '$password_md5')";
+					} else {
+						$query = "INSERT INTO user (user, password)
+									VALUES ('$user', '$password_md5')";
+					}
 					//mysql_query($query);
 					
 					// debug
@@ -50,15 +47,15 @@
 			 }
 		?>
 
-		<form action="register.php" method="post" class="form-container">
+		<form action="additem.php" method="post" class="form-container">
 			<div class="form-title">
-				<h2>Registrieren</h2>
+				<h2>Eintrag anlegen</h2>
 			</div>
 			<div class="form-title">
-				Name*: 
-				<?php echo '<br /><span>'.$userErr.'</span>'; ?>
+				Titel*: 
+				<?php echo '<br /><span>'.$titleErr.'</span>'; ?>
 			</div> 
-			<input type="text" name="user" class="form-field">
+			<input type="text" name="title" class="form-field">
 			<br />
 			<div class="form-title">
 				Passwort*: 
@@ -66,8 +63,7 @@
 			</div> 
 			<input type="password" name="password" class="form-field">
 			<div class="form-title">
-				E-Mail:
-				<?php echo '<br /><span>'.$emailErr.'</span>'; ?>
+				E-Mail: 
 			</div> 
 			<input type="text" name="email" class="form-field">
 			<div class="submit-container">
