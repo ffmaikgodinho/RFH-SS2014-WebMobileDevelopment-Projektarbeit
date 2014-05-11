@@ -27,6 +27,7 @@
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
                 while ($row = $this->m_requestHandler->getDatabase()->fetch_object($result))  {
+                    $row->url ="/api/lists/".$row->id;
                     $events[] = $row;
                 }
                 echo json_encode($events);
@@ -37,6 +38,15 @@
        }
         
         public function getList($strListID)  {
+            $strSql = "Select * FROM event where id = '" . $strListID . "'";
+            $result = $this->m_requestHandler->getDatabase()->query($strSql);
+            if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
+                $row = $this->m_requestHandler->getDatabase()->fetch_object($result);
+                echo json_encode($row);
+            }
+            else  {
+                $this->m_requestHandler->responseNoContent();
+            }
             
         }
         

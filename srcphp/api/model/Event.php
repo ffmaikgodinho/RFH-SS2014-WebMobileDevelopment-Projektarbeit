@@ -6,5 +6,6 @@
         public $location;
         public $description;
         public $type;
+        public $url;
     }
 ?>
