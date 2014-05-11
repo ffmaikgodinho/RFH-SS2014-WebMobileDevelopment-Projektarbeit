@@ -23,7 +23,7 @@
         
         public function getLists()  {
             $events = array();
-            $strSql = "Select * FROM event WHERE 1=0";
+            $strSql = "Select * FROM event";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
                 while ($row = $this->m_requestHandler->getDatabase()->fetch_object($result))  {

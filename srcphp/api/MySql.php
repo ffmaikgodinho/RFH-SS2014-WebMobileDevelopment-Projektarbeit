@@ -33,7 +33,7 @@ class MySQL {
 			$this->lastError = 'Could not connect to database: ' . mysqli_error($this->databaseLink);
 			return false;
 		}
-        $this->query("SET CHARACTER SET utf8");
+        $this->databaseLink->set_charset("utf8");
 		return true;
 	}
 	
