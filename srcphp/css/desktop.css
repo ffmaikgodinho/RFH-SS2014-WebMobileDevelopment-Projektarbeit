@@ -1,0 +1,124 @@
+/**************************
+/***	CSS-Stylesheet	***
+**************************/
+
+/********************************************/
+/* HTML-Elemente */
+/********************************************/
+
+body {
+	font-family: Arial;
+	color: #000000;
+	font-size: 11pt;
+	font-weight: normal;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	position:relative;
+	
+}
+		
+h1 {
+
+}
+
+div {
+	padding-right: 10%;
+	padding-left: 10%;
+	border-color: #B6B6B6;
+}
+
+table {
+	width: 100%;
+}
+
+th {
+
+}
+
+td {
+
+}
+
+img {
+	border: none;
+}
+			
+a {
+	color: #B6B6B6;
+	text-decoration: none;
+}
+			
+a:hover	{
+	color: #000000;
+}
+
+
+/********************************************/
+/* HTML-ID */
+/********************************************/
+
+#share {
+	border-width: 0px;
+	border-bottom-width: 2px;
+	border-style: solid;
+	background-color: #F9B88D;
+	text-align:right;
+	height:26px;
+}
+
+#navigation  {
+	text-align: right;
+	color: #000000;
+	font-size: 15pt;
+	font-weight: normal;
+	padding-top:30px;
+	padding-bottom:30px;
+	border-width: 0px;
+	border-bottom-width: 2px;
+	border-style: solid;
+}
+
+#navigation_buttons *  {
+	margin-left: 20px;
+	font-weight:bold;
+	font-variant:small-caps;
+}
+
+#content  {
+	text-align: left;
+	color: #000000;
+	font-size: 11pt;
+	font-weight: normal;
+	background-color: #FFFFFF;
+	padding-bottom:30px;
+	padding-left:10px;
+	padding-right:10px;
+	margin-left:10%;
+	margin-right: 10%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-width:1px;
+	border-style: solid;
+}
+
+#logo  {
+	position:absolute;
+	top: 31px;
+	left: 10%;
+}
+
+#location  {
+	border-width:0px;
+	border-style: solid;
+	border-bottom-width: 1px;
+	border-color: #B6B6B6;
+}
+
+/********************************************/
+/* HTML-Klassen */
+/********************************************/
+
+
