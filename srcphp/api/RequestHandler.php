@@ -16,6 +16,7 @@ namespace api;
         var $m_Entity;
         var $m_Command;
         var $m_ID;
+        var $m_mysql;
         
         /**
          * RequestHandler::__construct()
@@ -24,7 +25,9 @@ namespace api;
             $this->m_Entity = $this->getURLParam("entity");
             $this->m_Command = $this->getURLParam("command");
             $this->m_ID = $this->getURLParam("id");
-            $this->requireUtils(); 
+            $this->requireSettings();
+            $this->requireUtils();
+            $this->initDatabase(); 
         }
         
         /**
@@ -45,7 +48,7 @@ namespace api;
             switch (strtolower($this->m_Entity))  {
                 
                 Case "lists":
-                    $this->handleRequestMappingEntity("Lists");
+                    $this->handleRequestMappingEntity("Lists",$this->m_Command,$this->m_ID);
                     break;   
                 default:
                     $this->responseNotFound();    
@@ -61,6 +64,19 @@ namespace api;
             header("HTTP/1.1 404");
         }
         
+        public function responseNoContent()  {
+            header("HTTP/1.1 204");
+        }
+        
+        public function getDatabase()  {
+            return $this->m_mysql;
+        }
+        
+        public function initDatabase()  {
+            $this->requireFile("","MySql.php");
+            $this->m_mysql = new MySQL(Settings::DB_Name,Settings::DB_Username,Settings::DB_Password,Settings::DB_Server,Settings::DB_Port);
+        }
+        
         /**
          * RequestHandler::getURLParam()
          * 
@@ -73,15 +89,19 @@ namespace api;
             }
         }
         
+        private function requireSettings()  {
+            $this->requireFile("","Settings.php");
+        }
+        
         private function requireUtils()  {
             $this->requireFile("util","IOUtil.inc.php");
         }
         
-        private function handleRequestMappingEntity($strClassName)  {
+        private function handleRequestMappingEntity($strClassName,$strCommand, $strID)  {
             $path = "requestMapping";
             $this->requireFile($path,$strClassName . ".inc.php");
             $object = new $strClassName;
-            $object->init($this);    
+            $object->handleRequest($this,$strCommand,$strID);    
         }
         
         private function requireFile($strPath,$strFile)   {
