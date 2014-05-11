@@ -20,6 +20,7 @@ namespace api;
         
         /**
          * RequestHandler::__construct()
+         * Construct and Initializations
          */
         public function __construct()  {
             $this->m_Entity = $this->getURLParam("entity");
@@ -65,14 +66,31 @@ namespace api;
             header("HTTP/1.1 404");
         }
         
+        /**
+         * RequestHandler::responseNoContent()
+         * 
+         * sends a 204 response to the requesting client
+         */
         public function responseNoContent()  {
             header("HTTP/1.1 204");
         }
         
+        /**
+         * RequestHandler::getDatabase()
+         * 
+         * returns the represantation of the databse 
+         */
         public function getDatabase()  {
             return $this->m_mysql;
         }
         
+        /**
+         * RequestHandler::initDatabase()
+         * 
+         * initialize the Database
+         * 
+         * @return void
+         */
         public function initDatabase()  {
             $this->requireFile("","MySql.php");
             $this->m_mysql = new MySQL(Settings::DB_Name,Settings::DB_Username,Settings::DB_Password,Settings::DB_Server,Settings::DB_Port);
@@ -90,14 +108,40 @@ namespace api;
             }
         }
         
+        /**
+         * RequestHandler::requireSettings()
+         * 
+         * Calls the needed methods to load all setting files 
+         * 
+         * @return void
+         */
         private function requireSettings()  {
             $this->requireFile("","Settings.php");
         }
         
+        /**
+         * RequestHandler::requireUtils()
+         * 
+         * load all Utils
+         * 
+         * @return void
+         * @see IOUtil
+         */
         private function requireUtils()  {
             $this->requireFile("util","IOUtil.inc.php");
         }
         
+        /**
+         * RequestHandler::handleRequestMappingEntity()
+         * 
+         * basic method to load a request handler for a special entity.
+         * All handler have to be in the "requestMapping" folder.
+         * 
+         * @param string $strClassName
+         * @param string $strCommand
+         * @param string $strID
+         * @return void
+         */
         private function handleRequestMappingEntity($strClassName,$strCommand, $strID)  {
             $path = "requestMapping";
             $this->requireFile($path,$strClassName . ".inc.php");
@@ -105,6 +149,16 @@ namespace api;
             $object->handleRequest($this,$strCommand,$strID);    
         }
         
+        /**
+         * RequestHandler::requireFile()
+         * 
+         * Loads a php file using the require_once method
+         * throws an exception if file do not exist.
+         * 
+         * @param string $strPath
+         * @param string $strFile
+         * @return void
+         */
         private function requireFile($strPath,$strFile)   {
             $strNewPath = $strPath . DIRECTORY_SEPARATOR . $strFile;
             require_once($strNewPath);

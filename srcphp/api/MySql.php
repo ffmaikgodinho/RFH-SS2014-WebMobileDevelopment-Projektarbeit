@@ -1,5 +1,17 @@
 <?php
 namespace api;
+/**
+ * MySQL
+ * 
+ * class representing the mysql database and provide basic methods to interact with it
+ * like connect, disconnect, query e.g.
+ * 
+ * @package api   
+ * @author Maik Godinho
+ * @copyright 
+ * @version 1.0.0
+ * @access public
+ */
 class MySQL {
 	var $hostname;          // MySQL Hostname
 	var $username;          // MySQL Username
@@ -10,6 +22,18 @@ class MySQL {
     
     var $lastError;          // Last MySql Error
 	
+	/**
+	 * MySQL::__construct()
+	 * 
+     * Constructor will automaticly establish a connection to the database 
+     * 
+	 * @param string $database
+	 * @param string $username
+	 * @param string $password
+	 * @param string $hostname
+	 * @param integer $port
+	 * @return
+	 */
 	function __construct($database, $username, $password, $hostname='localhost', $port=3306){
 		$this->database = $database;
 		$this->username = $username;
@@ -19,6 +43,13 @@ class MySQL {
 		$this->Connect();
 	}
 
+	/**
+	 * MySQL::Connect()
+	 * 
+     * Open a new connection to the databse
+     * 
+	 * @return
+	 */
 	private function Connect(){
 		$this->CloseConnection();
 		
@@ -39,6 +70,11 @@ class MySQL {
 	
 	
 	// Select database to use
+	/**
+	 * MySQL::UseDB()
+	 * 
+	 * @return successState of databse changing
+	 */
 	private function UseDB(){
 		if(!mysqli_select_db($this->databaseLink,$this->database)){
 			$this->lastError = 'Cannot select database: ' . mysql_error($this->databaseLink);
@@ -49,19 +85,46 @@ class MySQL {
 	}
 	
     // Closes the connections
+    /**
+     * MySQL::closeConnection()
+     * 
+     * @return
+     */
     public function closeConnection(){
         if($this->databaseLink){
             mysqli_close($this->databaseLink);
         }
     }
+    /**
+     * MySQL::query()
+     * 
+     * @param string $strSQLQuery
+     * @return MySqlI Query Resultset
+     */
     public function query($strSQLQuery)  {
         return mysqli_query($this->databaseLink,$strSQLQuery);
     }
     
+    /**
+     * MySQL::fetch_object()
+     * 
+     * Just a Wrapper for mysqli_fetch_object
+     * 
+     * @param mixed $result
+     * @return
+     */
     public function fetch_object($result)  {
         return mysqli_fetch_object($result);
     }
     
+    /**
+     * MySQL::getNumRows()
+     *
+     * * Just a Wrapper for mysqli_num_rows
+     *  
+     * @param mixed $result
+     * @return
+     */
     public function getNumRows($result)  {
         return mysqli_num_rows($result);
     }

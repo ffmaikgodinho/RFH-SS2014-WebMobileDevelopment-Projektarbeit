@@ -1,9 +1,28 @@
 <?php
 
+    /**
+     * Lists
+     * 
+     * @package api   
+     * @author Maik Godinho
+     * @copyright 
+     * @version 1.0.0
+     * @access public
+     */
     class Lists {
         
         var $m_requestHandler;
         
+        /**
+         * Lists::handleRequest()
+         * 
+         * Handles the request for showing, updating and deleting List Entries.
+         * 
+         * @param RequestHandler $requestHandler
+         * @param string $strCommand
+         * @param string $strID
+         * @return
+         */
         public function handleRequest($requestHandler,$strCommand,$strID)  {
             $this->m_requestHandler = $requestHandler;
             switch (strtolower($strCommand))  {
@@ -21,6 +40,13 @@
             $this->m_requestHandler->getDatabase()->closeConnection();
         }
         
+        /**
+         * Lists::getLists()
+         * 
+         * Shows all entries in a list and automatically echos them to the browser
+         * 
+         * @return void
+         */
         public function getLists()  {
             $events = array();
             $strSql = "Select * FROM event";
@@ -37,6 +63,14 @@
             }
        }
         
+        /**
+         * Lists::getList()
+         * 
+         * showing the details of a single list entrie
+         * 
+         * @param string $strListID
+         * @return void
+         */
         public function getList($strListID)  {
             $strSql = "Select * FROM event where id = '" . $strListID . "'";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
