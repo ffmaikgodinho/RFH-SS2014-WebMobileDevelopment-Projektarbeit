@@ -45,6 +45,7 @@ namespace api;
          * handles all incoming request 
          */
         public function handleRequest()  {
+            header("Content-type:application/json");
             switch (strtolower($this->m_Entity))  {
                 
                 Case "lists":
