@@ -7,19 +7,18 @@
 		<title>Mainpage</title>
 	</head>
 	<body>
-		<div id="logo">
-		<a href=""><img src="img/logo.gif" alt="logo"></a>
-		</div>
-		<div id="menu">
-			<menu id="navigation">
-				<li id="navigation"><a href="">About</a></li>
-				<li id="navigation"><a href="">New</a></li>
-				<li id="navigation"><a href="">Login</a></li>
-			</menu>
-		</div>
-		<h1>
-				Home > test
+		<h1 id="logo">
+			DIE SEITE
 		</h1>
+		<menu id="navigation">
+			<a href=""><li id="navigation">About</li></a>
+			<a href=""><li id="navigation">New</li></a>
+			<a href=""><li id="navigation">Login</li></a>
+		</menu>
+		<!--<a href=""><img src="img/logo.gif" alt="logo" id="logo"></a>-->
+		<h2 id="position">
+			About
+		</h2>
 		<div id="content">
 			<p id="content_content">
 				blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent<br>

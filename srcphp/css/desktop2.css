@@ -8,7 +8,7 @@
 
 body {
 	/*Farben*/
-	background-color: #FFFFFF; 
+	background-image: url(../img/background.png); 
 	color: #000000;
 	
 	/*Text-Formatierung*/
@@ -18,21 +18,9 @@ body {
 	
 	/*Größe und Position und Rahmen*/
 	width: 100%;
-	margin: 0;
+	min-width: 61em;
+	margin:0;
 	padding: 0;
-	min-width:5em;
-}
-		
-h1 {
-	/*Farben*/
-	
-	/*Text-Formatierung*/
-	font-family: Arial,sans-serif; 
-	font-size: 0.8em; 
-	font-weight: normal;
-	
-	/*Größe und Position und Rahmen*/	
-	clear:both;
 }
 
 div {
@@ -56,12 +44,13 @@ img {
 }
 			
 a {
-	color: #000000;
+	color: #919191;
 	text-decoration: none;
 }
 			
 a:hover	{
-	color: #A4D217;
+	
+	text-decoration: none;
 }
 
 
@@ -69,44 +58,81 @@ a:hover	{
 /* HTML-ID */
 /********************************************/
 
-div#logo {
-	float:left;
+#logo{
+	margin: 0.2em 0 0 10em;
+	font-size: 2em; 
+	color: #75CD00;
+	font-weight: normal;
+	line-height: 1.7em;
 }
-
-
 
 menu#navigation {
 	/*Farben*/
 	
 	/*Text-Formatierung*/
-	font-size: 1.2em; 
+	font-size: 1.0em; 
 	list-style-type: none;
+	text-align: right;
 	
 	/*Größe und Position und Rahmen*/
-	margin: 0;
-	padding: 0;	
-	padding-right: 1em;
+	margin: 1.2em 5em 0em 0;
+	padding: 0;
     border: 1px solid silver;
-	text-align: right;
-	width: 22em;
+	float: right;
 }
 
 menu#navigation li {
 	/*Farben*/
+	background-color: #343434;
+	color: #FFFFFF;
 	
 	/*Text-Formatierung*/
 	font-size: 1.2em;
 	font-weight: bold;
+	text-align: center;
 	
 	/*Größe und Position und Rahmen*/
-	padding: 1em;	
-	display:inline;
+	margin: 0.5em 0 0 1em;
+	width: 5em;
+	line-height: 1.7em;
+	display: inline-block;
+}
+
+menu#navigation li:hover {
+	/*Farben*/
+	background-color: #75CD00;
+	color: #002300;
+	/*Text-Formatierung*/
+	
+	/*Größe und Position und Rahmen*/
+}
+
+#position {
+	/*Farben*/
+	background-color: #343434;
+	color: #FFFFFF;
+	
+	/*Text-Formatierung*/
+	font-size: 1.2em;
+	font-weight: bold;
+	line-height: 1.7em;
+	text-align: center;
+	
+	/*Größe und Position und Rahmen*/
+	margin: 2em 0 0 16.65em;
+	padding: 0 1em 0 1em;
+	border: 1px solid silver;
+	float:left;
 }
 
 div#content {
-	margin-left: 0em;
+	background-color: #343434;
+	color: #DBDBDB;
+	
+	margin: 2em 20em 0 20em;
 	border: 1px solid silver;
 	clear: both;
+	min-width: 21em;
 }
 
 div#footer {
@@ -114,7 +140,7 @@ div#footer {
 }
 
 div#share {
-	clear: both;
+	position:absolute;
 }
 
 
