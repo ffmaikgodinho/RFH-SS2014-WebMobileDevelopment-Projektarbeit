@@ -1,7 +1,5 @@
 <?php
-    namespace API\model;
-    
-    interface IBase  {
+    interface IBaseModel  {
         /**
          * parsePOST()
          * 

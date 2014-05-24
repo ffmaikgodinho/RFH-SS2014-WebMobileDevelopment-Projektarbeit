@@ -1,6 +1,4 @@
 <?php
-    namespace API\model;
-    
     /**
      * EventEntry
      * 
@@ -11,7 +9,7 @@
      * @copyright 2014
      * @access public
      */
-    class EventEntry implements IBase {
+    class EventEntry implements IBaseModel {
         
         public $id;
         public $url;

@@ -1,16 +1,6 @@
 RewriteEngine on
 
-RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^api/lists$ api/RequestHandler.php?command=Get&entity=lists
-
-RewriteCond %{REQUEST_METHOD} PUT
-RewriteRule ^api/lists$ api/RequestHandler.php?command=Create&entity=lists
-
-RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^api/lists/(.+)$ api/RequestHandler.php?command=Get&entity=lists&id=$1
-
-RewriteCond %{REQUEST_METHOD} DELETE
-RewriteRule ^api/lists/(.+)$ api/RequestHandler.php?command=Delete&entity=lists&id=$1
-
-RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^api/lists/(.+)$ api/RequestHandler.php?command=Update&entity=lists&id=$1
+RewriteCond %{REQUEST_METHOD} GET|PUT|POST|DELETE
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ api/RequestHandler.php?param=$1

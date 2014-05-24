@@ -1,6 +1,4 @@
 <?php
-    namespace API\model;
-    
     /**
      * User
      * 
@@ -11,7 +9,7 @@
      * @copyright 2014
      * @access public
      */
-    class User implements IBase {
+    class User implements IBaseModel {
         
         public $id;
         public $name;

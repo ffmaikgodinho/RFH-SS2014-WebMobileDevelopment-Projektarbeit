@@ -1,5 +1,4 @@
 <?php
-namespace api;
     /**
      * RequestHandler
      *
@@ -23,9 +22,12 @@ namespace api;
          * Construct and Initializations
          */
         public function __construct()  {
-            $this->m_Entity = $this->getURLParam("entity");
-            $this->m_Command = $this->getURLParam("command");
-            $this->m_ID = $this->getURLParam("id");
+            $request_parts = explode('/', $_GET['param']);
+            $this->m_Entity = $request_parts[0];
+            $this->m_Command = $_SERVER['REQUEST_METHOD'];
+            if (isset($request_parts[1]))  {
+                $this->m_ID = $request_parts[1];
+            }
             $this->requireSettings();
             $this->requireUtils();
             $this->requireModels();
@@ -48,10 +50,12 @@ namespace api;
          */
         public function handleRequest()  {
             header("Content-type:application/json");    // Yes this ignores the Accept Header of the Request
+            
+            $this->requireFile("requestMapping","IBaseRequest.php");
             switch (strtolower($this->m_Entity))  {
                 
-                Case "lists":
-                    $this->handleRequestMappingEntity("Lists",$this->m_Command,$this->m_ID);
+                Case "events":
+                    $this->handleRequestMappingEntity("Events",$this->m_Command,$this->m_ID);
                     break;   
                 default:
                     $this->responseNotFound();    
@@ -105,7 +109,7 @@ namespace api;
          */
         private function getURLParam($strName)  {
             if (isset($_GET[$strName]))  {
-                return mysql_real_escape_string(urlencode($_GET[$strName]));    
+                return @mysql_real_escape_string(urlencode($_GET[$strName]));    
             }
         }
         
@@ -129,7 +133,7 @@ namespace api;
          * @see IOUtil
          */
         private function requireUtils()  {
-            $this->requireFile("util","IOUtil.inc.php");
+            $this->requireFile("util","IOUtil.php");
         }
         
         /**
@@ -140,7 +144,7 @@ namespace api;
          * @return void
          */
         private function requireModels()  {
-            $this->requireFile("model","IBase.php");
+            $this->requireFile("model","IBaseModel.php");
             
             $this->requireFile("model","Event.php");
             $this->requireFile("model","EventEntry.php");
@@ -161,7 +165,7 @@ namespace api;
          */
         private function handleRequestMappingEntity($strClassName,$strCommand, $strID)  {
             $path = "requestMapping";
-            $this->requireFile($path,$strClassName . ".inc.php");
+            $this->requireFile($path,$strClassName . ".php");
             $object = new $strClassName;
             $object->handleRequest($this,$strCommand,$strID);    
         }
@@ -181,7 +185,7 @@ namespace api;
             require_once($strNewPath);
         }
     }
-    
+    Error_Reporting(E_ALL);
     $requestHandler = new RequestHandler();
     $requestHandler->handleRequest();
 ?>

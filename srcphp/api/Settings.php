@@ -1,5 +1,4 @@
 <?php
-namespace Api;
 class Settings  {
     //Access to MySql Database
     const DB_Server = "localhost";

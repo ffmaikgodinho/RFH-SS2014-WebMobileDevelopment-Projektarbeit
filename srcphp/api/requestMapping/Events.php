@@ -1,7 +1,6 @@
 <?php
-
     /**
-     * Lists
+     * Events
      * 
      * @package api   
      * @author Maik Godinho
@@ -9,14 +8,14 @@
      * @version 1.0.0
      * @access public
      */
-    class Lists {
+    class Events implements IBaseRequest {
         
         var $m_requestHandler;
         
         /**
-         * Lists::handleRequest()
+         * Events::handleRequest()
          * 
-         * Handles the request for showing, updating and deleting List Entries.
+         * Handles the request for showing, updating and deleting Event Entries.
          * 
          * @param RequestHandler $requestHandler
          * @param string $strCommand
@@ -28,10 +27,10 @@
             switch (strtolower($strCommand))  {
                 case "get":
                     if ($strID == 0)  {
-                        $this->getLists();
+                        $this->getAll();
                     } 
                     else {
-                        $this->getList($strID);
+                        $this->getSingle($strID);
                     }
                     break;
                 case "put":
@@ -47,19 +46,19 @@
         }
         
         /**
-         * Lists::getLists()
+         * Events::getAll()
          * 
-         * Shows all entries in a list and automatically echos them to the browser
+         * Shows all Events in a list and automatically echos them to the browser
          * 
          * @return void
          */
-        public function getLists()  {
+        public function getAll()  {
             $events = array();
             $strSql = "Select * FROM event";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
                 while ($row = $this->m_requestHandler->getDatabase()->fetch_object($result))  {
-                    $row->url ="/api/lists/".$row->id;
+                    $row->url ="/api/Events/".$row->id;
                     $events[] = $row;
                 }
                 echo json_encode($events);
@@ -70,14 +69,14 @@
        }
         
         /**
-         * Lists::getList()
+         * Events::getSingle()
          * 
-         * showing the details of a single list entrie
+         * showing the details of a single Event entrie
          * 
          * @param string $strListID
          * @return void
          */
-        public function getList($strListID)  {
+        public function getSingle($strListID)  {
             $strSql = "Select * FROM event where id = '" . $strListID . "'";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
@@ -91,25 +90,21 @@
         
         
         /**
-         * Lists::updateList()
+         * Events::create()
          * 
-         * update a List Item 
+         * create a Event Item 
          * 
-         * @param mixed $strListID
          * @return void
          */
-        public function updateList($strListID)  {
+        public function create()  {
             
         }
         
-        /**
-         * Lists::createList()
-         * 
-         * Creates a List
-         * 
-         * @return void
-         */
-        public function createList()  {
+        public function update($strListID)  {
+            
+        }
+        
+        public function delete($id)  {
             
         }
         
