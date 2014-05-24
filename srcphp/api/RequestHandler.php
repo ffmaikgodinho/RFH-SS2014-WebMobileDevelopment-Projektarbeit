@@ -143,6 +143,9 @@ namespace api;
             $this->requireFile("model","IBase.php");
             
             $this->requireFile("model","Event.php");
+            $this->requireFile("model","EventEntry.php");
+            $this->requireFile("model","EventContribution.php");
+            $this->requireFile("model","User.php");
         }
         
         /**
