@@ -2,25 +2,24 @@
     namespace API\model;
     
     /**
-     * Event
+     * EventEntry
      * 
-     * represents a created event with linked EventEntrys
-     * represents the sql table "event"
+     * represents a event entry which is linked to an event.
      * 
      * @package 
      * @author Maik Godinho
      * @copyright 2014
      * @access public
      */
-    class Event implements IBase {
+    class EventEntry implements IBase {
         
         public $id;
         public $url;
-        public $add_date;
-        public $date;
-        public $location;
-        public $description;
-        public $type;
+        public $eventid;
+        public $title;
+        public $note;
+        public $linkWeb;
+        public $totalQuantity;
         
         public function parsePOST($post)  {
             

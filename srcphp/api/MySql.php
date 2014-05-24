@@ -27,11 +27,11 @@ class MySQL {
 	 * 
      * Constructor will automaticly establish a connection to the database 
      * 
-	 * @param string $database
+	 * @param string $databasename
 	 * @param string $username
 	 * @param string $password
-	 * @param string $hostname
-	 * @param integer $port
+	 * @param string $hostname, default is localhos
+	 * @param integer $port, default is 3306
 	 * @return
 	 */
 	function __construct($database, $username, $password, $hostname='localhost', $port=3306){

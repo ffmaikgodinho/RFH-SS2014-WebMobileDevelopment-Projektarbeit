@@ -28,6 +28,7 @@ namespace api;
             $this->m_ID = $this->getURLParam("id");
             $this->requireSettings();
             $this->requireUtils();
+            $this->requireModels();
             $this->initDatabase(); 
         }
         
@@ -46,7 +47,7 @@ namespace api;
          * handles all incoming request 
          */
         public function handleRequest()  {
-            header("Content-type:application/json");
+            header("Content-type:application/json");    // Yes this ignores the Accept Header of the Request
             switch (strtolower($this->m_Entity))  {
                 
                 Case "lists":
@@ -129,6 +130,19 @@ namespace api;
          */
         private function requireUtils()  {
             $this->requireFile("util","IOUtil.inc.php");
+        }
+        
+        /**
+         * RequestHandler::requireModels()
+         *
+         * load all necessary Claesses
+         *  
+         * @return void
+         */
+        private function requireModels()  {
+            $this->requireFile("model","IBase.php");
+            
+            $this->requireFile("model","Event.php");
         }
         
         /**

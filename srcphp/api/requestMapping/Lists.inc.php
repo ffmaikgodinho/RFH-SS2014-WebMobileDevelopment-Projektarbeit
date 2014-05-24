@@ -34,6 +34,12 @@
                         $this->getList($strID);
                     }
                     break;
+                case "put":
+                    $this->createList();
+                case "post":
+                    if (is_numeric($strID) && $strID > 0)  {
+                        $this->updateList($strID);
+                    }
                 default:
                     $requestHandler->responseNotFound();
             }
@@ -81,6 +87,29 @@
             else  {
                 $this->m_requestHandler->responseNoContent();
             }
+        }
+        
+        
+        /**
+         * Lists::updateList()
+         * 
+         * update a List Item 
+         * 
+         * @param mixed $strListID
+         * @return void
+         */
+        public function updateList($strListID)  {
+            
+        }
+        
+        /**
+         * Lists::createList()
+         * 
+         * Creates a List
+         * 
+         * @return void
+         */
+        public function createList()  {
             
         }
         
