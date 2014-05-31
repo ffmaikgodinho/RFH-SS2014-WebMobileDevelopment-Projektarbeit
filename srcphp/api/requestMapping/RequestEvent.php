@@ -1,6 +1,6 @@
 <?php
     /**
-     * Events
+     * RequestEvent
      * 
      * @package api   
      * @author Maik Godinho
@@ -41,7 +41,7 @@
                 return $events;
             }
             else  {
-                $this->m_requestHandler->responseNoContent();
+                $this->m_requestHandler->responseNoContent("There are currently no events.");
             }
        }
         
@@ -61,7 +61,7 @@
                 return $row;
             }
             else  {
-                $this->m_requestHandler->responseNoContent();
+                $this->m_requestHandler->responseNoContent("There is no event with such an id.");
             }
         }
         
@@ -71,11 +71,25 @@
          * creates a new Event
          *  
          * @param mixed $inputData
-         * @return void
+         * @return if successfull returns the inserted id
          */
         public function create($inputData)  {
-            $event = new Event();
-            $event->parsePOST($_POST);
+            if ($this->checkData($inputData))  {
+                $strSql =   "INSERT INTO `fh`.`event` (`add_date`, `date`, `location`, `description`, `type`) ".
+                        "VALUES (CURRENT_TIMESTAMP, '".$inputData->date."', '".$inputData->location."', '".$inputData->description."', '".$inputData->type."');";
+                $result = $this->m_requestHandler->getDatabase()->query($strSql);
+                $lastid = $this->m_requestHandler->getDatabase()->getLastInsertID();
+                if (is_int($lastid) && $lastid > 0)  {
+                    return $lastid;
+                }
+                else  {
+                    $this->m_requestHandler->responseInternalServerError("Event could not be inserted.");
+                }                
+            }
+            else {
+                //echo "Lala";
+                $this->m_requestHandler->responseBadRequest("Not all needed event information have been send.");
+            }
         }
         
         public function update($inputData)  {
@@ -84,6 +98,25 @@
         
         public function delete($id)  {
             
+        }
+        
+        /**
+         * RequestEvent::checkData()
+         *
+         * checks wethere the required fields are filled to insert data 
+         *  
+         * @param mixed $data
+         * @return boolean | True if all nesseccessary data are filled
+         */
+        private function checkData($data)  {
+            if (is_numeric($data->type) AND $data->type >= 0 AND $data->type <= 999)  {
+                if (strlen($data->location) > 0)  {
+                    if (strlen($data->description) > 0)  {
+                        return true;   
+                    }
+                }
+            }
+            return false;
         }
         
     }

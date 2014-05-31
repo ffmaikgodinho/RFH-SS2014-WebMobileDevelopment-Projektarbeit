@@ -20,8 +20,15 @@
         public $description;
         public $type;
         
-        public function parsePOST($post)  {
-            
+        public function parsePOST($postData)  {
+            if (isset($postData["Datum"]))
+                $this->date = $postData["Datum"];
+            if (isset($postData["Ort"]))
+                $this->location = $postData["Ort"];
+            if (isset($postData["Beschreibung"]))
+                $this->description = $postData["Beschreibung"];
+            if (isset($postData["Typ"]))
+                $this->type = $postData["Typ"];
         }
         public function parseJSON($json)  {
             

@@ -127,5 +127,16 @@ class MySQL {
     public function getNumRows($result)  {
         return mysqli_num_rows($result);
     }
+    
+    /**
+     * MySQL::getLastInsertID()
+     *
+     * Returns the last inserted it in a table using AUTO_INCREMENT
+     *  
+     * @return
+     */
+    public function getLastInsertID()  {
+        return mysqli_insert_id($this->databaseLink);
+    }
 }
 ?>

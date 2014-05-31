@@ -63,7 +63,7 @@
                     $this->handleRequestMappingEntity("Event",$this->m_Command,$this->m_ID);
                     break;   
                 default:
-                    $this->responseNotFound();    
+                    $this->responseNotFound("No such ressource.");    
             }
         }
         
@@ -72,8 +72,9 @@
          * 
          * sends a 204 response to the requesting client
          */
-        public function responseNoContent()  {
+        public function responseNoContent($strErrorMessage)  {
             header("HTTP/1.1 204");
+            echo $strErrorMessage;
         }
         
 
@@ -82,8 +83,9 @@
          * 
          * sends a 400 response to the requesting client
          */
-        public function responseBadRequest()  {
+        public function responseBadRequest($strErrorMessage)  {
             header("HTTP/1.1 400");
+            echo $strErrorMessage;
         }
 
         /**
@@ -91,8 +93,9 @@
          * 
          * Sends a 404 response to the requesting client
          */
-        public function responseNotFound()  {
+        public function responseNotFound($strErrorMessage)  {
             header("HTTP/1.1 404");
+            echo $strErrorMessage;
         }
                 
         /**
@@ -100,8 +103,19 @@
          * 
          * sending a 406 response to the requesting client.
          */
-        public function responseNotAcceptable()  {
+        public function responseNotAcceptable($strErrorMessage)  {
             header("HTTP/1.1 406");
+            echo $strErrorMessage;
+        }
+        
+        /**
+         * RequestHandler::responseInternalServerError()
+         * 
+         * sending a 500 response to the requesting client.
+         */
+        public function responseInternalServerError($strErrorMessage)  {
+            header("HTTP/1.1 500");
+            echo $strErrorMessage;
         }
         
         /**
@@ -211,7 +225,7 @@
                         $returnObject = $object->update($inputData);
                     }
                     else  {
-                        $this->responseBadRequest();
+                        $this->responseBadRequest("ID is invalid.");
                     }
                     break;
                 case "delete":
@@ -219,7 +233,7 @@
                         $returnObject = $object->delete($strID);
                     }
                     else  {
-                        $this->responseBadRequest();
+                        $this->responseBadRequest("ID is invalid.");
                     }
                     break;
                 default:
