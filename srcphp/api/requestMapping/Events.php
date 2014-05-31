@@ -13,36 +13,13 @@
         var $m_requestHandler;
         
         /**
-         * Events::handleRequest()
+         * Events::__construct()
          * 
-         * Handles the request for showing, updating and deleting Event Entries.
-         * 
-         * @param RequestHandler $requestHandler
-         * @param string $strCommand
-         * @param string $strID
-         * @return
+         * @param basic requestHandler
+         * @return void
          */
-        public function handleRequest($requestHandler,$strCommand,$strID)  {
+        public function __construct($requestHandler) {
             $this->m_requestHandler = $requestHandler;
-            switch (strtolower($strCommand))  {
-                case "get":
-                    if ($strID == 0)  {
-                        $this->getAll();
-                    } 
-                    else {
-                        $this->getSingle($strID);
-                    }
-                    break;
-                case "put":
-                    $this->createList();
-                case "post":
-                    if (is_numeric($strID) && $strID > 0)  {
-                        $this->updateList($strID);
-                    }
-                default:
-                    $requestHandler->responseNotFound();
-            }
-            $this->m_requestHandler->getDatabase()->closeConnection();
         }
         
         /**

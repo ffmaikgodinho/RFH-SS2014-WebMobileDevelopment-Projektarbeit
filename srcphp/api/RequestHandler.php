@@ -166,8 +166,29 @@
         private function handleRequestMappingEntity($strClassName,$strCommand, $strID)  {
             $path = "requestMapping";
             $this->requireFile($path,$strClassName . ".php");
-            $object = new $strClassName;
-            $object->handleRequest($this,$strCommand,$strID);    
+            $object = new $strClassName($this);
+            switch (strtolower($strCommand))  {
+                case "get":
+                    if ($strID == 0)  {
+                        $object->getAll();
+                    } 
+                    else {
+                        $object->getSingle($strID);
+                    }
+                    break;
+                case "put":
+                    $object->createList();
+                    break;
+                case "post":
+                    if (is_numeric($strID) && $strID > 0)  {
+                        $object->updateList($strID);
+                    }
+                    break;
+                default:
+                    $this->responseNotFound();
+                    break;
+            }
+            $this->getDatabase()->closeConnection();    
         }
         
         /**
