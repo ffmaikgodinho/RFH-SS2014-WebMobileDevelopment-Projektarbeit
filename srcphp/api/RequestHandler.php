@@ -68,6 +68,17 @@
         }
         
         /**
+         * RequestHandler::responseOK()
+         * sends a 200 OK
+         * @param mixed $strMessage
+         * @return void
+         */
+        public function responseOK($strMessage)  {
+            header("HTTP/1.1 200");
+            echo $strErrorMessage;
+        }
+        
+        /**
          * RequestHandler::responseNoContent()
          * 
          * sends a 204 response to the requesting client

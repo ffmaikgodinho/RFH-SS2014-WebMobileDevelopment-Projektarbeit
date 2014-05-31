@@ -138,5 +138,14 @@ class MySQL {
     public function getLastInsertID()  {
         return mysqli_insert_id($this->databaseLink);
     }
+    
+    /**
+     * MySQL::getAffectedRows()
+     * 
+     * @return the count of affected rows of the last query
+     */
+    public function getAffectedRows()  {
+        return mysqli_affected_rows($this->databaseLink);
+    }
 }
 ?>

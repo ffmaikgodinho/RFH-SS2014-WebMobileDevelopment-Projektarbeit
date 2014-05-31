@@ -75,7 +75,7 @@
          */
         public function create($inputData)  {
             if ($this->checkData($inputData))  {
-                $strSql =   "INSERT INTO `fh`.`event` (`add_date`, `date`, `location`, `description`, `type`) ".
+                $strSql =   "INSERT INTO `event` (`add_date`, `date`, `location`, `description`, `type`) ".
                         "VALUES (CURRENT_TIMESTAMP, '".$inputData->date."', '".$inputData->location."', '".$inputData->description."', '".$inputData->type."');";
                 $result = $this->m_requestHandler->getDatabase()->query($strSql);
                 $lastid = $this->m_requestHandler->getDatabase()->getLastInsertID();
@@ -87,7 +87,6 @@
                 }                
             }
             else {
-                //echo "Lala";
                 $this->m_requestHandler->responseBadRequest("Not all needed event information have been send.");
             }
         }
@@ -97,7 +96,14 @@
         }
         
         public function delete($id)  {
-            
+            $strSql = "DELETE FROM event WHERE id = '" . $id . "'";
+            $result = $this->m_requestHandler->getDatabase()->query($strSql);
+            if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
+                $this->m_requestHandler->responseNotFound("The given id was not found and therefore could not be deleted.");
+            }
+            else  {
+                $this->m_requestHandler->responseOK("ID successfully deleted");
+            }
         }
         
         /**
