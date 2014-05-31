@@ -27,7 +27,7 @@
          * 
          * Shows all Events in a list and automatically echos them to the browser
          * 
-         * @return void
+         * @return Array of events
          */
         public function getAll()  {
             $events = array();
@@ -38,7 +38,7 @@
                     $row->url ="/api/Events/".$row->id;
                     $events[] = $row;
                 }
-                echo json_encode($events);
+                return $events;
             }
             else  {
                 $this->m_requestHandler->responseNoContent();
@@ -51,14 +51,14 @@
          * showing the details of a single Event entrie
          * 
          * @param string $strListID
-         * @return void
+         * @return a instance of an single Event, typeof model/Event
          */
         public function getSingle($strListID)  {
             $strSql = "Select * FROM event where id = '" . $strListID . "'";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
                 $row = $this->m_requestHandler->getDatabase()->fetch_object($result);
-                echo json_encode($row);
+                return $row;
             }
             else  {
                 $this->m_requestHandler->responseNoContent();

@@ -16,6 +16,7 @@
         var $m_Command;
         var $m_ID;
         var $m_mysql;
+        var $m_AcceptType;
         
         /**
          * RequestHandler::__construct()
@@ -25,6 +26,8 @@
             $request_parts = explode('/', $_GET['param']);
             $this->m_Entity = $request_parts[0];
             $this->m_Command = $_SERVER['REQUEST_METHOD'];
+            // Accept header is case insensitive, and whitespace isn’t important
+            $this->m_AcceptType = strtolower(str_replace(' ', '', $_SERVER['HTTP_ACCEPT']));
             if (isset($request_parts[1]))  {
                 $this->m_ID = $request_parts[1];
             }
@@ -170,25 +173,49 @@
             switch (strtolower($strCommand))  {
                 case "get":
                     if ($strID == 0)  {
-                        $object->getAll();
+                        $returnObject = $object->getAll();
                     } 
                     else {
-                        $object->getSingle($strID);
+                        $returnObject = $object->getSingle($strID);
                     }
                     break;
                 case "put":
-                    $object->createList();
+                    $returnObject = $object->createList();
                     break;
                 case "post":
                     if (is_numeric($strID) && $strID > 0)  {
-                        $object->updateList($strID);
+                        $returnObject = $object->updateList($strID);
                     }
                     break;
                 default:
                     $this->responseNotFound();
                     break;
             }
-            $this->getDatabase()->closeConnection();    
+            $this->getDatabase()->closeConnection();
+            
+            if (isset($returnObject))  {
+                $this->handleOutput($returnObject);    
+            }    
+        }
+        
+        /**
+         * RequestHandler::handleOutput()
+         * 
+         * @param mixed $returnObject
+         * @return void
+         */
+        private function handleOutput($returnObject)  {
+            switch ($this->m_AcceptType)  {
+                case "application/json":
+                    echo json_encode($returnObject);
+                    break;
+                case "application/xml":
+                    ///TODO: implement XML serializer
+                    break; 
+                default:
+                    echo json_encode($returnObject);
+                    break;
+            }
         }
         
         /**
