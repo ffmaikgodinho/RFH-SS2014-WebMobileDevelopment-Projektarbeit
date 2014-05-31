@@ -8,7 +8,7 @@
      * @version 1.0.0
      * @access public
      */
-    class Events implements IBaseRequest {
+    class RequestEvent implements IBaseRequest {
         
         var $m_requestHandler;
         
@@ -65,19 +65,20 @@
             }
         }
         
-        
         /**
-         * Events::create()
-         * 
-         * create a Event Item 
-         * 
+         * RequestEvents::create()
+         *
+         * creates a new Event
+         *  
+         * @param mixed $inputData
          * @return void
          */
-        public function create()  {
-            
+        public function create($inputData)  {
+            $event = new Event();
+            $event->parsePOST($_POST);
         }
         
-        public function update($strListID)  {
+        public function update($inputData)  {
             
         }
         

@@ -1,6 +1,12 @@
 RewriteEngine on
 
 RewriteCond %{REQUEST_METHOD} GET|PUT|POST|DELETE
+
+#prevent never ending loops (check if file and dir exists)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
 RewriteRule ^api/(.*)$ api/RequestHandler.php?param=$1
+
+#provide the content type in php
+RewriteRule .* - [E=HTTP_CONTENT_TYPE:%{HTTP:Content-Type},L]

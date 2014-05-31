@@ -17,6 +17,7 @@
         var $m_ID;
         var $m_mysql;
         var $m_AcceptType;
+        var $m_ContentType;
         
         /**
          * RequestHandler::__construct()
@@ -28,6 +29,7 @@
             $this->m_Command = $_SERVER['REQUEST_METHOD'];
             // Accept header is case insensitive, and whitespace isn’t important
             $this->m_AcceptType = strtolower(str_replace(' ', '', $_SERVER['HTTP_ACCEPT']));
+            $this->m_ContentType = strtolower($_SERVER['HTTP_CONTENT_TYPE']);
             if (isset($request_parts[1]))  {
                 $this->m_ID = $request_parts[1];
             }
@@ -58,20 +60,11 @@
             switch (strtolower($this->m_Entity))  {
                 
                 Case "events":
-                    $this->handleRequestMappingEntity("Events",$this->m_Command,$this->m_ID);
+                    $this->handleRequestMappingEntity("Event",$this->m_Command,$this->m_ID);
                     break;   
                 default:
                     $this->responseNotFound();    
             }
-        }
-        
-        /**
-         * RequestHandler::responseNotFound()
-         * 
-         * Sends a 404 response to the requesting client
-         */
-        public function responseNotFound()  {
-            header("HTTP/1.1 404");
         }
         
         /**
@@ -81,6 +74,34 @@
          */
         public function responseNoContent()  {
             header("HTTP/1.1 204");
+        }
+        
+
+        /**
+         * RequestHandler::responseBadRequest()
+         * 
+         * sends a 400 response to the requesting client
+         */
+        public function responseBadRequest()  {
+            header("HTTP/1.1 400");
+        }
+
+        /**
+         * RequestHandler::responseNotFound()
+         * 
+         * Sends a 404 response to the requesting client
+         */
+        public function responseNotFound()  {
+            header("HTTP/1.1 404");
+        }
+                
+        /**
+         * RequestHandler::responseNotAcceptable()
+         * 
+         * sending a 406 response to the requesting client.
+         */
+        public function responseNotAcceptable()  {
+            header("HTTP/1.1 406");
         }
         
         /**
@@ -168,8 +189,11 @@
          */
         private function handleRequestMappingEntity($strClassName,$strCommand, $strID)  {
             $path = "requestMapping";
-            $this->requireFile($path,$strClassName . ".php");
-            $object = new $strClassName($this);
+            $strPrefix = "Request";
+            $strRequestMapper = $strPrefix.$strClassName;
+            $this->requireFile($path,$strRequestMapper . ".php");
+            $inputData = $this->handleInput($strClassName);
+            $object = new $strRequestMapper($this);
             switch (strtolower($strCommand))  {
                 case "get":
                     if ($strID == 0)  {
@@ -180,11 +204,22 @@
                     }
                     break;
                 case "put":
-                    $returnObject = $object->createList();
+                    $returnObject = $object->create($inputData);
                     break;
                 case "post":
                     if (is_numeric($strID) && $strID > 0)  {
-                        $returnObject = $object->updateList($strID);
+                        $returnObject = $object->update($inputData);
+                    }
+                    else  {
+                        $this->responseBadRequest();
+                    }
+                    break;
+                case "delete":
+                    if (is_numeric($strID) && $strID > 0)  {
+                        $returnObject = $object->delete($strID);
+                    }
+                    else  {
+                        $this->responseBadRequest();
                     }
                     break;
                 default:
@@ -219,6 +254,30 @@
         }
         
         /**
+         * RequestHandler::handleInput()
+         * 
+         * Converts the received data to a model filled via json, xml or POST
+         * 
+         * @param string modelname
+         * @return filled model for the requested entity
+         */
+        private function handleInput($strClassName)  {
+            $objReturn = new $strClassName;
+            switch ($this->m_ContentType)  {
+                case "application/json":
+                    $objReturn->parseJSON("");      //not yet implemented
+                    break;
+                case "application/xml":
+                    $objReturn->parseXML("");      //not yet implemented
+                    break; 
+                default:
+                    $objReturn->parsePOST($_POST);
+                    break;
+            }
+            return $objReturn;
+        }
+        
+        /**
          * RequestHandler::requireFile()
          * 
          * Loads a php file using the require_once method
@@ -233,7 +292,7 @@
             require_once($strNewPath);
         }
     }
-    Error_Reporting(E_ALL);
+    Error_Reporting(E_ALL);     //for developing purpose, remove when in production
     $requestHandler = new RequestHandler();
     $requestHandler->handleRequest();
 ?>
