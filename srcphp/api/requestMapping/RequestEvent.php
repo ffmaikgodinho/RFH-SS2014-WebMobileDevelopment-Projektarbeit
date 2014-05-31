@@ -91,18 +91,42 @@
             }
         }
         
+        /**
+         * RequestEvent::update()
+         * 
+         * updates an event.
+         * 
+         * @param mixed $inputData
+         * @return void
+         */
         public function update($inputData)  {
-            
+            $strSql = "UPDATE event SET description = '".$inputData->description."',location = '".$inputData->location."',date = '".$inputData->date."',type = '".$inputData->type."' WHERE id = '" . $inputData->id . "'";
+            $result = $this->m_requestHandler->getDatabase()->query($strSql);
+            if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
+                $this->m_requestHandler->responseNotFound("The given id was not found and therefore could not be updated..");
+            }
+            else  {
+                $this->m_requestHandler->responseOK("Event successfully updated");
+            }
         }
         
+        /**
+         * RequestEvent::delete()
+         * 
+         * removes an event
+         * 
+         * @param mixed $id
+         * @return void
+         * @todo make a transaction to remove all belonging data for sure.
+         */
         public function delete($id)  {
             $strSql = "DELETE FROM event WHERE id = '" . $id . "'";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
-                $this->m_requestHandler->responseNotFound("The given id was not found and therefore could not be deleted.");
+                $this->m_requestHandler->responseNotFound("The given Event was not found and therefore could not be deleted.");
             }
             else  {
-                $this->m_requestHandler->responseOK("ID successfully deleted");
+                $this->m_requestHandler->responseOK("Event successfully deleted");
             }
         }
         
