@@ -8,6 +8,9 @@
 		<?php 	
 			$form_title = "Event erstellen";
 			
+			// hidden form field if on edit mode
+			$q_editmode = FALSE;
+			
 			// variables for form fields
 			$q_title = "";
 			$q_date = "";
@@ -38,20 +41,23 @@
 				echo $query;
 				
 				// variables for form fields
+				$q_id = $currentID; 
 				$q_title = "Title"; // ToDo: Get from query
 				$q_datetime = new DateTime("1970-01-01 00:00:00"); // ToDo: Get from query
 				$q_date = $q_datetime->format('m/j/Y');
 				$q_time = $q_datetime->format('H:i');
 				$q_location = "Location"; // ToDo: Get from query
 				$q_desc = "Beschreibung";  // ToDo: Get from query	
-				$q_type = 1;  // ToDo: Get from query		
+				$q_type = 1;  // ToDo: Get from query	
+				$q_editmode = TRUE;
 			}
 			
 			// Write input to database on submit
 			 if(isset($_POST['submit'])) { 
 			 
 				$title = $_POST["title"];
-
+				$id = $_POST["id"];
+				
 				if (empty($_POST["date"])){
 					$date = "";
 				} else {
@@ -85,8 +91,17 @@
 					$type = $_POST["type"];
 				}
 				
+				if($_POST["editmode"] == TRUE) {
+				$query = "UPDATE event 
+						  SET date='$datetime', 
+						      location='$location', 
+						      description = '$desc', 
+						      type = '$type'
+							WHERE eventid=$id";
+				} else {
 				$query = "INSERT INTO event (date, location, description, type)
 									VALUES ('$datetime', '$location', '$desc', '$type')";
+				}
 				//debug
 				echo $query;
 				//mysql_query($query);
@@ -129,6 +144,8 @@
 			</div> 
 			<input type="radio" name="type" value="1" <?php if($q_type == 1) echo "checked"; ?>>Wunschliste<br />
 			<input type="radio" name="type" value="2" <?php if($q_type == 2) echo "checked"; ?>>Essen und Trinken<br />
+			<input type="hidden" name="id" value="<?php echo $q_id; ?>"/>
+			<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
 			<div class="submit-container">
 				<input type="submit" name="submit" class="submit-button" value="Speichern">
 			</div>
