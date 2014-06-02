@@ -5,70 +5,134 @@
 		<!--<link rel="stylesheet" type="text/css" href="style.css">-->
 	</head>
 	<body> 
-		<?php 
-			$userErr = "";
-			$passwordErr = "";
+		<?php 	
+			$form_title = "Eintrag erstellen";
+			
+			if(isset($_GET["eventid"])){
+				$q_eventid = $_GET["eventid"];
+			} else {
+				$q_eventid = 0;
+			}
+			
+			// hidden form field if on edit mode
+			$q_editmode = FALSE;
+			
+			// variables for form fields
+			$q_title = "";
+			$q_note = "";
+			$q_link = "";
+			$q_total_qty = "";
+			
+			// Read SQL Params if inUrl "?mode=edit"
+			if(isset($_GET["mode"]) AND $_GET["mode"]=="edit") {
+			
+				// header on editmode
+				$form_title = "Eintrag bearbeiten";
 				
-			 if(isset($_POST['submit'])) { 		
-				 // Validierung
-				if (empty($_POST["user"])) {
-					$userErr = "Die Angabe eines Namens ist erforderlich.";
+				// get entryid
+				if(isset($_GET["id"])){
+					$currentID = $_GET["id"];
 				} else {
-					$user = $_POST["user"];
+					$currentID = 0;
 				}
 				
-				if (empty($_POST["password"]))  {
-					$passwordErr = "Die Angabe eines Passworts ist erforderlich.";
+				if(isset($_GET["eventid"])){
+					$eventid = $_GET["eventid"];
 				} else {
-					$password_md5 = md5($_POST["password"]); 
+					$eventid = 0;
 				}
 				
-				if (empty($_POST["email"])) {
-					$email = "";
+				$query = "SELECT id, eventid, title, note, link, total_qty 
+						  FROM entry 
+						  WHERE id=$currentID";
+						  
+				//mysql_query($query);
+				
+				//debug  
+				echo $query;
+				
+				// variables for form fields
+				$q_id = $currentID;
+				$q_title = "Title"; // ToDo: Get from query
+				$q_note = "Notiz"; // ToDo: Get from query
+				$q_link = "http://google.de"; // ToDo: Get from query
+				$q_total_qty = "10"; // ToDo: Get from query
+				$q_eventid = $eventid; // ToDo: Get from query
+				$q_editmode = TRUE;
+			}
+			
+			// Write input to database on submit
+			 if(isset($_POST['submit'])) {
+			  
+			 	$id = $_POST["id"];
+				$eventid = $_POST["eventid"];
+				$title = $_POST["title"];
+				$total_qty = $_POST["total_qty"];
+				
+				if (empty($_POST["note"])){
+					$note = "";
 				} else {
-					$email = $_POST["email"];
+					$note = $_POST["note"];
 				}
-				 
-				 // Account anlegen
-				 if (isset($user) AND isset($password_md5)) {
-					if (isset($email)) {
-						$query = "INSERT INTO user (user, email, password)
-									VALUES ('$user', '$email', '$password_md5')";
-					} else {
-						$query = "INSERT INTO user (user, password)
-									VALUES ('$user', '$password_md5')";
-					}
-					//mysql_query($query);
-					
-					// debug
-					 echo $user;
-					 echo $password_md5;
-				 }
+				
+				if (empty($_POST["link"])){
+					$link = "";
+				} else {
+					$link = $_POST["link"];
+				}
+				
+				if($_POST["editmode"] == TRUE) {
+				$query = "UPDATE entry 
+						  SET eventid='$eventid', 
+						      note='$note', 
+						      link = '$link', 
+						      total_qty = '$total_qty'
+							WHERE id=$id";
+				} else {
+					$query = "INSERT INTO entry (eventid, note, link, total_qty)
+									VALUES ('$eventid', '$note', '$link', '$total_qty')";
+				}
+
+				//debug
+				echo $query;
+				//mysql_query($query);
 			 }
+
+
 		?>
 
 		<form action="additem.php" method="post" class="form-container">
 			<div class="form-title">
-				<h2>Eintrag anlegen</h2>
+				<h2><?php echo $form_title; ?></h2>
 			</div>
 			<div class="form-title">
 				Titel*: 
-				<?php echo '<br /><span>'.$titleErr.'</span>'; ?>
 			</div> 
-			<input type="text" name="title" class="form-field">
+			<input type="text" name="title" class="form-field" required="required" value="<?php echo $q_title; ?>" />
 			<br />
 			<div class="form-title">
-				Passwort*: 
-				<?php echo '<br /><span>'.$passwordErr.'</span>'; ?>
+				Menge: 
 			</div> 
-			<input type="password" name="password" class="form-field">
+			<input type="number" name="total_qty" min="0" value="<?php echo $q_total_qty; ?>" />
+			<br />
 			<div class="form-title">
-				E-Mail: 
+				Link: 
 			</div> 
-			<input type="text" name="email" class="form-field">
+			<input type="url" name="link" value="<?php echo $q_link; ?>" />
+			<br />
+			<div class="form-title">
+				Notiz: 
+			</div> 
+			<textarea rows="4" cols="50" name="note" class="form-field"><?php echo $q_note; ?></textarea>
+			<br />
+
+			<input type="hidden" name="id" value="<?php echo $q_id; ?>" />
+			<input type="hidden" name="eventid" value="<?php echo $q_eventid; ?>" />
+			<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
 			<div class="submit-container">
-				<input type="submit" name="submit" class="submit-button" value="Registrieren">
+				<input type="submit" name="submit" class="submit-button" value="Speichern">
 			</div>
 		</form>
+	</body>
 	</body>
 </html>
