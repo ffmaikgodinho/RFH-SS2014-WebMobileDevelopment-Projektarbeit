@@ -6,6 +6,48 @@
 	</head>
 	<body> 
 		<?php 	
+			$form_title = "Event erstellen";
+			
+			// variables for form fields
+			$q_title = "";
+			$q_date = "";
+			$q_time = "";
+			$q_location = "";
+			$q_desc = "";
+			$q_type = "";
+				
+			// Read SQL Params if inUrl "?mode=edit"
+			if(isset($_GET["mode"]) AND $_GET["mode"]=="edit") {
+			
+				// header on editmode
+				$form_title = "Event bearbeiten";
+				
+				if(isset($_GET["id"])){
+					$currentID = $_GET["id"];
+				} else {
+					$currentID = 0;
+				}
+				
+				$query = "SELECT id, date, location, description, type 
+						  FROM event 
+						  WHERE id=$currentID";
+						  
+				//mysql_query($query);	
+				
+				//debug  
+				echo $query;
+				
+				// variables for form fields
+				$q_title = "Title"; // ToDo: Get from query
+				$q_datetime = new DateTime("1970-01-01 00:00:00"); // ToDo: Get from query
+				$q_date = $q_datetime->format('m/j/Y');
+				$q_time = $q_datetime->format('H:i');
+				$q_location = "Location"; // ToDo: Get from query
+				$q_desc = "Beschreibung";  // ToDo: Get from query	
+				$q_type = 1;  // ToDo: Get from query		
+			}
+			
+			// Write input to database on submit
 			 if(isset($_POST['submit'])) { 
 			 
 				$title = $_POST["title"];
@@ -22,7 +64,8 @@
 					$time = $_POST["time"];
 				}
 				
-				// ToDo: $_POST["date"] $_POST["time"] zusammenfuehren
+				// $date und $time zusammenfuehren, da nur ein Feld in der Datenbank existiert
+				$datetime = $date." ".$time;
 				
 				if (empty($_POST["desc"])){
 					$desc = "";
@@ -35,59 +78,57 @@
 				} else {
 					$location = $_POST["location"];
 				}
-				 
-				 // Account anlegen
-				 if (isset($user) AND isset($password_md5)) {
-					if (isset($email)) {
-						$query = "INSERT INTO user (user, email, password)
-									VALUES ('$user', '$email', '$password_md5')";
-					} else {
-						$query = "INSERT INTO user (user, password)
-									VALUES ('$user', '$password_md5')";
-					}
-					//mysql_query($query);
-					
-					// debug
-					 echo $user;
-					 echo $password_md5;
-				 }
+				
+				if (empty($_POST["type"])){
+					$type = "";
+				} else {
+					$type = $_POST["type"];
+				}
+				
+				$query = "INSERT INTO event (date, location, description, type)
+									VALUES ('$datetime', '$location', '$desc', '$type')";
+				//debug
+				echo $query;
+				//mysql_query($query);
 			 }
+
+
 		?>
 
 		<form action="addevent.php" method="post" class="form-container">
 			<div class="form-title">
-				<h2>Event erstellen</h2>
+				<h2><?php echo $form_title; ?></h2>
 			</div>
 			<div class="form-title">
 				Titel*: 
 			</div> 
-			<input type="text" name="title" class="form-field" required="required">
+			<input type="text" name="title" class="form-field" required="required" value="<?php echo $q_title; ?>" />
 			<br />
 			<div class="form-title">
 				Veranstaltungsdatum: 
 			</div> 
-			<input type="date" name="date" value="<?php echo date('d/m/Y'); ?>" />
+			<input type="date" name="date" value="<?php echo $q_date; ?>" />
 			<br />
 			<div class="form-title">
 				Beginn: 
 			</div> 
-			<input type="time" name="time" />
+			<input type="time" name="time" value="<?php echo $q_time; ?>" />
 			<br />
 			<div class="form-title">
 				Ort: 
 			</div> 
-			<input type="text" name="location" />
+			<input type="text" name="location" value="<?php echo $q_location; ?>" />
 			<br />
 			<div class="form-title">
 				Beschreibung: 
 			</div> 
-			<textarea rows="4" cols="50" name="desc" class="form-field"></textarea>
+			<textarea rows="4" cols="50" name="desc" class="form-field"><?php echo $q_desc; ?></textarea>
 			<br />
 			<div class="form-title">
 				Eventtyp: 
 			</div> 
-			<input type="radio" name="type" value="1">Wunschliste<br />
-			<input type="radio" name="type" value="2">Essen und Trinken<br />
+			<input type="radio" name="type" value="1" <?php if($q_type == 1) echo "checked"; ?>>Wunschliste<br />
+			<input type="radio" name="type" value="2" <?php if($q_type == 2) echo "checked"; ?>>Essen und Trinken<br />
 			<div class="submit-container">
 				<input type="submit" name="submit" class="submit-button" value="Speichern">
 			</div>
