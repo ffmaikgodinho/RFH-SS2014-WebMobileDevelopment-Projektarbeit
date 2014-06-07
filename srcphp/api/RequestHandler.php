@@ -67,7 +67,10 @@
                     break;
                 Case "eventcontributions":
                     $this->handleRequestMappingEntity("EventContribution",$this->m_Command,$this->m_ID);
-                    break;      
+                    break;
+                Case "users":
+                    $this->handleRequestMappingEntity("User",$this->m_Command,$this->m_ID);
+                    break;
                 default:
                     $this->responseNotFound("No such ressource.");    
             }

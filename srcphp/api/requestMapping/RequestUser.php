@@ -45,14 +45,14 @@
          * @return a instance of an single User, typeof model/User
          */
         public function getSingle($strUserID)  {
-            $strSql = "Select * FROM contribution where id = '" . $strUserID . "'";
+            $strSql = "Select * FROM user where id = '" . $strUserID . "'";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
                 $row = $this->m_requestHandler->getDatabase()->fetch_object($result);
                 return $row;
             }
             else  {
-                $this->m_requestHandler->responseNoContent("There is no Contribution with such an id.");
+                $this->m_requestHandler->responseNoContent("There is no User with such an id.");
             }
         }
         
