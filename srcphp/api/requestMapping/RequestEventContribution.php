@@ -1,9 +1,9 @@
 <?php
     /**
-     * RequestEventEntry
+     * RequestEventContribution
      * 
-     * handling PUT, POSTS und DELETE Request of EventEntrys.
-     * GET is implemented in the RequestEvent Ressource.
+     * handling PUT, POSTS und DELETE Request of Contributions to an requestevententry.
+     * GET is implemented in the RequestEventEntry Ressource.
      * 
      * @package api   
      * @author Maik Godinho
@@ -11,12 +11,12 @@
      * @version 1.0.0
      * @access public
      */
-    class RequestEventEntry implements IBaseRequest {
+    class RequestEventContribution implements IBaseRequest {
         
         var $m_requestHandler;
         
         /**
-         * RequestEventEntry::__construct()
+         * RequestEventContribution::__construct()
          * 
          * @param basic requestHandler
          * @return void
@@ -26,47 +26,39 @@
         }
         
         /**
-         * RequestEventEntry::getAll()
+         * RequestEventContribution::getAll()
          * 
          * @return null
-         * @deprecated DONT use this function, always returns a Exception, because it is not neccessary to get all EventEntrys
+         * @deprecated DONT use this function, always returns a Exception, because it is not neccessary to get all Contributions
          */
         public function getAll()  {
             $this->m_requestHandler->responseNotImplemented("Please use the event ressource to find evententrys for a given event.");
         }
         
         /**
-         * RequestEventEntry::getSingle()
+         * RequestEventContribution::getSingle()
          * 
-         * showing the details of a single EventEntry with the according contributions
+         * showing the details of a single EventContribution
          * 
-         * @param string $strEventEntryID
-         * @return a instance of an single EventEntry, typeof model/EventEntry
+         * @param string $strContributionID
+         * @return a instance of an single EventContribution, typeof model/EventContribution
          */
-        public function getSingle($strEventEntryID)  {
-            $strSql = "Select * FROM entry where id = '" . $strEventEntryID . "'";
+        public function getSingle($strContributionID)  {
+            $strSql = "Select * FROM contribution where id = '" . $strContributionID . "'";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
                 $row = $this->m_requestHandler->getDatabase()->fetch_object($result);
-                //handle Contribution
-                $row->contributions = array();
-                $strSqlContribution = "Select * FROM contribution where entryid = '" . $strEventEntryID . "'";
-                $resultContribution = $this->m_requestHandler->getDatabase()->query($strSqlContribution);
-                while ($rowContribution = $this->m_requestHandler->getDatabase()->fetch_object($resultContribution))  {
-                    $rowContribution->url = "/api/eventContributions/".$rowContribution->id;
-                    $row->contributions[] = $rowContribution;
-                }
                 return $row;
             }
             else  {
-                $this->m_requestHandler->responseNoContent("There is no event with such an id.");
+                $this->m_requestHandler->responseNoContent("There is no Contribution with such an id.");
             }
         }
         
         /**
-         * RequestEventEntry::create()
+         * RequestEventContribution::create()
          *
-         * creates a new EventEntry
+         * creates a new Contribution
          *  
          * @param mixed $inputData
          * @return if successfull returns the inserted id
@@ -76,9 +68,9 @@
         }
         
         /**
-         * RequestEventEntry::update()
+         * RequestEventContribution::update()
          * 
-         * updates an evententry.
+         * updates an Contribution.
          * 
          * @param mixed $inputData
          * @return void
@@ -88,9 +80,9 @@
         }
         
         /**
-         * RequestEventEntry::delete()
+         * RequestEventContribution::delete()
          * 
-         * removes an evententry
+         * removes an Contribution
          * 
          * @param mixed $id
          * @return void
