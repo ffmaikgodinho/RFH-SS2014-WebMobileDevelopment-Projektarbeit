@@ -18,6 +18,7 @@
         public $note;
         public $linkWeb;
         public $totalQuantity;
+        public $contributions;      //Array of EventContribution
         
         public function parsePOST($post)  {
             

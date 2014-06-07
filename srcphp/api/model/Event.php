@@ -18,6 +18,7 @@
         public $date;
         public $location;
         public $description;
+        public $entrys;     //array of EventEntry
         public $type;
         
         public function parsePOST($postData)  {

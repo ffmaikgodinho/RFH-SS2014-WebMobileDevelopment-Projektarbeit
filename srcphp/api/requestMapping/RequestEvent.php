@@ -13,7 +13,7 @@
         var $m_requestHandler;
         
         /**
-         * Events::__construct()
+         * RequestEvent::__construct()
          * 
          * @param basic requestHandler
          * @return void
@@ -23,7 +23,7 @@
         }
         
         /**
-         * Events::getAll()
+         * RequestEvent::getAll()
          * 
          * Shows all Events in a list and automatically echos them to the browser
          * 
@@ -35,7 +35,7 @@
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
                 while ($row = $this->m_requestHandler->getDatabase()->fetch_object($result))  {
-                    $row->url ="/api/Events/".$row->id;
+                    $row->url ="/api/events/".$row->id;
                     $events[] = $row;
                 }
                 return $events;
@@ -46,7 +46,7 @@
        }
         
         /**
-         * Events::getSingle()
+         * RequestEvent::getSingle()
          * 
          * showing the details of a single Event entrie
          * 
@@ -58,6 +58,14 @@
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
                 $row = $this->m_requestHandler->getDatabase()->fetch_object($result);
+                //handle eventEntries
+                $row->entrys = array();
+                $strSqlEntrys = "Select * FROM entry where eventid = '" . $strListID . "'";
+                $resultEntrys = $this->m_requestHandler->getDatabase()->query($strSqlEntrys);
+                while ($rowEntry = $this->m_requestHandler->getDatabase()->fetch_object($resultEntrys))  {
+                    $rowEntry->url = "/api/eventEntries/".$rowEntry->id;
+                    $row->entrys[] = $rowEntry;
+                }
                 return $row;
             }
             else  {
@@ -66,7 +74,7 @@
         }
         
         /**
-         * RequestEvents::create()
+         * RequestEvent::create()
          *
          * creates a new Event
          *  
@@ -120,6 +128,8 @@
          * @todo make a transaction to remove all belonging data for sure.
          */
         public function delete($id)  {
+            $strSql = "DELETE FROM entry WHERE eventid = '" . $id . "'";
+            $result = $this->m_requestHandler->getDatabase()->query($strSql);
             $strSql = "DELETE FROM event WHERE id = '" . $id . "'";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {

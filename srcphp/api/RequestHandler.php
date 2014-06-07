@@ -61,7 +61,10 @@
                 
                 Case "events":
                     $this->handleRequestMappingEntity("Event",$this->m_Command,$this->m_ID);
-                    break;   
+                    break;
+                Case "evententries":
+                    $this->handleRequestMappingEntity("EventEntry",$this->m_Command,$this->m_ID);
+                    break;      
                 default:
                     $this->responseNotFound("No such ressource.");    
             }
@@ -82,6 +85,8 @@
          * RequestHandler::responseNoContent()
          * 
          * sends a 204 response to the requesting client
+         * @param mixed $strErrorMessage
+         * @return void
          */
         public function responseNoContent($strErrorMessage)  {
             header("HTTP/1.1 204");
@@ -93,6 +98,8 @@
          * RequestHandler::responseBadRequest()
          * 
          * sends a 400 response to the requesting client
+         * @param mixed $strErrorMessage
+         * @return void
          */
         public function responseBadRequest($strErrorMessage)  {
             header("HTTP/1.1 400");
@@ -103,6 +110,8 @@
          * RequestHandler::responseNotFound()
          * 
          * Sends a 404 response to the requesting client
+         * @param mixed $strErrorMessage
+         * @return void
          */
         public function responseNotFound($strErrorMessage)  {
             header("HTTP/1.1 404");
@@ -113,6 +122,8 @@
          * RequestHandler::responseNotAcceptable()
          * 
          * sending a 406 response to the requesting client.
+         * @param mixed $strErrorMessage
+         * @return void
          */
         public function responseNotAcceptable($strErrorMessage)  {
             header("HTTP/1.1 406");
@@ -123,9 +134,24 @@
          * RequestHandler::responseInternalServerError()
          * 
          * sending a 500 response to the requesting client.
+         * @param mixed $strErrorMessage
+         * @return void
          */
         public function responseInternalServerError($strErrorMessage)  {
             header("HTTP/1.1 500");
+            echo $strErrorMessage;
+        }
+        
+        /**
+         * RequestHandler::responseNotImplemented()
+         * 
+         * sending 501
+         * 
+         * @param mixed $strErrorMessage
+         * @return void
+         */
+        public function responseNotImplemented($strErrorMessage)  {
+            header("HTTP/1.1 501");
             echo $strErrorMessage;
         }
         
