@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `contribution` (
   `name` varchar(255) DEFAULT NULL,
   `entryid` int(11) NOT NULL COMMENT 'ID des Eintrags zu einem Event',
   `quantity` int(11) NOT NULL DEFAULT '1' COMMENT 'Menge, die Mitgebracht/besorgt wird',
+  `stamp` int NOT NULL DEFAULT '0' COMMENT 'ETAG, Versionierung',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -48,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `entry` (
   `note` mediumtext COMMENT 'Notiz zum Eintrag',
   `link` mediumtext COMMENT 'Ggf. Link zum Eintrag',
   `total_qty` int(11) NOT NULL DEFAULT '1' COMMENT 'Mengenangabe zum Eintrag',
+  `stamp` int NOT NULL DEFAULT '0' COMMENT 'ETAG, Versionierung',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Einträge zu Events' AUTO_INCREMENT=1 ;
 
@@ -64,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   `location` mediumtext COMMENT 'Ort an dem das Event stattfindet',
   `description` mediumtext COMMENT 'Beschreibungstext zum Event',
   `type` int(11) NOT NULL COMMENT 'Typ des Events (Geschenkeliste/Mitbringsel)',
+  `stamp` int NOT NULL DEFAULT '0' COMMENT 'ETAG, Versionierung',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
@@ -92,6 +95,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(255) DEFAULT NULL COMMENT 'E-Mail des Benutzers',
   `passwort` char(32) NOT NULL COMMENT 'Passwort des Benutzers (MD5)',
   `sa` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Kennzeichnet den User als Superadmin',
+  `stamp` int NOT NULL DEFAULT '0' COMMENT 'ETAG, Versionierung',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
