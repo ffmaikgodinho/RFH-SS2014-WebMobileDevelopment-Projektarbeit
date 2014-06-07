@@ -19,6 +19,7 @@
         public $linkWeb;
         public $totalQuantity;
         public $contributions;      //Array of EventContribution
+        public $stamp;              //ETAG
         
         public function parsePOST($post)  {
             

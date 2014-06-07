@@ -17,6 +17,7 @@
         public $passwort;
         public $isSuperAdmin;
         public $url;
+        public $stamp;                      //ETAG
         
         public function parsePOST($post)  {
             

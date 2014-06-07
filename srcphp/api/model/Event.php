@@ -20,6 +20,7 @@
         public $description;
         public $entrys;     //array of EventEntry
         public $type;
+        public $stamp;      //ETAG
         
         public function parsePOST($postData)  {
             if (isset($postData["Datum"]))
