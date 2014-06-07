@@ -137,6 +137,21 @@
         }
         
         /**
+         * RequestHandler::responsePreconditionFailes()
+         *
+         * sending 412
+         *  
+         * @param mixed $strErrorMessage
+         * @return void
+         */
+        public function responsePreconditionFailes($strErrorMessage)  {
+            header("HTTP/1.1 412");
+            echo $strErrorMessage;
+        }
+        
+        
+        
+        /**
          * RequestHandler::responseInternalServerError()
          * 
          * sending a 500 response to the requesting client.

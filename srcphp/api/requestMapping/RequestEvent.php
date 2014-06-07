@@ -108,13 +108,20 @@
          * @return void
          */
         public function update($inputData)  {
-            $strSql = "UPDATE event SET description = '".$inputData->description."',location = '".$inputData->location."',date = '".$inputData->date."',type = '".$inputData->type."' WHERE id = '" . $inputData->id . "'";
-            $result = $this->m_requestHandler->getDatabase()->query($strSql);
-            if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
-                $this->m_requestHandler->responseNotFound("The given id was not found and therefore could not be updated..");
+            //check wethere the user gave us a correct version (the latest)
+            $event = $this->getSingle(($inputData->id));
+            if ($inputData->stamp == $event->stamp)  {
+                $strSql = "UPDATE event SET description = '".$inputData->description."',location = '".$inputData->location."',date = '".$inputData->date."',type = '".$inputData->type."' WHERE id = '" . $inputData->id . "'";
+                $result = $this->m_requestHandler->getDatabase()->query($strSql);
+                if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
+                    $this->m_requestHandler->responseNotFound("The given id was not found and therefore could not be updated..");
+                }
+                else  {
+                    $this->m_requestHandler->responseOK("Event successfully updated");
+                }                
             }
             else  {
-                $this->m_requestHandler->responseOK("Event successfully updated");
+                $this->m_requestHandler->responsePreconditionFailes("Given version is outdated.");
             }
         }
         
