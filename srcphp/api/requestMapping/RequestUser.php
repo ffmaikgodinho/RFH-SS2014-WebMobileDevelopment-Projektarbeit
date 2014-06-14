@@ -28,10 +28,11 @@
          * RequestUser::getAll()
          * 
          * returns every user 
-         * 
+         *
+         * @param string if existing a search string
          * @return array of all users
          */
-        public function getAll()  {
+        public function getAll($searchString)  {
             $this->m_requestHandler->responseNotImplemented("Please use the event ressource to find evententrys for a given event.");
         }
         

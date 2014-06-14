@@ -28,10 +28,11 @@
         /**
          * RequestEventContribution::getAll()
          * 
+         * @param string if existing a search string
          * @return null
          * @deprecated DONT use this function, always returns a Exception, because it is not neccessary to get all Contributions
          */
-        public function getAll()  {
+        public function getAll($searchString)  {
             $this->m_requestHandler->responseNotImplemented("Please use the event ressource to find evententrys for a given event.");
         }
         

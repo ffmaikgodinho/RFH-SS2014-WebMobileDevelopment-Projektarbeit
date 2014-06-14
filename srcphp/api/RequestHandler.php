@@ -15,6 +15,7 @@
         var $m_Entity;
         var $m_Command;
         var $m_ID;
+        var $m_SearchString;
         var $m_mysql;
         var $m_AcceptType;
         var $m_ContentType;
@@ -33,7 +34,12 @@
             $this->m_ContentType = strtolower($_SERVER['HTTP_CONTENT_TYPE']);
             $this->m_RequestHeader = apache_request_headers();
             if (isset($request_parts[1]))  {
-                $this->m_ID = $request_parts[1];
+                if (is_numeric($request_parts[1]))  {
+                    $this->m_ID = $request_parts[1];    
+                }
+                else  {
+                    $this->m_SearchString = $request_parts[1];
+                }
             }
             $this->requireSettings();
             $this->requireUtils();
@@ -270,14 +276,19 @@
             $object = new $strRequestMapper($this);
             switch (strtolower($strCommand))  {
                 case "get":
-                    if ($strID == 0)  {
-                        $returnObject = $object->getAll();
-                    } 
-                    else {
-                        $returnObject = $object->getSingle($strID);
-                        if (isset($returnObject->stamp))  {                 //for collision detection
-                            header("Etag: ".$returnObject->stamp);          //browser will send this as If-Match back
-                        }
+                    if (strlen($strID) == 0)  {
+                        $returnObject = $object->getAll($this->m_SearchString);
+                    }
+                    else  {
+                        if ($strID == 0)  {
+                            $returnObject = $object->getAll("");
+                        } 
+                        else {
+                            $returnObject = $object->getSingle($strID);
+                            if (isset($returnObject->stamp))  {                 //for collision detection
+                                header("Etag: ".$returnObject->stamp);          //browser will send this as If-Match back
+                            }
+                        }    
                     }
                     break;
                 case "put":

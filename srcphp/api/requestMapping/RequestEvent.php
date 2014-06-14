@@ -27,15 +27,23 @@
          * 
          * Shows all Events in a list and automatically echos them to the browser
          * 
+         * @param string if existing a search string
          * @return Array of events
          */
-        public function getAll()  {
+        public function getAll($searchString)  {
             $events = array();
-            $strSql = "Select * FROM event";
+            
+            //Search handling
+            $searchQuery = "";
+            if (strlen($searchString) > 0)  {
+                $searchQuery = " WHERE event.location LIKE '%".$searchString."%' OR event.description LIKE '%".$searchString."%'";   
+            }
+            
+            $strSql = "Select * FROM event".$searchQuery;
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
                 while ($row = $this->m_requestHandler->getDatabase()->fetch_object($result))  {
-                    $row->url ="/api/events/".$row->id;
+                    $row->url ="/api/events/".$row->id;     
                     $events[] = $row;
                 }
                 return $events;
