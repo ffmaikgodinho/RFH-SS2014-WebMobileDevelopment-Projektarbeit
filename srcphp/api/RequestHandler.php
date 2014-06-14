@@ -18,6 +18,7 @@
         var $m_mysql;
         var $m_AcceptType;
         var $m_ContentType;
+        var $m_RequestHeader;
         
         /**
          * RequestHandler::__construct()
@@ -30,6 +31,7 @@
             // Accept header is case insensitive, and whitespace isn’t important
             $this->m_AcceptType = strtolower(str_replace(' ', '', $_SERVER['HTTP_ACCEPT']));
             $this->m_ContentType = strtolower($_SERVER['HTTP_CONTENT_TYPE']);
+            $this->m_RequestHeader = apache_request_headers();
             if (isset($request_parts[1]))  {
                 $this->m_ID = $request_parts[1];
             }
@@ -273,6 +275,9 @@
                     } 
                     else {
                         $returnObject = $object->getSingle($strID);
+                        if (isset($returnObject->stamp))  {                 //for collision detection
+                            header("Etag: ".$returnObject->stamp);          //browser will send this as If-Match back
+                        }
                     }
                     break;
                 case "put":
@@ -345,6 +350,10 @@
                 default:
                     $objReturn->parsePOST($_POST);
                     break;
+            }
+            //versioning
+            if (isset($this->m_RequestHeader["If-Match"]))  {
+                $objReturn->stamp = $this->m_RequestHeader["If-Match"];
             }
             return $objReturn;
         }
