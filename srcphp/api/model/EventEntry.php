@@ -4,7 +4,7 @@
      * 
      * represents a event entry which is linked to an event.
      * 
-     * @package 
+     * @package api
      * @author Maik Godinho
      * @copyright 2014
      * @access public

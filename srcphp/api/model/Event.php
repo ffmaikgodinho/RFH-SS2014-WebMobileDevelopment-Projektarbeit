@@ -5,7 +5,7 @@
      * represents a created event with linked EventEntrys
      * represents the sql table "event"
      * 
-     * @package 
+     * @package api
      * @author Maik Godinho
      * @copyright 2014
      * @access public

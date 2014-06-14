@@ -4,6 +4,7 @@
      * 
      * Contribution to an eventEntry
      * 
+     * @package api
      * @author Maik Godinho
      * @copyright 2014
      * @access public

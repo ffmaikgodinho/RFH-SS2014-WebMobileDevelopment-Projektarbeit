@@ -4,7 +4,7 @@
      * 
      * usual User model ;)
      * 
-     * @package 
+     * @package api
      * @author Maik Godinho
      * @copyright 2014
      * @access public
