@@ -16,7 +16,6 @@
         public $eventid;
         public $title;
         public $note;
-        public $linkWeb;
         public $totalQuantity;
         public $contributions;      //Array of EventContribution
         public $stamp;              //ETAG

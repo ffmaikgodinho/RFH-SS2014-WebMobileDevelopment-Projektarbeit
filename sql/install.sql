@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS `entry` (
   `eventid` int(11) NOT NULL COMMENT 'Unique Identifier des zugehörigen Events',
   `title` varchar(255) NOT NULL COMMENT 'Titel des Eintrags',
   `note` mediumtext COMMENT 'Notiz zum Eintrag',
-  `link` mediumtext COMMENT 'Ggf. Link zum Eintrag',
   `total_qty` int(11) NOT NULL DEFAULT '1' COMMENT 'Mengenangabe zum Eintrag',
   `stamp` int NOT NULL DEFAULT '0' COMMENT 'ETAG, Versionierung',
   PRIMARY KEY (`id`)
