@@ -27,15 +27,23 @@
          * 
          * Shows all Events in a list and automatically echos them to the browser
          * 
+         * @param string if existing a search string
          * @return Array of events
          */
-        public function getAll()  {
+        public function getAll($searchString)  {
             $events = array();
-            $strSql = "Select * FROM event";
+            
+            //Search handling
+            $searchQuery = "";
+            if (strlen($searchString) > 0)  {
+                $searchQuery = " WHERE event.location LIKE '%".$searchString."%' OR event.description LIKE '%".$searchString."%'";   
+            }
+            
+            $strSql = "Select * FROM event".$searchQuery;
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getNumRows($result) > 0)  {
                 while ($row = $this->m_requestHandler->getDatabase()->fetch_object($result))  {
-                    $row->url ="/api/events/".$row->id;
+                    $row->url ="/api/events/".$row->id;     
                     $events[] = $row;
                 }
                 return $events;
@@ -111,13 +119,13 @@
             //check wethere the user gave us a correct version (the latest)
             $event = $this->getSingle(($inputData->id));
             if ($inputData->stamp == $event->stamp)  {
-                $strSql = "UPDATE event SET description = '".$inputData->description."',location = '".$inputData->location."',date = '".$inputData->date."',type = '".$inputData->type."' WHERE id = '" . $inputData->id . "'";
+                $strSql = "UPDATE event SET description = '".$inputData->description."',location = '".$inputData->location."',date = '".$inputData->date."',type = '".$inputData->type."', stamp = stamp + 1 WHERE id = '" . $inputData->id . "'";
                 $result = $this->m_requestHandler->getDatabase()->query($strSql);
                 if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
                     $this->m_requestHandler->responseNotFound("The given id was not found and therefore could not be updated..");
                 }
                 else  {
-                    $this->m_requestHandler->responseOK("Event successfully updated");
+                    $this->m_requestHandler->responseOK("Event successfully updated.");
                 }                
             }
             else  {
@@ -140,10 +148,10 @@
             $strSql = "DELETE FROM event WHERE id = '" . $id . "'";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
-                $this->m_requestHandler->responseNotFound("The given Event was not found and therefore could not be deleted.");
+                $this->m_requestHandler->responseNotFound("The given event was not found and therefore could not be deleted.");
             }
             else  {
-                $this->m_requestHandler->responseOK("Event successfully deleted");
+                $this->m_requestHandler->responseOK("Event successfully deleted.");
             }
         }
         

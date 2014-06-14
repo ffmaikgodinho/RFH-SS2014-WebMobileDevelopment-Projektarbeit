@@ -4,7 +4,7 @@
      * 
      * represents a event entry which is linked to an event.
      * 
-     * @package 
+     * @package api
      * @author Maik Godinho
      * @copyright 2014
      * @access public
@@ -16,7 +16,6 @@
         public $eventid;
         public $title;
         public $note;
-        public $linkWeb;
         public $totalQuantity;
         public $contributions;      //Array of EventContribution
         public $stamp;              //ETAG

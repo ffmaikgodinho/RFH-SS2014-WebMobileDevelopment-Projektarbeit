@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class RequestUser</title>
+
+	<script type="text/javascript" src="resources/combined.js?4152563872"></script>
+	<script type="text/javascript" src="elementlist.js?3107248044"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li class="active"><a href="package-api.html">api</a>
+						</li>
+				<li><a href="package-None.html">None</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-MySQL.html">MySQL</a></li>
+				<li><a href="class-RequestEvent.html">RequestEvent</a></li>
+				<li><a href="class-RequestEventContribution.html">RequestEventContribution</a></li>
+				<li><a href="class-RequestEventEntry.html">RequestEventEntry</a></li>
+				<li><a href="class-RequestHandler.html">RequestHandler</a></li>
+				<li class="active"><a href="class-RequestUser.html">RequestUser</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-api.html" title="Summary of api"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class RequestUser</h1>
+
+
+	<div class="description">
+	
+<p>RequestUser</p>
+
+<p>Basic common user ressource. Currently only GET Methods are available</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>RequestUser</span></b>			
+			 implements 
+				<a href="class-IBaseRequest.html"><span>IBaseRequest</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-api.html">api</a><br />
+
+				<b>Copyright</b>
+				<br />
+				<b>Author:</b>
+				Maik Godinho<br />
+				<b>Version:</b>
+				1.0.0<br />
+		<b>Located at</b> <a href="source-class-RequestUser.html#2-153" title="Go to source code">requestMapping/RequestUser.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-RequestUser.html#17-25" title="Go to source code">__construct</a>( <span>basic <var>$requestHandler</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestUser::__construct()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestUser::__construct()</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$requestHandler</var></dt>
+					<dd><code>basic</code><br>requestHandler</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#___construct">IBaseRequest::__construct()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAll" id="_getAll">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAll">#</a>
+		<code><a href="source-class-RequestUser.html#27-37" title="Go to source code">getAll</a>( <span>string <var>$searchString</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestUser::getAll()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestUser::getAll()</p>
+
+<p>returns every user</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$searchString</var></dt>
+					<dd><code>string</code><br>if existing a search string</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>of all users<br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#_getAll">IBaseRequest::getAll()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSingle" id="_getSingle">
+
+		<td class="attributes"><code>
+			 public 
+			a
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSingle">#</a>
+		<code><a href="source-class-RequestUser.html#39-57" title="Go to source code">getSingle</a>( <span>string <var>$strUserID</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestUser::getSingle()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestUser::getSingle()</p>
+
+<p>showing the details of a single User</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$strUserID</var></dt>
+					<dd><code>string</code><br>$strUserID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>a</code><br>instance of an single User, typeof model/User<br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#_getSingle">IBaseRequest::getSingle()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create" id="_create">
+
+		<td class="attributes"><code>
+			 public 
+			if
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create">#</a>
+		<code><a href="source-class-RequestUser.html#59-84" title="Go to source code">create</a>( <span>mixed <var>$inputData</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestUser::create()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestUser::create()</p>
+
+<p>creates a new User</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$inputData</var></dt>
+					<dd><code>mixed</code><br>$inputData</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>if</code><br>successfull returns the inserted id<br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#_create">IBaseRequest::create()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="update" id="_update">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_update">#</a>
+		<code><a href="source-class-RequestUser.html#86-112" title="Go to source code">update</a>( <span>mixed <var>$inputData</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestUser::update()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestUser::update()</p>
+
+<p>updates an User.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$inputData</var></dt>
+					<dd><code>mixed</code><br>$inputData</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#_update">IBaseRequest::update()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-RequestUser.html#114-132" title="Go to source code">delete</a>( <span>mixed <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestUser::delete()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestUser::delete()</p>
+
+<p>removes a User</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>mixed</code><br>$id</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#_delete">IBaseRequest::delete()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="m_requestHandler" id="$m_requestHandler">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestUser.html#15" title="Go to source code"><var>$m_requestHandler</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_requestHandler" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

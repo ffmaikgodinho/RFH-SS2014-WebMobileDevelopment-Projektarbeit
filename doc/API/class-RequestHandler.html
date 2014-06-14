@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class RequestHandler</title>
+
+	<script type="text/javascript" src="resources/combined.js?4152563872"></script>
+	<script type="text/javascript" src="elementlist.js?3107248044"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li class="active"><a href="package-api.html">api</a>
+						</li>
+				<li><a href="package-None.html">None</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-MySQL.html">MySQL</a></li>
+				<li><a href="class-RequestEvent.html">RequestEvent</a></li>
+				<li><a href="class-RequestEventContribution.html">RequestEventContribution</a></li>
+				<li><a href="class-RequestEventEntry.html">RequestEventEntry</a></li>
+				<li class="active"><a href="class-RequestHandler.html">RequestHandler</a></li>
+				<li><a href="class-RequestUser.html">RequestUser</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-api.html" title="Summary of api"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class RequestHandler</h1>
+
+
+	<div class="description">
+	
+<p>RequestHandler</p>
+
+<p>This class is responsible to handle all request coming via http(s) and
+forward it to the needed request handler defined in requestMapping/{EntityName}.
+This has the advantage to seperate handling of entities.</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-api.html">api</a><br />
+
+				<b>Author:</b>
+				Maik Godinho<br />
+				<b>Version:</b>
+				1.0.0<br />
+		<b>Located at</b> <a href="source-class-RequestHandler.html#2-386" title="Go to source code">RequestHandler.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-RequestHandler.html#24-48" title="Go to source code">__construct</a>( )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::__construct() Construct and Initializations</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::__construct() Construct and Initializations</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__destruct" id="___destruct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___destruct">#</a>
+		<code><a href="source-class-RequestHandler.html#50-57" title="Go to source code">__destruct</a>( )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::__destruct()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::__destruct()</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="handleRequest" id="_handleRequest">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_handleRequest">#</a>
+		<code><a href="source-class-RequestHandler.html#59-85" title="Go to source code">handleRequest</a>( )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::handleRequest()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::handleRequest()</p>
+
+<p>handles all incoming request</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="responseOK" id="_responseOK">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_responseOK">#</a>
+		<code><a href="source-class-RequestHandler.html#87-96" title="Go to source code">responseOK</a>( <span>mixed <var>$strMessage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::responseOK() sends a 200 OK</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::responseOK() sends a 200 OK</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$strMessage</var></dt>
+					<dd><code>mixed</code><br>$strMessage</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="responseNoContent" id="_responseNoContent">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_responseNoContent">#</a>
+		<code><a href="source-class-RequestHandler.html#98-108" title="Go to source code">responseNoContent</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::responseNoContent()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::responseNoContent()</p>
+
+<p>sends a 204 response to the requesting client</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$strErrorMessage</var></dt>
+					<dd><code>mixed</code><br>$strErrorMessage</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="responseBadRequest" id="_responseBadRequest">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_responseBadRequest">#</a>
+		<code><a href="source-class-RequestHandler.html#111-121" title="Go to source code">responseBadRequest</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::responseBadRequest()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::responseBadRequest()</p>
+
+<p>sends a 400 response to the requesting client</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$strErrorMessage</var></dt>
+					<dd><code>mixed</code><br>$strErrorMessage</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="responseNotFound" id="_responseNotFound">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_responseNotFound">#</a>
+		<code><a href="source-class-RequestHandler.html#123-133" title="Go to source code">responseNotFound</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::responseNotFound()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::responseNotFound()</p>
+
+<p>Sends a 404 response to the requesting client</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$strErrorMessage</var></dt>
+					<dd><code>mixed</code><br>$strErrorMessage</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="responseNotAcceptable" id="_responseNotAcceptable">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_responseNotAcceptable">#</a>
+		<code><a href="source-class-RequestHandler.html#135-145" title="Go to source code">responseNotAcceptable</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::responseNotAcceptable()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::responseNotAcceptable()</p>
+
+<p>sending a 406 response to the requesting client.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$strErrorMessage</var></dt>
+					<dd><code>mixed</code><br>$strErrorMessage</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="responsePreconditionFailes" id="_responsePreconditionFailes">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_responsePreconditionFailes">#</a>
+		<code><a href="source-class-RequestHandler.html#147-158" title="Go to source code">responsePreconditionFailes</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::responsePreconditionFailes()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::responsePreconditionFailes()</p>
+
+<p>sending 412</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$strErrorMessage</var></dt>
+					<dd><code>mixed</code><br>$strErrorMessage</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="responseInternalServerError" id="_responseInternalServerError">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_responseInternalServerError">#</a>
+		<code><a href="source-class-RequestHandler.html#162-172" title="Go to source code">responseInternalServerError</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::responseInternalServerError()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::responseInternalServerError()</p>
+
+<p>sending a 500 response to the requesting client.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$strErrorMessage</var></dt>
+					<dd><code>mixed</code><br>$strErrorMessage</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="responseNotImplemented" id="_responseNotImplemented">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_responseNotImplemented">#</a>
+		<code><a href="source-class-RequestHandler.html#174-185" title="Go to source code">responseNotImplemented</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::responseNotImplemented()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::responseNotImplemented()</p>
+
+<p>sending 501</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$strErrorMessage</var></dt>
+					<dd><code>mixed</code><br>$strErrorMessage</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDatabase" id="_getDatabase">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDatabase">#</a>
+		<code><a href="source-class-RequestHandler.html#187-194" title="Go to source code">getDatabase</a>( )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::getDatabase()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::getDatabase()</p>
+
+<p>returns the represantation of the databse</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="initDatabase" id="_initDatabase">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_initDatabase">#</a>
+		<code><a href="source-class-RequestHandler.html#196-206" title="Go to source code">initDatabase</a>( )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::initDatabase()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::initDatabase()</p>
+
+<p>initialize the Database</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="m_Entity" id="$m_Entity">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestHandler.html#15" title="Go to source code"><var>$m_Entity</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_Entity" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="m_Command" id="$m_Command">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestHandler.html#16" title="Go to source code"><var>$m_Command</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_Command" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="m_ID" id="$m_ID">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestHandler.html#17" title="Go to source code"><var>$m_ID</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_ID" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="m_SearchString" id="$m_SearchString">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestHandler.html#18" title="Go to source code"><var>$m_SearchString</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_SearchString" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="m_mysql" id="$m_mysql">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestHandler.html#19" title="Go to source code"><var>$m_mysql</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_mysql" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="m_AcceptType" id="$m_AcceptType">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestHandler.html#20" title="Go to source code"><var>$m_AcceptType</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_AcceptType" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="m_ContentType" id="$m_ContentType">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestHandler.html#21" title="Go to source code"><var>$m_ContentType</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_ContentType" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="m_RequestHeader" id="$m_RequestHeader">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestHandler.html#22" title="Go to source code"><var>$m_RequestHeader</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_RequestHeader" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
