@@ -1,6 +1,8 @@
 <!DOCTYPE HTML> 
 <html>
 	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/desktop2.css">
 		<title>Eintrag anlegen</title>
 		<!--<link rel="stylesheet" type="text/css" href="style.css">-->
 	</head>
@@ -100,39 +102,47 @@
 
 
 		?>
+		<div id="content-limiter">
+			<div class="content-item">
+				<form action="additem.php" method="post" class="form-container">
+					<div class="content-head">
+						<p class="content-title">
+							<?php echo $form_title; ?>
+						</p>
+						<p class="content-creator">
+						</p>
+					</div>
+					<div class="content-area">
+						<div class="form-title">
+							Titel*: 
+						</div> 
+						<input type="text" name="title" class="form-field" required="required" value="<?php echo $q_title; ?>" />
+						<br />
+						<div class="form-title">
+							Menge: 
+						</div> 
+						<input type="number" name="total_qty" min="0" value="<?php echo $q_total_qty; ?>" />
+						<br />
+						<div class="form-title">
+							Link: 
+						</div> 
+						<input type="url" name="link" value="<?php echo $q_link; ?>" />
+						<br />
+						<div class="form-title">
+							Notiz: 
+						</div> 
+						<textarea rows="4" cols="50" name="note" class="form-field"><?php echo $q_note; ?></textarea>
+						<br />
 
-		<form action="additem.php" method="post" class="form-container">
-			<div class="form-title">
-				<h2><?php echo $form_title; ?></h2>
+						<input type="hidden" name="id" value="<?php echo $q_id; ?>" />
+						<input type="hidden" name="eventid" value="<?php echo $q_eventid; ?>" />
+						<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
+						<div class="submit-container">
+							<input type="submit" name="submit" class="submit-button" value="Speichern">
+						</div>
+					</div>
+				</form>
 			</div>
-			<div class="form-title">
-				Titel*: 
-			</div> 
-			<input type="text" name="title" class="form-field" required="required" value="<?php echo $q_title; ?>" />
-			<br />
-			<div class="form-title">
-				Menge: 
-			</div> 
-			<input type="number" name="total_qty" min="0" value="<?php echo $q_total_qty; ?>" />
-			<br />
-			<div class="form-title">
-				Link: 
-			</div> 
-			<input type="url" name="link" value="<?php echo $q_link; ?>" />
-			<br />
-			<div class="form-title">
-				Notiz: 
-			</div> 
-			<textarea rows="4" cols="50" name="note" class="form-field"><?php echo $q_note; ?></textarea>
-			<br />
-
-			<input type="hidden" name="id" value="<?php echo $q_id; ?>" />
-			<input type="hidden" name="eventid" value="<?php echo $q_eventid; ?>" />
-			<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
-			<div class="submit-container">
-				<input type="submit" name="submit" class="submit-button" value="Speichern">
-			</div>
-		</form>
-	</body>
+		</div>
 	</body>
 </html>

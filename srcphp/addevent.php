@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<title>Event erstellen</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/desktop2.css">
 		<!--<link rel="stylesheet" type="text/css" href="style.css">-->
 	</head>
 	<body> 
@@ -109,46 +111,55 @@
 
 
 		?>
-
-		<form action="addevent.php" method="post" class="form-container">
-			<div class="form-title">
-				<h2><?php echo $form_title; ?></h2>
+		<div id="content-limiter">
+			<div class="content-item">
+				<form action="addevent.php" method="post" class="form-container">
+					<div class="content-head">
+						<p class="content-title">
+							<?php echo $form_title; ?>
+						</p>
+						<p class="content-creator">
+						</p>
+					</div>
+					<div class="content-area">
+						<div class="form-title">
+							Titel*: 
+						</div> 
+						<input type="text" name="title" class="form-field" required="required" value="<?php echo $q_title; ?>" />
+						<br />
+						<div class="form-title">
+							Veranstaltungsdatum: 
+						</div> 
+						<input type="date" name="date" value="<?php echo $q_date; ?>" />
+						<br />
+						<div class="form-title">
+							Beginn: 
+						</div> 
+						<input type="time" name="time" value="<?php echo $q_time; ?>" />
+						<br />
+						<div class="form-title">
+							Ort: 
+						</div> 
+						<input type="text" name="location" value="<?php echo $q_location; ?>" />
+						<br />
+						<div class="form-title">
+							Beschreibung: 
+						</div> 
+						<textarea rows="4" cols="50" name="desc" class="form-field"><?php echo $q_desc; ?></textarea>
+						<br />
+						<div class="form-title">
+							Eventtyp: 
+						</div> 
+						<input type="radio" name="type" value="1" <?php if($q_type == 1) echo "checked"; ?>>Wunschliste<br />
+						<input type="radio" name="type" value="2" <?php if($q_type == 2) echo "checked"; ?>>Essen und Trinken<br />
+						<input type="hidden" name="id" value="<?php echo $q_id; ?>"/>
+						<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
+						<div class="submit-container">
+							<input type="submit" name="submit" class="submit-button" value="Speichern">
+						</div>
+					</div>
+				</form>
 			</div>
-			<div class="form-title">
-				Titel*: 
-			</div> 
-			<input type="text" name="title" class="form-field" required="required" value="<?php echo $q_title; ?>" />
-			<br />
-			<div class="form-title">
-				Veranstaltungsdatum: 
-			</div> 
-			<input type="date" name="date" value="<?php echo $q_date; ?>" />
-			<br />
-			<div class="form-title">
-				Beginn: 
-			</div> 
-			<input type="time" name="time" value="<?php echo $q_time; ?>" />
-			<br />
-			<div class="form-title">
-				Ort: 
-			</div> 
-			<input type="text" name="location" value="<?php echo $q_location; ?>" />
-			<br />
-			<div class="form-title">
-				Beschreibung: 
-			</div> 
-			<textarea rows="4" cols="50" name="desc" class="form-field"><?php echo $q_desc; ?></textarea>
-			<br />
-			<div class="form-title">
-				Eventtyp: 
-			</div> 
-			<input type="radio" name="type" value="1" <?php if($q_type == 1) echo "checked"; ?>>Wunschliste<br />
-			<input type="radio" name="type" value="2" <?php if($q_type == 2) echo "checked"; ?>>Essen und Trinken<br />
-			<input type="hidden" name="id" value="<?php echo $q_id; ?>"/>
-			<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
-			<div class="submit-container">
-				<input type="submit" name="submit" class="submit-button" value="Speichern">
-			</div>
-		</form>
+		</div>
 	</body>
 </html>

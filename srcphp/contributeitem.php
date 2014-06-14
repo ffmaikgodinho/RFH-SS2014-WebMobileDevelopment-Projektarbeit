@@ -1,6 +1,8 @@
 <!DOCTYPE HTML> 
 <html>
 	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/desktop2.css">
 		<title>Beitrag stellen</title>
 		<!--<link rel="stylesheet" type="text/css" href="style.css">-->
 	</head>
@@ -47,26 +49,35 @@
 					 echo $query;
 				 }
 		?>
-
-		<form action="contributeitem.php" method="post" class="form-container">
-			<div class="form-title">
-				<h2>Beitrag leisten f&uuml;r <?php echo $item_title; ?></h2>
+		<div id="content-limiter">
+			<div class="content-item">
+				<form action="contributeitem.php" method="post" class="form-container">
+					<div class="content-head">
+						<p class="content-title">
+							Beitrag leisten f&uuml;r <?php echo $item_title; ?>
+						</p>
+						<p class="content-creator">
+						</p>
+					</div>
+					<div class="content-area">
+						<?php  
+							if($isUserLoggedIn == FALSE) {
+								echo "<div class=\"form-title\">";
+								echo "Name*:";
+								echo "</div>";
+								echo "<input type=\"text\" name=\"name\" class=\"form-field\" required=\"required\">";
+							}
+						?>
+						<div class="form-title">
+							Menge: 
+						</div> 
+						<input type="number" name="quantity" class="form-field" required="required" min="0" max="<?php echo $total_qty; ?>">
+						<div class="submit-container">
+							<input type="submit" name="submit" class="submit-button" value="Abschicken">
+						</div>
+					</div>
+				</form>
 			</div>
-			<?php  
-				if($isUserLoggedIn == FALSE) {
-					echo "<div class=\"form-title\">";
-					echo "Name*:";
-					echo "</div>";
-					echo "<input type=\"text\" name=\"name\" class=\"form-field\" required=\"required\">";
-				}
-			?>
-			<div class="form-title">
-				Menge: 
-			</div> 
-			<input type="number" name="quantity" class="form-field" required="required" min="0" max="<?php echo $total_qty; ?>">
-			<div class="submit-container">
-				<input type="submit" name="submit" class="submit-button" value="Abschicken">
-			</div>
-		</form>
+		</div>
 	</body>
 </html>

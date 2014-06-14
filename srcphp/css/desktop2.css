@@ -76,8 +76,8 @@ a:hover	{
 
 #inner-header{
 	margin: 0 auto 0 auto;
-	max-width: 900px;
-	min-width:320px;
+	max-width: 60em;
+	min-width: 21em;
 	position:relative;
 	padding:0;
 }
@@ -153,8 +153,8 @@ div#content-limiter {
 	/*Text-Formatierung*/
 	
 	/*Größe und Position und Rahmen*/
-	max-width: 900px;
-	min-width:320px;
+	max-width: 60em;
+	min-width: 21em;
 	clear: both;
 	margin: 6em auto 2em auto;
 	position:relative;
@@ -247,5 +247,112 @@ input.search {
 	text-align:center;
 }
 
+form.item {
+	/*Farben*/
+	
+	
+	/*Text-Formatierung*/
+	
+	
+	/*Größe und Position und Rahmen*/
+	
+}
+
+input.item_title {
+	/*Farben*/
+	color: #DBDBDB;
+	background-color: #343434;
+	
+	/*Text-Formatierung*/
+	font-size: 1.2em;
+	
+	/*Größe und Position und Rahmen*/
+	padding: 0;
+	margin: 0 0.8em 0 0;
+	border:0;
+	position: relative;
+	border: none;
+	width:12em;
+	clear:right;
+}
+
+input.item_qty {
+	/*Farben*/
+	color: #DBDBDB;
+	background-color: #343434;
+	
+	/*Text-Formatierung*/
+	font-size: 1.2em;
+	text-align:right;
+	
+	/*Größe und Position und Rahmen*/
+	padding: 0;
+	margin: 0 1em 0 0;
+	border:0;
+	border: none;
+	width:3em;
+}
+
+textarea.item_note {
+	/*Farben*/
+	color: #DBDBDB;
+	background-color: #343434;
+	
+	/*Text-Formatierung*/
+	font-family: Arial,sans-serif; 
+	
+	/*Größe und Position und Rahmen*/
+	min-width:10em;
+	padding: 0;
+	margin:0 auto 0 0;
+	border:none;
+	float:right;
+	
+}
+
+input.item_title:hover, input.item_title:focus, input.item_qty:hover, input.item_qty :focus, textarea.item_note:hover, textarea.item_note:focus, input.contribute_name:focus, input.contribute_name:hover, input.contribute_qty:focus, input.contribute_qty:hover {
+	/*Farben*/
+	background-color: #505050;
+	
+	/*Text-Formatierung*/
+	
+	/*Größe und Position und Rahmen*/
+	
+}
+
+
+input.contribute_name {
+	/*Farben*/
+	color: #DBDBDB;
+	background-color: #343434;
+	
+	/*Text-Formatierung*/
+	font-size: 1em;
+	text-align:left;
+	
+	/*Größe und Position und Rahmen*/
+	padding: 0;
+	margin: 0.5em 1em 0 1em;
+	border:0;
+	position: relative;
+	border: none;
+	width: 2em;
+}
+
+input.contribute_qty {
+	/*Farben*/
+	color: #DBDBDB;
+	background-color: #343434;
+	
+	/*Text-Formatierung*/
+	font-size: 1em;
+	
+	/*Größe und Position und Rahmen*/
+	padding: 0;
+	margin: 0 0.5em 0 0;
+	border:0;
+	border: none;
+	width:3.6em;
+}
 
 
