@@ -86,10 +86,16 @@
          * 
          * @param mixed $id
          * @return void
-         * @todo make a transaction to remove all belonging data for sure.
          */
         public function delete($id)  {
-            $this->m_requestHandler->responseNotImplemented("Not Yet implemented");
+            $strSql = "DELETE FROM contribution WHERE id = '" . $id . "'";
+            $result = $this->m_requestHandler->getDatabase()->query($strSql);
+            if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
+                $this->m_requestHandler->responseNotFound("The given contribution was not found and therefore could not be deleted.");
+            }
+            else  {
+                $this->m_requestHandler->responseOK("Contribution successfully deleted.");
+            }
         }
     }
 

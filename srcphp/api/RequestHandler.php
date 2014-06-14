@@ -86,7 +86,7 @@
          */
         public function responseOK($strMessage)  {
             header("HTTP/1.1 200");
-            echo $strErrorMessage;
+            echo $strMessage;
         }
         
         /**

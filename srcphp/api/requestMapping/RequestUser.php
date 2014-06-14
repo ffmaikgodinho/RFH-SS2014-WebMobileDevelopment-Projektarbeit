@@ -75,9 +75,17 @@
          * 
          * @param mixed $inputData
          * @return void
+         * @todo Think about wether to delete all event, contributions or entrys?
          */
         public function update($inputData)  {
-            $this->m_requestHandler->responseNotImplemented("Not Yet implemented");
+            $strSql = "DELETE FROM user WHERE id = '" . $id . "'";
+            $result = $this->m_requestHandler->getDatabase()->query($strSql);
+            if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
+                $this->m_requestHandler->responseNotFound("The given user was not found and therefore could not be deleted.");
+            }
+            else  {
+                $this->m_requestHandler->responseOK("User successfully deleted.");
+            }
         }
         
         /**
