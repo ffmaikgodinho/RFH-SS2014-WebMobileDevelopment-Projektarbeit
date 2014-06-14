@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class RequestEventContribution</title>
+
+	<script type="text/javascript" src="resources/combined.js?4152563872"></script>
+	<script type="text/javascript" src="elementlist.js?3107248044"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li class="active"><a href="package-api.html">api</a>
+						</li>
+				<li><a href="package-None.html">None</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-MySQL.html">MySQL</a></li>
+				<li><a href="class-RequestEvent.html">RequestEvent</a></li>
+				<li class="active"><a href="class-RequestEventContribution.html">RequestEventContribution</a></li>
+				<li><a href="class-RequestEventEntry.html">RequestEventEntry</a></li>
+				<li><a href="class-RequestHandler.html">RequestHandler</a></li>
+				<li><a href="class-RequestUser.html">RequestUser</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-api.html" title="Summary of api"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class RequestEventContribution</h1>
+
+
+	<div class="description">
+	
+<p>RequestEventContribution</p>
+
+<p>handling PUT, POSTS und DELETE Request of Contributions to an
+requestevententry. GET is implemented in the RequestEventEntry Ressource.</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>RequestEventContribution</span></b>			
+			 implements 
+				<a href="class-IBaseRequest.html"><span>IBaseRequest</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-api.html">api</a><br />
+
+				<b>Copyright</b>
+				<br />
+				<b>Author:</b>
+				Maik Godinho<br />
+				<b>Version:</b>
+				1.0.0<br />
+		<b>Located at</b> <a href="source-class-RequestEventContribution.html#2-150" title="Go to source code">requestMapping/RequestEventContribution.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-RequestEventContribution.html#18-26" title="Go to source code">__construct</a>( <span>basic <var>$requestHandler</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestEventContribution::__construct()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestEventContribution::__construct()</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$requestHandler</var></dt>
+					<dd><code>basic</code><br>requestHandler</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#___construct">IBaseRequest::__construct()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSingle" id="_getSingle">
+
+		<td class="attributes"><code>
+			 public 
+			a
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSingle">#</a>
+		<code><a href="source-class-RequestEventContribution.html#39-57" title="Go to source code">getSingle</a>( <span>string <var>$strContributionID</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestEventContribution::getSingle()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestEventContribution::getSingle()</p>
+
+<p>showing the details of a single EventContribution</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$strContributionID</var></dt>
+					<dd><code>string</code><br>$strContributionID</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>a</code><br>instance of an single EventContribution, typeof model/EventContribution<br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#_getSingle">IBaseRequest::getSingle()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create" id="_create">
+
+		<td class="attributes"><code>
+			 public 
+			if
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create">#</a>
+		<code><a href="source-class-RequestEventContribution.html#59-83" title="Go to source code">create</a>( <span>mixed <var>$inputData</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestEventContribution::create()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestEventContribution::create()</p>
+
+<p>creates a new Contribution</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$inputData</var></dt>
+					<dd><code>mixed</code><br>$inputData</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>if</code><br>successfull returns the inserted id<br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#_create">IBaseRequest::create()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="update" id="_update">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_update">#</a>
+		<code><a href="source-class-RequestEventContribution.html#85-109" title="Go to source code">update</a>( <span>mixed <var>$inputData</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestEventContribution::update()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestEventContribution::update()</p>
+
+<p>updates an Contribution.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$inputData</var></dt>
+					<dd><code>mixed</code><br>$inputData</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#_update">IBaseRequest::update()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-RequestEventContribution.html#111-128" title="Go to source code">delete</a>( <span>mixed <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>RequestEventContribution::delete()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestEventContribution::delete()</p>
+
+<p>removes an Contribution</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>mixed</code><br>$id</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IBaseRequest.html#_delete">IBaseRequest::delete()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-IBaseRequest.html#methods">IBaseRequest</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-IBaseRequest.html#_getAll">getAll()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="m_requestHandler" id="$m_requestHandler">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestEventContribution.html#16" title="Go to source code"><var>$m_requestHandler</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_requestHandler" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
