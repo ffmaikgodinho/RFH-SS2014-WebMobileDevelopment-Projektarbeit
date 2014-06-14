@@ -9,7 +9,6 @@
      * @copyright 
      * @version 1.0.0
      * @access public
-     * @todo Add POST, PUT and DELETE operations
      */
     class RequestUser implements IBaseRequest {
         
@@ -63,9 +62,24 @@
          *  
          * @param mixed $inputData
          * @return if successfull returns the inserted id
+         * @todo Insert md5 decryption of password and salting
          */
         public function create($inputData)  {
-            $this->m_requestHandler->responseNotImplemented("Not Yet implemented");
+            if ($this->checkData($inputData))  {
+                $strSql =   "INSERT INTO `user` (`name`, `email`, `passwort`, `sa`, `stamp`) ".
+                        "VALUES ('".$inputData->name."', '".$inputData->email."', '".$inputData->passwort."', '0', '1');";
+                $result = $this->m_requestHandler->getDatabase()->query($strSql);
+                $lastid = $this->m_requestHandler->getDatabase()->getLastInsertID();
+                if (is_int($lastid) && $lastid > 0)  {
+                    return $lastid;
+                }
+                else  {
+                    $this->m_requestHandler->responseInternalServerError("User could not be inserted.");
+                }                
+            }
+            else {
+                $this->m_requestHandler->responseBadRequest("Not all needed user information have been send.");
+            }
         }
         
         /**
@@ -76,15 +90,23 @@
          * @param mixed $inputData
          * @return void
          * @todo Think about wether to delete all event, contributions or entrys?
+         * @todo add md5 decryption of password and add some salt
          */
         public function update($inputData)  {
-            $strSql = "DELETE FROM user WHERE id = '" . $id . "'";
-            $result = $this->m_requestHandler->getDatabase()->query($strSql);
-            if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
-                $this->m_requestHandler->responseNotFound("The given user was not found and therefore could not be deleted.");
+            //check wethere the user gave us a correct version (the latest)
+            $user = $this->getSingle(($inputData->id));
+            if ($inputData->stamp == $user->stamp)  {
+                $strSql = "UPDATE user SET name= '".$inputData->name."',email = '".$inputData->email."',passwort = '".$inputData->passwort."', stamp = stamp + 1 WHERE id = '" . $inputData->id . "'";
+                $result = $this->m_requestHandler->getDatabase()->query($strSql);
+                if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
+                    $this->m_requestHandler->responseNotFound("The given id was not found and therefore could not be updated..");
+                }
+                else  {
+                    $this->m_requestHandler->responseOK("User successfully updated.");
+                }                
             }
             else  {
-                $this->m_requestHandler->responseOK("User successfully deleted.");
+                $this->m_requestHandler->responsePreconditionFailes("Given version is outdated.");
             }
         }
         
@@ -98,7 +120,34 @@
          * @todo make a transaction to remove all belonging data for sure.
          */
         public function delete($id)  {
-            $this->m_requestHandler->responseNotImplemented("Not Yet implemented");
+            $strSql = "DELETE FROM user WHERE id = '" . $id . "'";
+            $result = $this->m_requestHandler->getDatabase()->query($strSql);
+            if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
+                $this->m_requestHandler->responseNotFound("The given user was not found and therefore could not be deleted.");
+            }
+            else  {
+                $this->m_requestHandler->responseOK("User successfully deleted.");
+            }
+        }
+        
+        
+        /**
+         * RequestUser::checkData()
+         *
+         * checks wethere the required fields are filled to insert data 
+         *  
+         * @param mixed $data
+         * @return boolean | True if all nesseccessary data are filled
+         */
+        private function checkData($data)  {
+            if (strlen($data->name) > 0)  {
+                if (strlen($data->email) > 0)  {
+                    if (strlen($data->passwort) > 0)  {
+                        return true;   
+                    }
+                }
+            }
+            return false;
         }
     }
 

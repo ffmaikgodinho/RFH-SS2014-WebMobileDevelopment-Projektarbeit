@@ -91,8 +91,8 @@
          */
         public function update($inputData)  {
             //check wethere the user gave us a correct version (the latest)
-            $event = $this->getSingle(($inputData->id));
-            if ($inputData->stamp == $event->stamp)  {
+            $eventContribution = $this->getSingle(($inputData->id));
+            if ($inputData->stamp == $eventContribution->stamp)  {
                 $strSql = "UPDATE contribution SET name = '".$inputData->name."',quantity = '".$inputData->quantity."', stamp = stamp + 1 WHERE id = '" . $inputData->id . "'";
                 $result = $this->m_requestHandler->getDatabase()->query($strSql);
                 if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
