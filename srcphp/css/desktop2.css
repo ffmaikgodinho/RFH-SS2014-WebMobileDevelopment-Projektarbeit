@@ -49,13 +49,13 @@ img {
 }
 			
 a {
-	color: #919191;
+	color: #DBDBDB;
 	text-decoration: none;
 }
 			
 a:hover	{
-	
 	text-decoration: none;
+	color:#75CD00;
 }
 
 
@@ -212,7 +212,6 @@ div#footer {
 	/*Größe und Position und Rahmen*/
 	position: relative;	
 	margin: 0 0 0.5em 0;
-	float:left;
 }
 
 .content-creator {
@@ -223,6 +222,7 @@ div#footer {
 	/*Größe und Position und Rahmen*/
 	position: relative;	
 	float:right;
+	padding: 0.8em 0 0 5em;
 }
 
 .content-area {
@@ -247,6 +247,48 @@ input.search {
 	text-align:center;
 }
 
+span.form-title {
+	/*Farben*/
+	
+	/*Text-Formatierung*/
+	font-size: 1.2em;
+	
+	/*Größe und Position und Rahmen*/
+	width: 5em;
+	margin: 0 0 0.8em 0;
+	display:inline-block;
+	
+}
+
+input.event-formfield {
+	/*Farben*/
+	color: #DBDBDB;
+	background-color: #343434;
+	
+	/*Text-Formatierung*/
+	font-size: 1.2em;
+	
+	/*Größe und Position und Rahmen*/
+	width: 10em;
+	border: none;
+}
+
+textarea.event-formfield {
+	/*Farben*/
+	color: #DBDBDB;
+	background-color: #343434;
+	
+	/*Text-Formatierung*/
+	font-family: Arial,sans-serif; 
+	
+	/*Größe und Position und Rahmen*/
+	width:100%;
+	border: none;
+	resize:none;
+	overflow:auto;
+}
+
+
 form.item {
 	/*Farben*/
 	
@@ -268,8 +310,7 @@ input.item_title {
 	
 	/*Größe und Position und Rahmen*/
 	padding: 0;
-	margin: 0 0.8em 0 0;
-	border:0;
+	margin: 0 0.8em 0.4em 0;
 	position: relative;
 	border: none;
 	width:12em;
@@ -290,7 +331,7 @@ input.item_qty {
 	margin: 0 1em 0 0;
 	border:0;
 	border: none;
-	width:3em;
+	width:1.2em;
 }
 
 textarea.item_note {
@@ -302,24 +343,16 @@ textarea.item_note {
 	font-family: Arial,sans-serif; 
 	
 	/*Größe und Position und Rahmen*/
-	min-width:10em;
+	width:calc(100% - 22em);
+	height:3.7em;
 	padding: 0;
 	margin:0 auto 0 0;
 	border:none;
 	float:right;
+	resize:none;
+	overflow:auto;
 	
 }
-
-input.item_title:hover, input.item_title:focus, input.item_qty:hover, input.item_qty :focus, textarea.item_note:hover, textarea.item_note:focus, input.contribute_name:focus, input.contribute_name:hover, input.contribute_qty:focus, input.contribute_qty:hover {
-	/*Farben*/
-	background-color: #505050;
-	
-	/*Text-Formatierung*/
-	
-	/*Größe und Position und Rahmen*/
-	
-}
-
 
 input.contribute_name {
 	/*Farben*/
@@ -332,11 +365,11 @@ input.contribute_name {
 	
 	/*Größe und Position und Rahmen*/
 	padding: 0;
-	margin: 0.5em 1em 0 1em;
+	margin: 0 1em 0.5em 1em;
 	border:0;
 	position: relative;
 	border: none;
-	width: 2em;
+	width: 13.44em;
 }
 
 input.contribute_qty {
@@ -346,13 +379,38 @@ input.contribute_qty {
 	
 	/*Text-Formatierung*/
 	font-size: 1em;
+	text-align:right;
 	
 	/*Größe und Position und Rahmen*/
 	padding: 0;
 	margin: 0 0.5em 0 0;
 	border:0;
 	border: none;
-	width:3.6em;
+	width:1.4em;
+}
+
+
+input.event-formfield :hover, 
+input.event-formfield :focus, 
+textarea.event-formfield :hover, 
+textarea.event-formfield :focus, 
+input.item_title:hover, 
+input.item_title:focus, 
+input.item_qty:hover, 
+input.item_qty :focus, 
+textarea.item_note:hover, 
+textarea.item_note:focus, 
+input.contribute_name:hover, 
+input.contribute_name:focus, 
+input.contribute_qty:hover, 
+input.contribute_qty:focus {
+	/*Farben*/
+	background-color: #505050;
+	
+	/*Text-Formatierung*/
+	
+	/*Größe und Position und Rahmen*/
+	
 }
 
 

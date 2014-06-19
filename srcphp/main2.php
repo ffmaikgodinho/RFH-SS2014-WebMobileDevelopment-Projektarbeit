@@ -200,7 +200,8 @@
 <!-- Addevent ende -->			
 <!-- Ab hier Additem -->
 <?php 	
-			$form_title = "Eintrag erstellen";
+			$form_title = "Eintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellen";
+			$creator = "d3nis";
 			
 			if(isset($_GET["eventid"])){
 				$q_eventid = $_GET["eventid"];
@@ -249,10 +250,10 @@
 				$q_id = $currentID;
 				$q_title = "Title"; // ToDo: Get from query
 				$q_note = "Notiz"; // ToDo: Get from query
-				$q_link = "http://google.de"; // ToDo: Get from query
 				$q_total_qty = "10"; // ToDo: Get from query
 				$q_eventid = $eventid; // ToDo: Get from query
 				$q_editmode = TRUE;
+				
 			}
 			
 			// Write input to database on submit
@@ -296,33 +297,52 @@
 		?>
 			<div class="content-item">
 				<div class="content-head">
+					<p class="content-creator">
+						erstellt von <a href=""><?php echo $creator; ?></a>
+					</p>
 					<p class="content-title">
 						<?php echo $form_title; ?>
 					</p>
-					<p class="content-creator">
-					</p>
 				</div>
 				<div class="content-area">
-					<div class="item">
-						<form action="additem.php" method="post" class="item">
-							<textarea rows="2" cols="30" name="note" class="item_note"><?php echo $q_note; ?></textarea>
-							<div class="itembox-left">
-								<input type="text" name="title" class="item_title" required="required" value="<?php echo $q_title; ?>" />
-								<input type="number" name="total_qty" min="0" class="item_qty" value="<?php echo $q_total_qty; ?>" />
-								<input type="hidden" name="id" value="<?php echo $q_id; ?>" />
-								<input type="hidden" name="eventid" value="<?php echo $q_eventid; ?>" />
-								<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
-							</div>
-<!--							<div class="submit-container">
-								<input type="submit" name="submit" class="submit-button" value="Speichern">
-							</div> -->
-						</form>
-						<div class="contribution">
-							<input type="text" name="name" class="contribute_name" required="required" min="0" max="<?php echo $total_qty; ?>">
-							<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
+					<form action="addevent.php" method="post" class="form-container">
+<!--						<input type="text" name="title" class="form-field" required="required" placeholder="Titel" value="<?php echo $q_title; ?>" />
+-->						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-formfield" placeholder="Datum" value="<?php echo $q_date; ?>" />
+						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-formfield" placeholder="Urhzeit" value="<?php echo $q_time; ?>" />
+						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-formfield" placeholder="Ort" value="<?php echo $q_location; ?>" />
+						<br><textarea rows="4" cols="50" name="desc" class="event-formfield" placeholder="Beschreibung" class="form-field"><?php echo $q_desc; ?></textarea>
+<!--						<input type="radio" name="type" value="1" <?php if($q_type == 1) echo "checked"; ?>>Wunschliste<br />
+						<input type="radio" name="type" value="2" <?php if($q_type == 2) echo "checked"; ?>>Essen und Trinken<br />
+-->						<input type="hidden" name="id" value="<?php echo $q_id; ?>"/>
+						<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
+						<div class="submit-container">
+							<input type="submit" name="submit" class="submit-button" value="Speichern">
 						</div>
+					</form>
+				</div>
+<!-- ab hier die items -->	
+				<div class="item">				
+					<form action="additem.php" method="post" class="item">
+							<input type="text" name="title" class="item_title" required="required" value="<?php echo $q_title; ?>" />
+							<input type="number" name="total_qty" min="0" class="item_qty" value="<?php echo $q_total_qty; ?>" />
+							<textarea rows="3" name="note" class="item_note"><?php echo $q_note; ?></textarea>
+							<input type="hidden" name="id" value="<?php echo $q_id; ?>" />
+							<input type="hidden" name="eventid" value="<?php echo $q_eventid; ?>" />
+							<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
+<!--							<div class="submit-container">
+							<input type="submit" name="submit" class="submit-button" value="Speichern">
+						</div> -->
+					</form>
+					<div class="contribution">
+						<input type="text" name="name" class="contribute_name" required="required" min="0" max="<?php echo $total_qty; ?>">
+						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
+					</div>
+					<div class="contribution">
+						<input type="text" name="name" class="contribute_name" required="required" min="0" max="<?php echo $total_qty; ?>">
+						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
 					</div>
 				</div>
+			</div>
 				<div class="content-area">
 					<div class="item">
 						<form action="additem.php" method="post" class="item">
