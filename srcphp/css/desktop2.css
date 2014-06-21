@@ -390,14 +390,14 @@ input.contribute_qty {
 }
 
 
-input.event-formfield :hover, 
-input.event-formfield :focus, 
-textarea.event-formfield :hover, 
-textarea.event-formfield :focus, 
+input.event-formfield:hover, 
+input.event-formfield:focus, 
+textarea.event-formfield:hover, 
+textarea.event-formfield:focus, 
 input.item_title:hover, 
 input.item_title:focus, 
 input.item_qty:hover, 
-input.item_qty :focus, 
+input.item_qty:focus, 
 textarea.item_note:hover, 
 textarea.item_note:focus, 
 input.contribute_name:hover, 

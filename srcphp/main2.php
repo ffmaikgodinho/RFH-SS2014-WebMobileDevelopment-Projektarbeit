@@ -200,7 +200,7 @@
 <!-- Addevent ende -->			
 <!-- Ab hier Additem -->
 <?php 	
-			$form_title = "Eintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellenEintrag erstellen";
+			$form_title = "Grillparty";
 			$creator = "d3nis";
 			
 			if(isset($_GET["eventid"])){
@@ -298,7 +298,7 @@
 			<div class="content-item">
 				<div class="content-head">
 					<p class="content-creator">
-						erstellt von <a href=""><?php echo $creator; ?></a>
+						erstellt von <a href="d3nis.php"><?php echo $creator; ?></a>
 					</p>
 					<p class="content-title">
 						<?php echo $form_title; ?>
@@ -315,10 +315,10 @@
 						<input type="radio" name="type" value="2" <?php if($q_type == 2) echo "checked"; ?>>Essen und Trinken<br />
 -->						<input type="hidden" name="id" value="<?php echo $q_id; ?>"/>
 						<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
-						<div class="submit-container">
+<!--					<div class="submit-container">
 							<input type="submit" name="submit" class="submit-button" value="Speichern">
 						</div>
-					</form>
+-->					</form>
 				</div>
 <!-- ab hier die items -->	
 				<div class="item">				
@@ -342,139 +342,29 @@
 						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
 					</div>
 				</div>
-			</div>
-				<div class="content-area">
-					<div class="item">
-						<form action="additem.php" method="post" class="item">
-									<input type="text" name="title" class="item_title" required="required" value="<?php echo $q_title; ?>" />
-									<input type="number" name="total_qty" min="0" class="item_qty" value="<?php echo $q_total_qty; ?>" />
-								<textarea rows="2" cols="30" name="note" class="item_note"><?php echo $q_note; ?></textarea>
-								<input type="hidden" name="id" value="<?php echo $q_id; ?>" />
-								<input type="hidden" name="eventid" value="<?php echo $q_eventid; ?>" />
-								<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
-							</div>
+				<div class="item">				
+					<form action="additem.php" method="post" class="item">
+							<input type="text" name="title" class="item_title" required="required" value="<?php echo $q_title; ?>" />
+							<input type="number" name="total_qty" min="0" class="item_qty" value="<?php echo $q_total_qty; ?>" />
+							<textarea rows="3" name="note" class="item_note"><?php echo $q_note; ?></textarea>
+							<input type="hidden" name="id" value="<?php echo $q_id; ?>" />
+							<input type="hidden" name="eventid" value="<?php echo $q_eventid; ?>" />
+							<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
 <!--							<div class="submit-container">
-								<input type="submit" name="submit" class="submit-button" value="Speichern">
-							</div> -->
-						</form>
-						<div class="contribute">
+							<input type="submit" name="submit" class="submit-button" value="Speichern">
+						</div> -->
+					</form>
+					<div class="contribution">
 						<input type="text" name="name" class="contribute_name" required="required" min="0" max="<?php echo $total_qty; ?>">
-							<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
-						</div>
+						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
+					</div>
+					<div class="contribution">
+						<input type="text" name="name" class="contribute_name" required="required" min="0" max="<?php echo $total_qty; ?>">
+						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
 					</div>
 				</div>
-				
 			</div>
 <!-- Additem ende -->
-			<div class="content-item">
-				<div id="content-head">
-					<p class="content-title">
-						Einladung zur Grillparty
-					</p>
-					<p class="content-creator">
-						erstellt von d3nis
-					</p>
-				</div>
-				<div class="content-area">
-					blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-				</div>
-			</div><div class="content-item">
-				<div id="content-head">
-					<p class="content-title">
-						Einladung zur Grillparty
-					</p>
-					<p class="content-creator">
-						erstellt von d3nis
-					</p>
-				</div>
-				<div class="content-area">
-					blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-				</div>
-			</div><div class="content-item">
-				<div id="content-head">
-					<p class="content-title">
-						Einladung zur Grillparty
-					</p>
-					<p class="content-creator">
-						erstellt von d3nis
-					</p>
-				</div>
-				<div class="content-area">
-					blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-				</div>
-			</div><div class="content-item">
-				<div id="content-head">
-					<p class="content-title">
-						Einladung zur Grillparty
-					</p>
-					<p class="content-creator">
-						erstellt von d3nis
-					</p>
-				</div>
-				<div class="content-area">
-					blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-				</div>
-			</div><div class="content-item">
-				<div id="content-head">
-					<p class="content-title">
-						Einladung zur Grillparty
-					</p>
-					<p class="content-creator">
-						erstellt von d3nis
-					</p>
-				</div>
-				<div class="content-area">
-					blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-				</div>
-			</div><div class="content-item">
-				<div id="content-head">
-					<p class="content-title">
-						Einladung zur Grillparty
-					</p>
-					<p class="content-creator">
-						erstellt von d3nis
-					</p>
-				</div>
-				<div class="content-area">
-					blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent blacontent<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-					content2<br>
-					content<br>
-				</div>
-			</div>
 		<div id="footer">
 			copyright 2014 bla bla blub | Impressum
 		</div>
