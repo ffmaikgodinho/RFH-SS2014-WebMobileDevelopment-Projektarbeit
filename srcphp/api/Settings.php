@@ -14,7 +14,7 @@ class Settings  {
     const DB_Port = "3306";
     const DB_Username = "root";
     const DB_Password = "";
-    const DB_Name = "fh";
+    const DB_Name = "pick-it";
 }
     
 ?>

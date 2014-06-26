@@ -161,18 +161,17 @@ div#content-limiter {
 }
 
 div#footer {
-	clear: both;
-}
-
-#content-head {
 	/*Farben*/
-	background-color: #FFFFFF;
+	background-color: #343434;
 	color: #DBDBDB;
 	
 	/*Text-Formatierung*/
-	
+	text-align:center;
 	
 	/*Größe und Position und Rahmen*/
+	clear: both;
+	margin: 2em auto 0 auto;
+	padding: 1em;
 }
 
 
@@ -211,7 +210,7 @@ div#footer {
 	
 	/*Größe und Position und Rahmen*/
 	position: relative;	
-	margin: 0 0 0.5em 0;
+	margin: 0;
 }
 
 .content-creator {
@@ -234,6 +233,7 @@ div#footer {
 	
 	
 	/*Größe und Position und Rahmen*/
+	margin: 1em 0 0 0;
 	position:relative;
 	clear:both;
 }
@@ -286,6 +286,19 @@ textarea.event-formfield {
 	border: none;
 	resize:none;
 	overflow:auto;
+	margin: 0 0 2em 0;
+}
+
+.list{
+	/*Farben*/
+	color: #75CD00;
+	
+	/*Text-Formatierung*/
+	font-size: 1.2em;
+	
+	/*Größe und Position und Rahmen*/
+	width: 5em;
+	margin: 0 0 0.8em 0;
 }
 
 
@@ -351,7 +364,6 @@ textarea.item_note {
 	float:right;
 	resize:none;
 	overflow:auto;
-	
 }
 
 input.contribute_name {
@@ -413,4 +425,65 @@ input.contribute_qty:focus {
 	
 }
 
+input.event-formfield-empty,
+textarea.event-formfield-empty, 
+input.item_title-empty, 
+input.item_qty-empty, 
+textarea.item_note-empty, 
+input.contribute_name-empty, 
+input.contribute_qty-empty {
+	/*Farben*/
+	background-color: #505050;
+	
+	/*Text-Formatierung*/
+	
+	/*Größe und Position und Rahmen*/
+	
+}
 
+.list-entry {
+	/*Farben*/
+	
+	/*Text-Formatierung*/
+	cursor: pointer;
+	
+	/*Größe und Position und Rahmen*/
+
+}
+
+.list-entry-title {
+	/*Farben*/
+	color: #75CD00;
+	
+	/*Text-Formatierung*/
+	font-size: 1.2em;
+	
+	/*Größe und Position und Rahmen*/
+	margin: 1em 0 0 0;
+}
+
+.list-entry-item {
+	/*Farben*/
+	color: #75CD00;
+	
+	/*Text-Formatierung*/
+	font-size: 1em;
+	
+	/*Größe und Position und Rahmen*/
+	margin: 0 0 1em 0;
+}
+
+.list-entry-fact-date,
+.list-entry-fact-location {
+	/*Farben*/
+	
+	/*Text-Formatierung*/
+	font-size: 1em;
+	
+	/*Größe und Position und Rahmen*/
+	margin: 0 3em 1em 0;
+}
+
+.template {
+	display: none;
+}

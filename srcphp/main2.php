@@ -25,13 +25,48 @@
 		</div>
 		<!--<a href=""><img src="img/logo.gif" alt="logo" id="logo"></a>-->
 		<div id="content-limiter">
-			<div class="content-item">
+<!--Anzeige Liste-->
+			<div class="content-item" id="list">
 				<div class="content-head">
 					<p class="content-title">
-						Einladung zur Grillparty
+						Eventliste
 					</p>
+				</div>
+				<div class="list-area">
+					<div class="list-entry">
+						<p class="list-entry-title">
+							Eintrag 1
+						</p>
+						<span class="list-entry-item">Wann:&nbsp;</span><span class="list-entry-fact">19.08.2014 - 18:00 Uhr</span><span class="list-entry-item">Wo:&nbsp;</span><span class="list-entry-fact">Luxemburger Str. 227, 50937 Köln</span>
+					</div>
+					<div class="list-entry">
+						<p class="list-entry-title">
+							Eintrag 2
+						</p>
+						<span class="list-entry-item">Wann:&nbsp;</span><span class="list-entry-fact">25.08.2014 - 20:00 Uhr</span><span class="list-entry-item">Wo:&nbsp;</span><span class="list-entry-fact">Bei David zu Hause!</span>
+					</div>
+					<div class="list-entry">
+						<p class="list-entry-title">
+							Eintrag 3
+						</p>
+						<span class="list-entry-item">Wann:&nbsp;</span><span class="list-entry-fact">01.09.2014 - 18:00 Uhr</span><span class="list-entry-item">Wo:&nbsp;</span><span class="list-entry-fact">Brauhaus Gaffel am Dom</span>
+					</div>
+					<div class="list-entry">
+						<p class="list-entry-title">
+							Eintrag 4
+						</p>
+						<span class="list-entry-item">Wann:&nbsp;</span><span class="list-entry-fact">09.10.2014 - 18:00 Uhr</span><span class="list-entry-item">Wo:&nbsp;</span><span class="list-entry-fact">Luxemburger Str. 227, 50937 Köln</span>
+					</div>
+				</div>
+			</div>
+<!--Anzeige Einzelcontent-->
+			<div class="content-item" id="content">
+				<div class="content-head">
 					<p class="content-creator">
 						erstellt von d3nis
+					</p>
+					<p class="content-title">
+						Anzeige Einzelcontent (bspw: Content)
 					</p>
 				</div>
 				<div class="content-area">
@@ -44,323 +79,128 @@
 					content<br>
 				</div>
 			</div>
+
 <!-- Ab hier addevent -->
-			<?php 	
-			$form_title = "Event erstellen";
-			
-			// hidden form field if on edit mode
-			$q_editmode = FALSE;
-			
-			// variables for form fields
-			$q_title = "";
-			$q_date = "";
-			$q_time = "";
-			$q_location = "";
-			$q_desc = "";
-			$q_type = "";
-				
-			// Read SQL Params if inUrl "?mode=edit"
-			if(isset($_GET["mode"]) AND $_GET["mode"]=="edit") {
-			
-				// header on editmode
-				$form_title = "Event bearbeiten";
-				
-				if(isset($_GET["id"])){
-					$currentID = $_GET["id"];
-				} else {
-					$currentID = 0;
-				}
-				
-				$query = "SELECT id, date, location, description, type 
-						  FROM event 
-						  WHERE id=$currentID";
-						  
-				//mysql_query($query);	
-				
-				//debug  
-				echo $query;
-				
-				// variables for form fields
-				$q_id = $currentID; 
-				$q_title = "Title"; // ToDo: Get from query
-				$q_datetime = new DateTime("1970-01-01 00:00:00"); // ToDo: Get from query
-				$q_date = $q_datetime->format('m/j/Y');
-				$q_time = $q_datetime->format('H:i');
-				$q_location = "Location"; // ToDo: Get from query
-				$q_desc = "Beschreibung";  // ToDo: Get from query	
-				$q_type = 1;  // ToDo: Get from query	
-				$q_editmode = TRUE;
-			}
-			
-			// Write input to database on submit
-			 if(isset($_POST['submit'])) { 
-			 
-				$title = $_POST["title"];
-				$id = $_POST["id"];
-				
-				if (empty($_POST["date"])){
-					$date = "";
-				} else {
-					$date = $_POST["date"];
-				}
-				
-				if (empty($_POST["time"])){
-					$time = "";
-				} else {
-					$time = $_POST["time"];
-				}
-				
-				// $date und $time zusammenfuehren, da nur ein Feld in der Datenbank existiert
-				$datetime = $date." ".$time;
-				
-				if (empty($_POST["desc"])){
-					$desc = "";
-				} else {
-					$desc = $_POST["desc"];
-				}
-				
-				if (empty($_POST["location"])){
-					$location = "";
-				} else {
-					$location = $_POST["location"];
-				}
-				
-				if (empty($_POST["type"])){
-					$type = "";
-				} else {
-					$type = $_POST["type"];
-				}
-				
-				if($_POST["editmode"] == TRUE) {
-				$query = "UPDATE event 
-						  SET date='$datetime', 
-						      location='$location', 
-						      description = '$desc', 
-						      type = '$type'
-							WHERE eventid=$id";
-				} else {
-				$query = "INSERT INTO event (date, location, description, type)
-									VALUES ('$datetime', '$location', '$desc', '$type')";
-				}
-				//debug
-				echo $query;
-				//mysql_query($query);
-			 }
-
-
-		?>
-			<div class="content-item">
-				<form action="addevent.php" method="post" class="form-container">
-					<div class="content-head">
-						<p class="content-title">
-							<?php echo $form_title; ?>
-						</p>
-						<p class="content-creator">
-						</p>
-					</div>
-					<div class="content-area">
-						<div class="form-title">
-							Titel*: 
-						</div> 
-						<input type="text" name="title" class="form-field" required="required" value="<?php echo $q_title; ?>" />
-						<br />
-						<div class="form-title">
-							Veranstaltungsdatum: 
-						</div> 
-						<input type="date" name="date" value="<?php echo $q_date; ?>" />
-						<br />
-						<div class="form-title">
-							Beginn: 
-						</div> 
-						<input type="time" name="time" value="<?php echo $q_time; ?>" />
-						<br />
-						<div class="form-title">
-							Ort: 
-						</div> 
-						<input type="text" name="location" value="<?php echo $q_location; ?>" />
-						<br />
-						<div class="form-title">
-							Beschreibung: 
-						</div> 
-						<textarea rows="4" cols="50" name="desc" class="form-field"><?php echo $q_desc; ?></textarea>
-						<br />
-						<div class="form-title">
-							Eventtyp: 
-						</div> 
-						<input type="radio" name="type" value="1" <?php if($q_type == 1) echo "checked"; ?>>Wunschliste<br />
-						<input type="radio" name="type" value="2" <?php if($q_type == 2) echo "checked"; ?>>Essen und Trinken<br />
-						<input type="hidden" name="id" value="<?php echo $q_id; ?>"/>
-						<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
-						<div class="submit-container">
-							<input type="submit" name="submit" class="submit-button" value="Speichern">
-						</div>
-					</div>
-				</form>
-			</div>
-<!-- Addevent ende -->			
 <!-- Ab hier Additem -->
-<?php 	
-			$form_title = "Grillparty";
-			$creator = "d3nis";
-			
-			if(isset($_GET["eventid"])){
-				$q_eventid = $_GET["eventid"];
-			} else {
-				$q_eventid = 0;
-			}
-			
-			// hidden form field if on edit mode
-			$q_editmode = FALSE;
-			
-			// variables for form fields
-			$q_title = "";
-			$q_note = "";
-			$q_link = "";
-			$q_total_qty = "";
-			
-			// Read SQL Params if inUrl "?mode=edit"
-			if(isset($_GET["mode"]) AND $_GET["mode"]=="edit") {
-			
-				// header on editmode
-				$form_title = "Eintrag bearbeiten";
-				
-				// get entryid
-				if(isset($_GET["id"])){
-					$currentID = $_GET["id"];
-				} else {
-					$currentID = 0;
-				}
-				
-				if(isset($_GET["eventid"])){
-					$eventid = $_GET["eventid"];
-				} else {
-					$eventid = 0;
-				}
-				
-				$query = "SELECT id, eventid, title, note, link, total_qty 
-						  FROM entry 
-						  WHERE id=$currentID";
-						  
-				//mysql_query($query);
-				
-				//debug  
-				echo $query;
-				
-				// variables for form fields
-				$q_id = $currentID;
-				$q_title = "Title"; // ToDo: Get from query
-				$q_note = "Notiz"; // ToDo: Get from query
-				$q_total_qty = "10"; // ToDo: Get from query
-				$q_eventid = $eventid; // ToDo: Get from query
-				$q_editmode = TRUE;
-				
-			}
-			
-			// Write input to database on submit
-			 if(isset($_POST['submit'])) {
-			  
-			 	$id = $_POST["id"];
-				$eventid = $_POST["eventid"];
-				$title = $_POST["title"];
-				$total_qty = $_POST["total_qty"];
-				
-				if (empty($_POST["note"])){
-					$note = "";
-				} else {
-					$note = $_POST["note"];
-				}
-				
-				if (empty($_POST["link"])){
-					$link = "";
-				} else {
-					$link = $_POST["link"];
-				}
-				
-				if($_POST["editmode"] == TRUE) {
-				$query = "UPDATE entry 
-						  SET eventid='$eventid', 
-						      note='$note', 
-						      link = '$link', 
-						      total_qty = '$total_qty'
-							WHERE id=$id";
-				} else {
-					$query = "INSERT INTO entry (eventid, note, link, total_qty)
-									VALUES ('$eventid', '$note', '$link', '$total_qty')";
-				}
-
-				//debug
-				echo $query;
-				//mysql_query($query);
-			 }
-
-
-		?>
-			<div class="content-item">
+			<div class="content-item" id="create_event">
 				<div class="content-head">
 					<p class="content-creator">
-						erstellt von <a href="d3nis.php"><?php echo $creator; ?></a>
+						erstellt von <a href="d3nis.php">eingelogter</a>
 					</p>
 					<p class="content-title">
-						<?php echo $form_title; ?>
+						Event anlegen / anzeigen / bearbeiten
 					</p>
 				</div>
 				<div class="content-area">
 					<form action="addevent.php" method="post" class="form-container">
-<!--						<input type="text" name="title" class="form-field" required="required" placeholder="Titel" value="<?php echo $q_title; ?>" />
--->						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-formfield" placeholder="Datum" value="<?php echo $q_date; ?>" />
-						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-formfield" placeholder="Urhzeit" value="<?php echo $q_time; ?>" />
-						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-formfield" placeholder="Ort" value="<?php echo $q_location; ?>" />
-						<br><textarea rows="4" cols="50" name="desc" class="event-formfield" placeholder="Beschreibung" class="form-field"><?php echo $q_desc; ?></textarea>
-<!--						<input type="radio" name="type" value="1" <?php if($q_type == 1) echo "checked"; ?>>Wunschliste<br />
-						<input type="radio" name="type" value="2" <?php if($q_type == 2) echo "checked"; ?>>Essen und Trinken<br />
--->						<input type="hidden" name="id" value="<?php echo $q_id; ?>"/>
-						<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
+<!--						<input type="text" name="title" class="form-field" required="required" placeholder="Titel" value="" />
+-->						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-formfield event-formfield-empty" placeholder="" value="" />
+						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-formfield event-formfield-empty" placeholder="" value="" />
+						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-formfield event-formfield-empty" placeholder="" value="" />
+						<br><textarea rows="4" cols="50" name="desc" class="event-formfield event-formfield-empty" placeholder="Beschreibung"></textarea>
+<!--						<input type="radio" name="type" value="1" >Wunschliste<br />
+						<input type="radio" name="type" value="2" >Essen und Trinken<br />
+-->						<input type="hidden" name="id" value=""/>
+						<input type="hidden" name="editmode" value=""/>
 <!--					<div class="submit-container">
 							<input type="submit" name="submit" class="submit-button" value="Speichern">
 						</div>
 -->					</form>
 				</div>
-<!-- ab hier die items -->	
+<!-- ab hier die items -->
+				<div class="list">
+					Liste
+				</div>
 				<div class="item">				
 					<form action="additem.php" method="post" class="item">
-							<input type="text" name="title" class="item_title" required="required" value="<?php echo $q_title; ?>" />
-							<input type="number" name="total_qty" min="0" class="item_qty" value="<?php echo $q_total_qty; ?>" />
-							<textarea rows="3" name="note" class="item_note"><?php echo $q_note; ?></textarea>
-							<input type="hidden" name="id" value="<?php echo $q_id; ?>" />
-							<input type="hidden" name="eventid" value="<?php echo $q_eventid; ?>" />
-							<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
+							<input type="text" name="title" class="item_title item_title-empty" required="required" value="" placeholder="" />
+							<input type="number" name="total_qty" min="0" class="item_qty item_qty-empty" value="" placeholder="" />
+							<textarea rows="3" name="note" class="item_note item_note-empty" placeholder="Notiz"></textarea>
+							<input type="hidden" name="id" value="" />
+							<input type="hidden" name="eventid" value="" />
+							<input type="hidden" name="editmode" value=""/>
 <!--							<div class="submit-container">
 							<input type="submit" name="submit" class="submit-button" value="Speichern">
 						</div> -->
 					</form>
 					<div class="contribution">
-						<input type="text" name="name" class="contribute_name" required="required" min="0" max="<?php echo $total_qty; ?>">
-						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
+						<input type="text" name="name" class="contribute_name contribute_name-empty" required="required" min="0" max=""placeholder="> eintragen">
+						<input type="number" name="quantity" class="contribute_qty contribute_qty-empty" required="required" min="0" max="">
+					</div>
+				</div>
+			</div>
+<!-- Additem ende -->
+<!-- Addevent ende -->			
+<!-- Ab hier Additem -->
+			<div class="content-item" id="show_event">
+				<div class="content-head">
+					<p class="content-creator">
+						erstellt von <a href="d3nis.php">Ersteller</a>
+					</p>
+					<p class="content-title">
+						Grillparty
+					</p>
+				</div>
+				<div class="content-area">
+					<form action="addevent.php" method="post" class="form-container">
+<!--						<input type="text" name="title" class="form-field" required="required" placeholder="Titel" value="" />
+-->						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-formfield" placeholder="Datum" value="" />
+						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-formfield" placeholder="Urhzeit" value="" />
+						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-formfield" placeholder="Ort" value="" />
+						<br><textarea rows="4" cols="50" name="desc" class="event-formfield" placeholder="Beschreibung" class="form-field"></textarea>
+<!--						<input type="radio" name="type" value="1" >Wunschliste<br />
+						<input type="radio" name="type" value="2" >Essen und Trinken<br />
+-->						<input type="hidden" name="id" value=""/>
+						<input type="hidden" name="editmode" value=""/>
+<!--					<div class="submit-container">
+							<input type="submit" name="submit" class="submit-button" value="Speichern">
+						</div>
+-->					</form>
+				</div>
+<!-- ab hier die items -->
+				<div class="list">
+					Liste
+				</div>	
+				<div class="item">				
+					<form action="additem.php" method="post" class="item">
+							<input type="text" name="title" class="item_title" required="required" value="" />
+							<input type="number" name="total_qty" min="0" class="item_qty" value="" />
+							<textarea rows="3" name="note" class="item_note"></textarea>
+							<input type="hidden" name="id" value="" />
+							<input type="hidden" name="eventid" value="" />
+							<input type="hidden" name="editmode" value=""/>
+<!--							<div class="submit-container">
+							<input type="submit" name="submit" class="submit-button" value="Speichern">
+						</div> -->
+					</form>
+					<div class="contribution">
+						<input type="text" name="name" class="contribute_name" required="required" min="0" max="">
+						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="">
 					</div>
 					<div class="contribution">
-						<input type="text" name="name" class="contribute_name" required="required" min="0" max="<?php echo $total_qty; ?>">
-						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
+						<input type="text" name="name" class="contribute_name" required="required" min="0" max="">
+						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="">
 					</div>
 				</div>
 				<div class="item">				
 					<form action="additem.php" method="post" class="item">
-							<input type="text" name="title" class="item_title" required="required" value="<?php echo $q_title; ?>" />
-							<input type="number" name="total_qty" min="0" class="item_qty" value="<?php echo $q_total_qty; ?>" />
-							<textarea rows="3" name="note" class="item_note"><?php echo $q_note; ?></textarea>
+							<input type="text" name="title" class="item_title" required="required" value="" />
+							<input type="number" name="total_qty" min="0" class="item_qty" value="" />
+							<textarea rows="3" name="note" class="item_note"></textarea>
 							<input type="hidden" name="id" value="<?php echo $q_id; ?>" />
-							<input type="hidden" name="eventid" value="<?php echo $q_eventid; ?>" />
-							<input type="hidden" name="editmode" value="<?php echo $q_editmode; ?>"/>
+							<input type="hidden" name="eventid" value="" />
+							<input type="hidden" name="editmode" value=""/>
 <!--							<div class="submit-container">
 							<input type="submit" name="submit" class="submit-button" value="Speichern">
 						</div> -->
 					</form>
 					<div class="contribution">
-						<input type="text" name="name" class="contribute_name" required="required" min="0" max="<?php echo $total_qty; ?>">
-						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
+						<input type="text" name="name" class="contribute_name" required="required" min="0" max="">
+						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="">
 					</div>
 					<div class="contribution">
-						<input type="text" name="name" class="contribute_name" required="required" min="0" max="<?php echo $total_qty; ?>">
-						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="<?php echo $total_qty; ?>">
+						<input type="text" name="name" class="contribute_name" required="required" min="0" max="">
+						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="">
 					</div>
 				</div>
 			</div>
