@@ -1,0 +1,8 @@
+ToDo: 
+- Contributions als weiteres Panel hinter die Einträge hinzufügen
+- Bearbeiten-Form pro View hinzufügen
+- Navigationspunkte in der blauen Leiste (Einloggen?, evtl. Überschriften zur Orientierung?)
+- Nach dem Zurück-Klick auf einen Eintrag wird auf kein Eventklick mehr reagiert
+- Prüfen, ob die Stores zusammengefasst werden können
+- Prüfen, ob der Entries-Proxy Parameter für die URL annimmt (extraParams?)
+- Das Übliche Aufhübschen, Fehlertests, etc.
