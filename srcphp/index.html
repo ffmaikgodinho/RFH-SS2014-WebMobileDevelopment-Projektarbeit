@@ -82,10 +82,10 @@
 				<div class="content-area">
 					<form action="addevent.php" method="post" class="form-container">
 <!--						<input type="text" name="title" class="form-field" required="required" placeholder="Titel" value="" />
--->						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-formfield event-formfield-empty" placeholder="" value="" />
-						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-formfield event-formfield-empty" placeholder="" value="" />
-						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-formfield event-formfield-empty" placeholder="" value="" />
-						<br><textarea rows="4" cols="50" name="desc" class="event-formfield event-formfield-empty" placeholder="Beschreibung"></textarea>
+-->						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-date event-formfield event-formfield-empty" placeholder="" value="" />
+						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" />
+						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-location event-formfield event-formfield-empty" placeholder="" value="" />
+						<br><textarea rows="4" cols="50" name="desc" class="event-desc event-formfield event-formfield-empty" placeholder="Beschreibung"></textarea>
 <!--						<input type="radio" name="type" value="1" >Wunschliste<br />
 						<input type="radio" name="type" value="2" >Essen und Trinken<br />
 -->						<input type="hidden" name="id" value=""/>
@@ -123,7 +123,7 @@
 			<div class="content-item" id="event_show">
 				<div class="content-head">
 					<p class="content-creator">
-						erstellt von <a href="d3nis.php" id="creator-name"></a>
+						erstellt von <a href="d3nis.php" class="creator-name"></a>
 					</p>
 					<p class="content-title">
 						Grillparty
@@ -132,10 +132,10 @@
 				<div class="content-area">
 					<form action="addevent.php" method="post" class="form-container">
 <!--						<input type="text" name="title" class="form-field" required="required" placeholder="Titel" value="" />
--->						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-formfield" placeholder="Datum" value="" />
-						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-formfield" placeholder="Urhzeit" value="" />
-						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-formfield" placeholder="Ort" value="" />
-						<br><textarea rows="4" cols="50" name="desc" class="event-formfield" placeholder="Beschreibung" class="form-field"></textarea>
+-->						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-date event-formfield" placeholder="Datum" value="" />
+						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-date event-formfield" placeholder="Urhzeit" value="" />
+						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-location event-formfield" placeholder="Ort" value="" />
+						<br><textarea rows="4" cols="50" name="desc" class="event-desc event-formfield" placeholder="Beschreibung" class="form-field"></textarea>
 <!--						<input type="radio" name="type" value="1" >Wunschliste<br />
 						<input type="radio" name="type" value="2" >Essen und Trinken<br />
 -->						<input type="hidden" name="id" value=""/>

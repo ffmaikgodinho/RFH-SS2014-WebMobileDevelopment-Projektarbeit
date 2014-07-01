@@ -1,13 +1,12 @@
 $.widget("event.eventList", 
-{  			// Definiton des Widgets mit Name ""
+{
     _create: function() 
-    {					// _ bedeutet Privat, diese Methode ist wie ein Konstruktor
-		//this._load
+    {
 		$.ajax(
 		{
 		   url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
 		   dataType: "json",
-		   success: this._appendevents,
+		   success: this._appendEvents,
 		   context: this
 		});		
 	},
@@ -18,7 +17,7 @@ $.widget("event.eventList",
 		{
 		   url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
 		   dataType: "json",
-		   success: this._appendevents,
+		   success: this._appendEvents,
 		   context: this
 		});		
 	},
@@ -26,22 +25,21 @@ $.widget("event.eventList",
 	reload: function()
 	{
 		this.element.find(".event:not(.template)").remove();
-		//this._load
 		$.ajax(
 		{
 		   url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
 		   dataType: "json",
-		   success: this._appendevents,
+		   success: this._appendEvents,
 		   context: this
 		});		
 	},
 	
-	_appendevents: function(events)
+	_appendEvents: function(events)
 	{
 		var that = this;
 		for (var i = 0; i < events.length; i++) 
 		{
-		    var event = events[i];
+			var event = events[i];
 			var eventElement = this.element.find(".list-entry").clone();
 			eventElement.removeClass("template");
 			eventElement.find(".list-entry-title").text(event.id);

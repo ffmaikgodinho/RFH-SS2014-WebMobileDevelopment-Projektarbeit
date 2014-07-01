@@ -1,18 +1,17 @@
 $.widget("event.eventDetails", {  
-  load: function(eventUrl) {					// _ bedeutet Privat dies ist wie ein Konstruktor
+	load: function(eventUrl) {
 		$.ajax({
-			url: eventUrl,
+			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp" + eventUrl,
 			dataType: "json",
 			success: function(event)
-				{
-					//alert(event.title);
-					this.element.find(".author").text(event.author);
-					this.element.find(".due_date").text(event.due_date);
-					this.element.find(".title").text(event.title);
-					this.element.find(".notes").text(event.notes);
-				},
+			{
+				// this.element.find(".creator-name").val(event.creator);
+				this.element.find(".event-date").val(event.date);
+				this.element.find(".event_time").val(event.date);
+				this.element.find(".event-location").val(event.location);
+				this.element.find(".event-desc").val(event.description);
+			},
 			context:this
-		   });
-		   this._super();
-		}
-  });
+		});
+	}
+});
