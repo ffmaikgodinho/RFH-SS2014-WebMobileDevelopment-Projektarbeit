@@ -2,7 +2,7 @@
     /**
      * The application's namespace, used by Sencha Command to generate classes
      */
-    "name": "Todoliste",
+    "name": "PickIt",
 
     /**
      * The file path to this application's front HTML document, relative to this app.json file
@@ -131,5 +131,5 @@
      * Uniquely generated id for this application, used as prefix for localStorage keys.
      * Normally you should never change this value.
      */
-    "id": "fe61c37a-3546-4aea-9e36-416650e69f8c"
+    "id": "69dc8303-d9ab-4ff1-82fd-50351c1b796c"
 }

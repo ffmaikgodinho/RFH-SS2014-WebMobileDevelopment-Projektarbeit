@@ -1,0 +1,19 @@
+{
+	"id": "1",
+	"eventid": "1",
+	"title": "Kekse",
+	"note": null,
+	"total_qty": "2",
+	"stamp": "0",
+	"contributions": [
+		{
+			"id": "1",
+			"userid": null,
+			"name": "Bill",
+			"entryid": "1",
+			"quantity": "1",
+			"stamp": "0",
+			"url": "\/api\/eventContributions\/1"
+		}
+	]
+}

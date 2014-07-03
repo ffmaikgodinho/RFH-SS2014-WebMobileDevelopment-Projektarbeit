@@ -1,0 +1,28 @@
+{
+	"id": "1",
+	"add_date": "2014-06-27 19:24:39",
+	"date": "2010-07-20 14:00:00",
+	"location": "Evergreen Terrance 13",
+	"description": null,
+	"type": "1",
+	"stamp": "0",
+	"entrys": [
+		{
+			"id": "1",
+			"eventid": "1",
+			"title": "Nina",
+			"note": null,
+			"total_qty": "2",
+			"stamp": "0",
+			"url": "\/api\/eventEntries\/1"
+		}, {
+			"id": "2",
+			"eventid": "1",
+			"title": "Tim",
+			"note": "am liebsten K\u00e4sekuchen",
+			"total_qty": "1",
+			"stamp": "0",
+			"url": "\/api\/eventEntries\/2"
+		}
+	]
+}
