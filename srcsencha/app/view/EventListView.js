@@ -4,16 +4,8 @@ Ext.define('PickIt.view.EventListView', {
 	xtype: 'eventListView',
 	
 	config: {
-		
-	
-		
 		store: 'EventsStore',
-		itemTpl: '<div>Wo: {location} <br /> Wann: {date:date("d.m.Y")}</div>',
+		itemTpl: '<div><strong>{title}</strong><br /> <small>Ort: {location} <br />Datum: {date:date("d.m.Y")}</small></div>',
 		disableSelection: true
-		
-		
 	}
-	
-	
-	
 });

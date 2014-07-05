@@ -3,30 +3,30 @@ Ext.define('PickIt.controller.MainCtrl', {
 	
 	config : {
 		refs : {
-			mainView : 'mainView'
+			mainView : 'mainView',
+			addButton: '#addButton'
 		},
 		control : {
 			mainView:{
 				back : 'onBack'
+			},
+			addButton: {
+				tap: 'onButtonTap'
 			}
 		}
 	},
 
-	
 	//called when the Application is launched, remove if not needed
 	launch : function(app) {
-
-		console.log('MainCtrl launched');
-
+		console.log('MainCtrl launched'); //debug
 	},
 
 	onBack : function(view, eOpts){
-		
-		//this.getMainView().pop();
+		// destroys view when clicked on back button to ensure proper references
 		this.getMainView().pop(view);
-		
-		
+	},
+	
+	onButtonTap: function(button, e, eOpts){
+		console.log('addButton tap not implemented');
 	}
-		
-
 });
