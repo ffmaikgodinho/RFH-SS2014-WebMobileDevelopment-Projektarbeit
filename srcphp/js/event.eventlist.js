@@ -42,7 +42,7 @@ $.widget("event.eventList",
 			var event = events[i];
 			var eventElement = this.element.find(".list-entry").clone();
 			eventElement.removeClass("template");
-			eventElement.find(".list-entry-title").text(event.id);
+			eventElement.find(".list-entry-title").text(event.title);
 			eventElement.find(".list-entry-fact-date").text(event.date);
 			eventElement.find(".list-entry-fact-location").text(event.location);
 			eventElement.click(event.url, function(event)
