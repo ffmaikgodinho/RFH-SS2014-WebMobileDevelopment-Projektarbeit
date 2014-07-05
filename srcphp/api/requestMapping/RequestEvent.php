@@ -91,8 +91,8 @@
          */
         public function create($inputData)  {
             if ($this->checkData($inputData))  {
-                $strSql =   "INSERT INTO `event` (`add_date`, `date`, `location`, `description`, `type`) ".
-                        "VALUES (CURRENT_TIMESTAMP, '".$inputData->date."', '".$inputData->location."', '".$inputData->description."', '".$inputData->type."');";
+                $strSql =   "INSERT INTO `event` (`add_date`, `date`, `title`, `location`, `description`, `type`) ".
+                        "VALUES (CURRENT_TIMESTAMP, '".$inputData->date."', '".$inputData->title."', '".$inputData->location."', '".$inputData->description."', '".$inputData->type."');";
                 $result = $this->m_requestHandler->getDatabase()->query($strSql);
                 $lastid = $this->m_requestHandler->getDatabase()->getLastInsertID();
                 if (is_int($lastid) && $lastid > 0)  {
@@ -119,7 +119,7 @@
             //check wethere the user gave us a correct version (the latest)
             $event = $this->getSingle(($inputData->id));
             if ($inputData->stamp == $event->stamp)  {
-                $strSql = "UPDATE event SET description = '".$inputData->description."',location = '".$inputData->location."',date = '".$inputData->date."',type = '".$inputData->type."', stamp = stamp + 1 WHERE id = '" . $inputData->id . "'";
+                $strSql = "UPDATE event SET title = '".$inputData->title."',description = '".$inputData->description."',location = '".$inputData->location."',date = '".$inputData->date."',type = '".$inputData->type."', stamp = stamp + 1 WHERE id = '" . $inputData->id . "'";
                 $result = $this->m_requestHandler->getDatabase()->query($strSql);
                 if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
                     $this->m_requestHandler->responseNotFound("The given id was not found and therefore could not be updated..");

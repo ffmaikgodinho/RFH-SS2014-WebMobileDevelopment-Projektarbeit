@@ -16,6 +16,7 @@
         public $url;
         public $add_date;
         public $date;
+        public $title;
         public $location;
         public $description;
         public $entrys;     //array of EventEntry
@@ -27,6 +28,8 @@
                 $this->date = $postData["Datum"];
             if (isset($postData["Ort"]))
                 $this->location = $postData["Ort"];
+            if (isset($postData["Titel"]))
+                $this->title = $postData["Titel"];
             if (isset($postData["Beschreibung"]))
                 $this->description = $postData["Beschreibung"];
             if (isset($postData["Typ"]))

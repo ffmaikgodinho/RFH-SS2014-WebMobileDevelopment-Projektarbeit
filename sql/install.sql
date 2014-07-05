@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primärschlüssel',
   `add_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Datum an dem das Event angelegt wurde',
   `date` datetime DEFAULT NULL COMMENT 'Datum und Uhrzeit der Veranstaltung',
+  `title` mediumtext NOT NULL COMMENT 'Titel der Veranstaltung',
   `location` mediumtext COMMENT 'Ort an dem das Event stattfindet',
   `description` mediumtext COMMENT 'Beschreibungstext zum Event',
   `type` int(11) NOT NULL COMMENT 'Typ des Events (Geschenkeliste/Mitbringsel)',

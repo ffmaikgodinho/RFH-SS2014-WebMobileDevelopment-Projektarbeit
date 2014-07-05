@@ -1,0 +1,1 @@
+ALTER TABLE `event` ADD `title` mediumtext NOT NULL AFTER `date`;
