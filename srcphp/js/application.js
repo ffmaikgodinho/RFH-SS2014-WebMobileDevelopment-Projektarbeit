@@ -31,16 +31,43 @@ $(function() {
 		}
 	});
 	
-	$("#event_show").eventDetails();
-	
-	$("#event_create").eventEdit();
-	
 	$("#event_list").eventList({
 		oneventClicked: function(event, url) {
 			$("#event_show").eventDetails("load", url);
 			$("#event_list").hide();
 			$("#event_show").show();
 		}
+	});
+	
+	$("#event_show").eventDetails({
+		onsaveClicked: function() {
+			alert("speichern geklickt");
+		},
+		ondeleteClicked: function() {
+			alert("löschen geklickt");
+		}
+	});
+	
+	$("#event_create").eventCreate({
+		onsaveClicked: function() {
+			alert("speichern geklickt");
+		},
+		oncancelClicked: function() {
+			$("#cancel-dialog").cancelDialog("open");
+		},
+		onEventSaved: function() {
+			alert("gespeichert!");
+			// $("#event_show").eventDetails(url);
+		}
+	});
+	
+	$("#cancel-dialog").cancelDialog({
+		oncanceld: function() {
+			$("#event_create").hide();
+			$("#event_list").hide();
+			$("#event_show").hide();
+			$("#content").show();
+		},
 	});
 	
 	$("#content").hide();

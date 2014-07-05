@@ -10,9 +10,10 @@
 		<script src="js/event.menubar.js" type="text/javascript"></script>
 		<script src="js/event.eventlist.js" type="text/javascript"></script>
 		<script src="js/event.eventdetails.js" type="text/javascript"></script>
-		<script src="js/event.eventedit.js" type="text/javascript"></script>
+		<script src="js/event.eventcreate.js" type="text/javascript"></script>
 		<script src="js/event.errordialog.js" type="text/javascript"></script>
 		<script src="js/event.deletedialog.js" type="text/javascript"></script>
+		<script src="js/event.canceldialog.js" type="text/javascript"></script>
 		<script src="js/application.js" type="text/javascript"></script>
 		<title>Mainpage</title>
 	</head>
@@ -73,29 +74,23 @@
 <!-- Ab hier addevent -->
 <!-- Ab hier Additem -->
 			<div class="content-item" id="event_create">
+				<menu id="content-menu" class="content-menu">
+					<li id="delete" class="content-menu delete">x</li>
+					<li id="save" class="content-menu save">a</li>
+				</menu>
 				<div class="content-head">
-					<p class="content-creator">
-						
-					</p>
 					<p class="content-title">
 						Neues Event anlegen
 					</p>
 				</div>
 				<div class="content-area">
 					<form action="addevent.php" method="post" class="form-container">
-							<span class="form-title">Titel:</span><input type="text" name="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" />
-						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-date event-formfield event-formfield-empty" placeholder="" value="" />
-						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" />
-						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-location event-formfield event-formfield-empty" placeholder="" value="" />
-						<br><textarea rows="4" cols="50" name="desc" class="event-desc event-formfield event-formfield-empty" placeholder="Beschreibung"></textarea>
-<!--						<input type="radio" name="type" value="1" >Wunschliste<br />
-						<input type="radio" name="type" value="2" >Essen und Trinken<br />
--->						<input type="hidden" name="id" value=""/>
-						<input type="hidden" name="editmode" value=""/>
-<!--					<div class="submit-container">
-							<input type="submit" name="submit" class="submit-button" value="Speichern">
-						</div>
--->					</form>
+							<span class="form-title">Titel:</span><input type="text" id="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" />
+						<br><span class="form-title">Datum:</span><input type="date" id="date" class="event-date event-formfield event-formfield-empty" placeholder="" value="" />
+						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" />
+						<br><span class="form-title">Ort:</span><input type="text" id="location" class="event-location event-formfield event-formfield-empty" placeholder="" value="" />
+						<br><textarea rows="4" cols="50" id="desc" class="event-desc event-formfield event-formfield-empty" placeholder="Beschreibung"></textarea>
+					</form>
 				</div>
 <!-- ab hier die items -->
 				<div class="list">
@@ -106,13 +101,9 @@
 							<textarea rows="3" name="note" class="item_note item_note-empty" placeholder="Notiz"></textarea>
 							<input type="text" name="title" class="item_title item_title-empty" required="required" value="" placeholder="" />
 							<input type="number" name="total_qty" min="0" class="item_qty item_qty-empty" value="" placeholder="" />
-<!--							<div class="submit-container">
-							<input type="submit" name="submit" class="submit-button" value="Speichern">
-						</div> -->
 					</form>
 					<div class="contribution">
-						<input type="text" name="name" class="contribute_name contribute_name-empty" required="required" min="0" max="" placeholder="> eintragen">
-						<input type="number" name="quantity" class="contribute_qty contribute_qty-empty" required="required" min="0" max="">
+						<br>
 					</div>
 				</div>
 			</div>
@@ -122,10 +113,9 @@
 			<div class="content-item" id="event_show">
 				<div class="content-head">
 					<p class="content-creator">
-						erstellt von <a href="d3nis.php" class="creator-name"></a>
+<!--					erstellt von <span id="creator" class="creator-name"></span> -->
 					</p>
 					<p class="content-title">
-						Grillparty
 					</p>
 				</div>
 				<div class="content-area">
@@ -135,14 +125,7 @@
 						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-date event-formfield" placeholder="Urhzeit" value="" />
 						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-location event-formfield" placeholder="Ort" value="" />
 						<br><textarea rows="4" cols="50" name="desc" class="event-desc event-formfield" placeholder="Beschreibung" class="form-field"></textarea>
-<!--						<input type="radio" name="type" value="1" >Wunschliste<br />
-						<input type="radio" name="type" value="2" >Essen und Trinken<br />
--->						<input type="hidden" name="id" value=""/>
-						<input type="hidden" name="editmode" value=""/>
-<!--					<div class="submit-container">
-							<input type="submit" name="submit" class="submit-button" value="Speichern">
-						</div>
--->					</form>
+					</form>
 				</div>
 <!-- ab hier die items -->
 				<div class="list">
@@ -192,6 +175,10 @@
 <!-- Additem ende -->
 		<div id="footer">
 			copyright 2014 bla bla blub | Impressum
+		</div>
+<!-- Dialogboxen -->
+		<div id="cancel-dialog" title="Eingabe abbrechen" class="ui-widget">
+			<span class="message">Wollen Sie die Eingabe abbrechen?<br> Alle Angeben gehen damit verloren.</span>
 		</div>
 	</body>
 </html>

@@ -5,7 +5,8 @@ $.widget("event.eventDetails", {
 			dataType: "json",
 			success: function(event)
 			{
-				// this.element.find(".creator-name").val(event.creator);
+				this.element.find(".content-title").text(event.title);
+				//this.element.find(".creator-name").val(event.creator);
 				this.element.find(".event-date").val(event.date);
 				this.element.find(".event_time").val(event.date);
 				this.element.find(".event-location").val(event.location);

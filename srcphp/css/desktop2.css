@@ -225,6 +225,76 @@ menu.navigation li:hover {
 	padding: 0.8em 0 0 5em;
 }
 
+menu.content-menu {
+	/*Farben*/
+	
+	/*Text-Formatierung*/
+	list-style-type: none;
+	
+	/*Größe und Position und Rahmen*/
+	float:right;
+	padding: 0;
+	margin: -1em -1em 0 0;
+
+}
+
+menu.content-menu li {
+	/*Farben*/
+	background-color: #343434;
+	
+	/*Text-Formatierung*/
+	text-align: center;´
+	line-height: 1em;
+	
+	/*Größe und Position und Rahmen*/
+	margin: 0;
+	padding:0;
+	display: block;
+	border: none;
+	float:right;
+}
+
+.save {
+	/*Farben*/
+	color: #75CD00;
+	/*Text-Formatierung*/
+	font-family: Webdings;
+	font-size: 3em;
+	/*Größe und Position und Rahmen*/
+	width: 1em;
+}
+
+.delete {
+	/*Farben*/
+	color: #CD0000;
+	/*Text-Formatierung*/
+	font-family: verdana;
+	font-weight:bold;
+	font-size:2.3em;
+	/*Größe und Position und Rahmen*/
+	width: 1.3em;
+}
+
+.save:hover {
+	/*Farben*/
+
+	/*Text-Formatierung*/
+	
+	/*Größe und Position und Rahmen*/
+	box-shadow:inset 0 0.5em 0.5em -0.5em #75CD00;
+	cursor: pointer;
+}
+
+.delete:hover {
+	/*Farben*/
+
+	/*Text-Formatierung*/
+	
+	/*Größe und Position und Rahmen*/
+	box-shadow:inset 0 0.58em 0.5em -0.5em #CD0000;
+	cursor: pointer;
+}
+
 .content-area {
 	/*Farben*/
 	background-color: #343434;
