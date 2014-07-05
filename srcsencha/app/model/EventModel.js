@@ -4,8 +4,20 @@ Ext.define('PickIt.model.EventModel', {
     config: {
         fields: [
 			{
+				name: 'id',
+				type: 'string'
+			},
+			{
+				name: 'add_date',
+				type: 'date'
+			},
+			{
 				name: 'date',
 				type: 'date'
+			},
+			{
+				name: 'title',
+				type: 'string'
 			},
 			{
 				name: 'location',
@@ -17,6 +29,10 @@ Ext.define('PickIt.model.EventModel', {
 			},
 			{
 				name: 'type',
+				type: 'string'
+			},
+			{
+				name: 'stamp',
 				type: 'string'
 			}
 		]

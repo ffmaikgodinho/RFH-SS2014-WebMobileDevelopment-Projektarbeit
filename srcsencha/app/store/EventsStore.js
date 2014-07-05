@@ -3,15 +3,13 @@ Ext.define('PickIt.store.EventsStore', {
 	extend: 'Ext.data.Store',
 	config: {
 		// HTTP Proxy, der die Daten direkt vom WebService abfragt
-		
-		/*
 		proxy: {
 			type: 'rest',
 			url: '/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events',
 			reader: {
-				type: 'json' // R�ckgabeewert soll json sein
+				type: 'json' // Rückgabeewert soll json sein
 			},
-			//registriert Funktionen f�r bestimmte Ereignisse
+			//registriert Funktionen für bestimmte Ereignisse
 			listeners: {
 				// im Fehlerfall
 				exception: function(proxy, request) {
@@ -19,8 +17,8 @@ Ext.define('PickIt.store.EventsStore', {
 				}
 			}
 		},
-		*/
 		
+		/*
 		proxy: {
 	        type: "ajax",
 	        url : "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
@@ -28,13 +26,14 @@ Ext.define('PickIt.store.EventsStore', {
 	            type: "json"
 	        }
 	    },
+		*/
 		
-		
-		// Hier muss der Name der Klasse vollst�ndig, mit Namespace, angegeben
+		// Hier muss der Name der Klasse vollständig, mit Namespace, angegeben
 		// werden, weil "ist halt einfach so".
 		model: 'PickIt.model.EventModel',
-		// Der Proxy f�hrt standardm��ig bei der Instantiierung keine WebService-
-		// Anfrage durch. Mit autoload wird dies aktiviert.
+		// Der Proxy führt standardmäßig bei der Instantiierung keine WebService-
+		// Anfrage durch. Mit autoload wird dies aktiviert. In diesem Fall deaktiviert,
+		// da dieses nur bei Bedarf im Controller erfolgt.
 		autoLoad: false
 	}
 });

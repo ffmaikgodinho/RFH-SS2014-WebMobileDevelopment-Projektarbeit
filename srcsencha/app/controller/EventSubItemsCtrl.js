@@ -20,13 +20,13 @@ Ext.define('PickIt.controller.EventSubItemsCtrl', {
 	//called when the Application is launched, remove if not needed
 	launch : function(app) {
 
-		console.log('EventSubItemsCtrl launched');
+		console.log('EventSubItemsCtrl launched'); // debug
 
 	},
 
 	navigateTo : function(param) {
 
-		console.log('gettin executed with param ' + param);
+		console.log('gettin executed with param ' + param); // debug
 		
 		
 		// var saveBtn = this.getMainView().getNavigationBar().add({
@@ -57,6 +57,7 @@ Ext.define('PickIt.controller.EventSubItemsCtrl', {
 				Ext.Array.each(data.contributions, function(entry, index, entries){
 					
 					var subItem = Ext.create('PickIt.model.EventSubItemModel', {
+						id : entry.id,
 					    userid : entry.userid,
 					    name  : entry.name,
 					    quantity: entry.quantity
@@ -80,7 +81,7 @@ Ext.define('PickIt.controller.EventSubItemsCtrl', {
 		var model = this.getEventSubItemsView().getRecord();
 		
 		Ext.Ajax.request({
-			url : '/SenchaNinaNew/assets/data/EventSubItemsData.json',
+			url : '/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/eventContributions/' + model.data.id,
 			scope : this,
 			method: 'PUT',
 			

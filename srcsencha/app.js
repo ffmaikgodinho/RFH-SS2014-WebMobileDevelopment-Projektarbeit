@@ -27,9 +27,11 @@ Ext.application({
     views: [
     	'Main',
     	'EventListView',
+		'EventListForm',
         'EventListDetailView',
         'EventSubItemsView'
     ],
+	
     
     controllers: [
     	'MainCtrl',
