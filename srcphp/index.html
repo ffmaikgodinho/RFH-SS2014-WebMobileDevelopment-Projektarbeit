@@ -11,7 +11,7 @@
 		<script src="js/event.eventlist.js" type="text/javascript"></script>
 		<script src="js/event.eventdetails.js" type="text/javascript"></script>
 		<script src="js/event.eventcreate.js" type="text/javascript"></script>
-		<script src="js/event.cancelvalidation.js" type="text/javascript"></script>
+		<script src="js/event.eventvalidation.js" type="text/javascript"></script>
 		<script src="js/event.errordialog.js" type="text/javascript"></script>
 		<script src="js/event.deletedialog.js" type="text/javascript"></script>
 		<script src="js/event.canceldialog.js" type="text/javascript"></script>
@@ -89,7 +89,7 @@
 							<span class="form-title">Titel:</span><input type="text" id="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-title" class="hint template"><span class="hint-sign">|</span>Titel fehlt</p>
 						<br><span class="form-title">Datum:</span><input type="date" id="date" class="event-date event-formfield event-formfield-empty" placeholder="" value="" /><p id="empty-date" class="hint template"><span class="hint-sign">|</span>Datum fehlt</p><p id="no-date" class="hint template"><span class="hint-sign">|</span>Datum ung&uuml;ltig</p><p id="past-date" class="hint template"><span class="hint-sign">|</span>Datum liegt in der Vergangenheit</p>
 						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" />
-						<br><span class="form-title">Ort:</span><input type="text" id="location" class="event-location event-formfield event-formfield-empty" placeholder="" value="" />
+						<br><span class="form-title">Ort:</span><input type="text" id="location" class="event-location event-formfield event-formfield-empty" placeholder="" value="" /><p id="empty-location" class="hint template"><span class="hint-sign">|</span>Ort fehlt</p>
 						<br><textarea rows="4" cols="50" id="desc" class="event-desc event-formfield event-formfield-empty" placeholder="Beschreibung"></textarea>
 					</form>
 				</div>

@@ -16,11 +16,15 @@ $.widget("event.eventCreate",
 		});
 		this.element.find("#title").change(function() {
 			that.load();
-			that._validateEntry();
+			validateTitle(that);
 		});
 		this.element.find("#date").change(function() {
 			that.load();
-			that._validateEntry();
+			validateDate(that);
+		});
+		this.element.find("#location").change(function() {
+			that.load();
+			validateLocation(that);
 		});
 		
 	},
@@ -70,7 +74,6 @@ $.widget("event.eventCreate",
 			data: JSON.stringify(event),
 			success: function() {
 				this._trigger("onEventSaved");
-				this.hide();
 			},
 			error: function(request) {
 				alert(request.responseText);
@@ -93,38 +96,20 @@ $.widget("event.eventCreate",
 	_validateEntry: function()
 	{
 		var that = this;
-		var titleElement = this.element.find("#title");
-		var dateElement = this.element.find("#date");
 		var valid = true;
 		
-		if ((dateElement.val() == "") || (dateElement.val() != "") || (titleElement.val() == "")) {
-			if (dateElement.val() == "") {
-				valid = false;
-				this.element.find("#empty-date").removeClass("template");
-				dateElement.removeClass("event-formfield");
-				dateElement.addClass("empty-required-field");
-				dateElement.focus();
-			} else {
-				var t = dateElement.val().split(/[- .]/);
-				var d = new Date(t[2], t[1]-1, t[0]);
-				alert(d);
-				if (d == "Invalid Date") {
-					valid = false;
-					this.element.find("#no-date").removeClass("template");
-					dateElement.removeClass("event-formfield");
-					dateElement.addClass("empty-required-field");
-					dateElement.focus();
-				}
-			};
-			if (titleElement.val() == "") {
-				valid = false;
-				this.element.find("#empty-title").removeClass("template");
-				titleElement.removeClass("event-formfield");
-				titleElement.addClass("empty-required-field");
-				titleElement.focus();
-			};
-			return valid;
+		if (validateDate(that) == false) {
+			valid = false;
 		};
-	return true;
+		
+		if (validateTitle(that) == false) {
+			valid = false;
+		};
+		
+		if (validateLocation(that) == false) {
+			valid = false;
+		};
+		
+		return valid;
 	}
 });
