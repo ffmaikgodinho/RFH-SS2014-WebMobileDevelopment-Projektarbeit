@@ -8,7 +8,7 @@ $(function() {
 		};
 	});
 	
-	$("#error_dialog").errorDialog();
+	$("#error-dialog").errorDialog();
 	
 	$("#navigation").menuBar({
 		onaboutClicked: function() {
@@ -18,7 +18,7 @@ $(function() {
 			$("#content").show();
 		},
 		onnewClicked: function() {
-			$("#event_create").eventCreate("load");
+			$("#event_create").eventCreate("newEvent");
 			$("#event_create").show();
 			$("#event_list").hide();
 			$("#event_show").hide();

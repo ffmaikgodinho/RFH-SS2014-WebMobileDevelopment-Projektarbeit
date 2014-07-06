@@ -15,31 +15,53 @@ $.widget("event.eventCreate",
 			return false;
 		});
 		this.element.find("#title").change(function() {
-			that.load();
+			that._load();
 			validateTitle(that);
 		});
 		this.element.find("#date").change(function() {
-			that.load();
+			that._load();
 			validateDate(that);
 		});
 		this.element.find("#location").change(function() {
-			that.load();
+			that._load();
 			validateLocation(that);
 		});
-		
+		this.element.find("#time").change(function() {
+			that._load();
+			validateTime(that);
+		});
+		this.element.find(".item_title").change(function() {
+			that._newItem();
+		});			
 	},
 	
-	load: function() {
+	newEvent: function() {
+		var that = this;
+		this.element.find(".item-filled").remove();
+		this.element.find(".event-formfield").val("");
+		that._load();
+	},
+	
+	_load: function() {
 		var titleElement = this.element.find("#title");
 		var dateElement = this.element.find("#date");
-		
+		var timeElement = this.element.find("#time");
+		var locationElement = this.element.find("#location");
+
+		this.element.find("#empty-title").addClass("template");		
 		this.element.find("#empty-date").addClass("template");
-		this.element.find("#empty-title").addClass("template");
-		this.element.find("#no-date").addClass("template")
+		this.element.find("#no-date").addClass("template");
+		this.element.find("#past-date").addClass("template");
+		this.element.find("#no-time").addClass("template");
+		this.element.find("#empty-location").addClass("template")
 		dateElement.addClass("event-formfield");
 		dateElement.removeClass("empty-required-field");
 		titleElement.addClass("event-formfield");
 		titleElement.removeClass("empty-required-field");
+		timeElement.addClass("event-formfield");
+		timeElement.removeClass("empty-required-field");
+		locationElement.addClass("event-formfield");
+		locationElement.removeClass("empty-required-field");
 		titleElement.focus();
 	},
 	
@@ -74,23 +96,37 @@ $.widget("event.eventCreate",
 			data: JSON.stringify(event),
 			success: function() {
 				this._trigger("onEventSaved");
+				that._saveItems();
 			},
 			error: function(request) {
 				alert(request.responseText);
 				return;
-				
-				// this.element.find(".validation_message").empty();
-				// this.element.find("#title_field").removeClass("ui-state-error");
-				// if (request.status == "400") {
-					// var validationMessages = $.parseJSON(request.responseText);
-					// if (validationMessages.title) {
-						// this.element.find(".validation_message").text(validationMessages.title);
-						// this.element.find("#title_field").addClass("ui-state-error").focus();
-					// };
-				// }
 			},
 		context: this	
 		});
+	},
+	
+	_saveItems: function() {
+		$('.item-filled').each(function(i, obj) {
+			var itemTitle = obj.find('.item_title').value();
+			alert(itemTitle);
+		});
+		
+		// $.ajax({
+			// type: "PUT",
+			// dataType: "json",
+			// contentType: "application/json",
+			// url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
+			// data: JSON.stringify(event),
+			// success: function() {
+				// this._trigger("onEventSaved");
+			// },
+			// error: function(request) {
+				// alert(request.responseText);
+				// return;
+			// },
+		// context: this	
+		// });
 	},
 	
 	_validateEntry: function()
@@ -98,11 +134,15 @@ $.widget("event.eventCreate",
 		var that = this;
 		var valid = true;
 		
+		if (validateTitle(that) == false) {
+			valid = false;
+		};
+		
 		if (validateDate(that) == false) {
 			valid = false;
 		};
 		
-		if (validateTitle(that) == false) {
+		if (validateTime(that) == false) {
 			valid = false;
 		};
 		
@@ -111,5 +151,25 @@ $.widget("event.eventCreate",
 		};
 		
 		return valid;
+	},
+	
+	_newItem: function() {
+		var itemTitle = this.element.find(".item-template").find('.item_title');
+		var itemQty = this.element.find(".item-template").find(".item_qty");
+		if (itemTitle.val() != "") {
+			var itemElement = this.element.find(".item-template").clone().removeClass("item-template").addClass("item-filled");
+			this.element.find("#clone-item-here").before(itemElement);
+			this.element.find(".item-template").find('.item_title').val("");
+			this.element.find(".item-template").find('.item_qty').val("");
+			this.element.find(".item-template").find('.item_note').val("");
+			itemElement.find('.item-delete').removeClass("template");
+			itemElement.find('.placeholder-item-delete').addClass("template");
+			itemElement.find('.item-delete').click(function()
+			{
+				itemElement.remove();
+			});	
+		};
+		
 	}
 });
+

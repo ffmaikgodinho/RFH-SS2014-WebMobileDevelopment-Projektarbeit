@@ -1,11 +1,13 @@
 $.widget("event.errorDialog", $.ui.dialog, {
 	options: {
 		autoOpen: false,
-		modal: true
+		modal: true,
+		width: 400
 	},
 	
 	open: function(message) {
-		this.element.find(".message").text(message);
+		alert(message);
+		this.element.find("#error-message").text(message);
 		this._super();
 	},
 	

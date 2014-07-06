@@ -40,7 +40,7 @@ $.widget("event.eventList",
 		for (var i = 0; i < events.length; i++) 
 		{
 			var event = events[i];
-			var eventElement = this.element.find(".list-entry").clone();
+			var eventElement = this.element.find(".template").clone();
 			eventElement.removeClass("template");
 			eventElement.find(".list-entry-title").text(event.title);
 			// Split timestamp into [ Y, M, D, h, m, s ]

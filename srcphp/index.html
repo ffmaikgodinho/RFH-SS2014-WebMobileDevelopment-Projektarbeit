@@ -87,9 +87,9 @@
 				<div class="content-area">
 					<form action="addevent.php" method="post" class="form-container">
 							<span class="form-title">Titel:</span><input type="text" id="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-title" class="hint template"><span class="hint-sign">|</span>Titel fehlt</p>
-						<br><span class="form-title">Datum:</span><input type="date" id="date" class="event-date event-formfield event-formfield-empty" placeholder="" value="" /><p id="empty-date" class="hint template"><span class="hint-sign">|</span>Datum fehlt</p><p id="no-date" class="hint template"><span class="hint-sign">|</span>Datum ung&uuml;ltig</p><p id="past-date" class="hint template"><span class="hint-sign">|</span>Datum liegt in der Vergangenheit</p>
-						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" />
-						<br><span class="form-title">Ort:</span><input type="text" id="location" class="event-location event-formfield event-formfield-empty" placeholder="" value="" /><p id="empty-location" class="hint template"><span class="hint-sign">|</span>Ort fehlt</p>
+						<br><span class="form-title">Datum:</span><input type="date" id="date" class="event-date event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-date" class="hint template"><span class="hint-sign">|</span>Datum fehlt</p><p id="no-date" class="hint template"><span class="hint-sign">|</span>Datum ung&uuml;ltig</p><p id="past-date" class="hint template"><span class="hint-sign">|</span>Datum liegt in der Vergangenheit</p>
+						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" /><p id="no-time" class="hint template"><span class="hint-sign">|</span>Zeitangabe ung&uuml;ltig</p>
+						<br><span class="form-title">Ort:</span><input type="text" id="location" class="event-location event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-location" class="hint template"><span class="hint-sign">|</span>Ort fehlt</p>
 						<br><textarea rows="4" cols="50" id="desc" class="event-desc event-formfield event-formfield-empty" placeholder="Beschreibung"></textarea>
 					</form>
 				</div>
@@ -97,14 +97,16 @@
 				<div class="list">
 					Liste
 				</div>
-				<div class="item">				
+				<div id="clone-item-here">
+				</div>
+				<div class="item item-template">				
 					<form action="additem.php" method="post" class="item">
-							<textarea rows="3" name="note" class="item_note item_note-empty" placeholder="Notiz"></textarea>
-							<input type="text" name="title" class="item_title item_title-empty" required="required" value="" placeholder="" />
+							<textarea rows="3" name="note" class="item_note item_note-empty" placeholder=""></textarea>
+							<span class="placeholder-item-delete"></span><span class="template item-delete">x</span><input type="text" name="title" class="item_title item_title-empty" required="required" value="" placeholder="" />
 							<input type="number" name="total_qty" min="0" class="item_qty item_qty-empty" value="" placeholder="" />
 					</form>
 					<div class="contribution">
-						<br>
+						<br><br>
 					</div>
 				</div>
 			</div>
@@ -179,7 +181,10 @@
 		</div>
 <!-- Dialogboxen -->
 		<div id="cancel-dialog" title="Eingabe abbrechen" class="ui-widget">
-			<span class="message">Wollen Sie die Eingabe abbrechen?<br> Alle Angeben gehen damit verloren.</span>
+			<p class="message">Wollen Sie die Eingabe abbrechen?<br> Alle Angeben gehen damit verloren.</p>
+		</div>
+		<div id="error-dialog" title="Nachricht vom webservice" class="ui-widget">
+			<p class="message">Störung beim Zugriff auf den webservice:<br><span id="error-message"></span></p>
 		</div>
 	</body>
 </html>

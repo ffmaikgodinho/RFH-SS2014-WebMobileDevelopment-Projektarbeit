@@ -416,7 +416,7 @@ input.item_title {
 	margin: 0 0.8em 0.4em 0;
 	position: relative;
 	border: none;
-	width:12em;
+	width:10.8em;
 	clear:right;
 }
 
@@ -453,6 +453,38 @@ textarea.item_note {
 	border:none;
 	float:right;
 	resize:none;
+}
+
+.placeholder-item-delete {
+	/*Farben*/
+	
+	/*Text-Formatierung*/
+	font-size: 1.2em;
+	font-family: verdana;
+	
+	/*Größe und Position und Rahmen*/
+	margin-right: 0.8em;
+}
+
+.item-delete {
+	/*Farben*/
+	color: #CD0000;
+	
+	/*Text-Formatierung*/
+	font-size: 1.2em;
+	font-family: verdana;
+	
+	/*Größe und Position und Rahmen*/
+	margin-right: 0.2em;
+}
+
+.item-delete:hover {
+	/*Farben*/
+	
+	/*Text-Formatierung*/
+	
+	/*Größe und Position und Rahmen*/
+	cursor: pointer;
 }
 
 input.contribute_name {
