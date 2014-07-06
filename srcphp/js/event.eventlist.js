@@ -43,7 +43,11 @@ $.widget("event.eventList",
 			var eventElement = this.element.find(".list-entry").clone();
 			eventElement.removeClass("template");
 			eventElement.find(".list-entry-title").text(event.title);
-			eventElement.find(".list-entry-fact-date").text(event.date);
+			// Split timestamp into [ Y, M, D, h, m, s ]
+			var t = event.date.split(/[- :]/);
+			// Apply each element to the Date function
+			var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+			eventElement.find(".list-entry-fact-date").text(d.toLocaleDateString());
 			eventElement.find(".list-entry-fact-location").text(event.location);
 			eventElement.click(event.url, function(event)
 			{

@@ -18,6 +18,7 @@ $(function() {
 			$("#content").show();
 		},
 		onnewClicked: function() {
+			$("#event_create").eventCreate("load");
 			$("#event_create").show();
 			$("#event_list").hide();
 			$("#event_show").hide();
@@ -50,7 +51,6 @@ $(function() {
 	
 	$("#event_create").eventCreate({
 		onsaveClicked: function() {
-			alert("speichern geklickt");
 		},
 		oncancelClicked: function() {
 			$("#cancel-dialog").cancelDialog("open");

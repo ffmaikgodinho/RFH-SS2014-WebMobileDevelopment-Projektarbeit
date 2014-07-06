@@ -85,8 +85,8 @@
 				</div>
 				<div class="content-area">
 					<form action="addevent.php" method="post" class="form-container">
-							<span class="form-title">Titel:</span><input type="text" id="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" />
-						<br><span class="form-title">Datum:</span><input type="date" id="date" class="event-date event-formfield event-formfield-empty" placeholder="" value="" />
+							<span class="form-title">Titel:</span><input type="text" id="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-title" class="hint template"><span class="hint-sign">|</span>Titel fehlt</p>
+						<br><span class="form-title">Datum:</span><input type="date" id="date" class="event-date event-formfield event-formfield-empty" placeholder="" value="" /><p id="empty-date" class="hint template"><span class="hint-sign">|</span>Datum fehlt</p><p id="no-date" class="hint template"><span class="hint-sign">|</span>Datum ung&uuml;ltig</p>
 						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" />
 						<br><span class="form-title">Ort:</span><input type="text" id="location" class="event-location event-formfield event-formfield-empty" placeholder="" value="" />
 						<br><textarea rows="4" cols="50" id="desc" class="event-desc event-formfield event-formfield-empty" placeholder="Beschreibung"></textarea>
@@ -122,7 +122,7 @@
 					<form action="addevent.php" method="post" class="form-container">
 <!--						<input type="text" name="title" class="form-field" required="required" placeholder="Titel" value="" />
 -->						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-date event-formfield" placeholder="Datum" value="" />
-						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-time event-formfield" placeholder="Urhzeit" value="" />
+						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-date event-formfield" placeholder="Urhzeit" value="" />
 						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-location event-formfield" placeholder="Ort" value="" />
 						<br><textarea rows="4" cols="50" name="desc" class="event-desc event-formfield" placeholder="Beschreibung" class="form-field"></textarea>
 					</form>
