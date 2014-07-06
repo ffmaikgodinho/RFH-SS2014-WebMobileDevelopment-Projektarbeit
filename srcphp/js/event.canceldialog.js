@@ -2,7 +2,8 @@ $.widget("event.cancelDialog", $.ui.dialog,
 {
 	options: {
 		autoOpen: false,
-		modal: true
+		modal: true,
+		width: 400
 	},
 	
 	open: function() {

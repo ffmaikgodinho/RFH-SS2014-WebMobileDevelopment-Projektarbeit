@@ -181,6 +181,15 @@ menu.navigation li:hover {
 	cursor: pointer;
 }
 
+input.search {
+	height: 2em;
+	vertical-align: middle;	
+	padding: 0.5em 1em 0.5em 1em;
+	margin: 0;
+	border:0;
+	text-align:center;
+}
+
 .content-item {
 	/*Farben*/
 	background-color: #343434;
@@ -309,15 +318,6 @@ menu.content-menu li {
 	clear:both;
 }
 
-input.search {
-	height: 2em;
-	vertical-align: middle;	
-	padding: 0.5em 1em 0.5em 1em;
-	margin: 0;
-	border:0;
-	text-align:center;
-}
-
 span.form-title {
 	/*Farben*/
 	
@@ -337,11 +337,31 @@ input.event-formfield {
 	background-color: #343434;
 	
 	/*Text-Formatierung*/
+	font-family: Arial,sans-serif;
 	font-size: 1.2em;
 	
 	/*Größe und Position und Rahmen*/
-	width: 10em;
+	width: 20em;
 	border: none;
+}
+
+.hint {
+	/*Farben*/
+	color: #CD0000;
+	
+	/*Text-Formatierung*/
+	
+	/*Größe und Position und Rahmen*/
+	display: inline;
+}
+
+.hint-sign {
+	/*Farben*/
+	
+	/*Text-Formatierung*/
+	font-family: 'Wingdings 3';
+	/*Größe und Position und Rahmen*/
+	margin: 0.5em;
 }
 
 textarea.event-formfield {
@@ -355,8 +375,8 @@ textarea.event-formfield {
 	/*Größe und Position und Rahmen*/
 	width:100%;
 	border: none;
-	resize:none;
-	overflow:auto;
+	resize: none;
+	overflow: auto;
 	margin: 0 0 2em 0;
 }
 
@@ -552,6 +572,20 @@ input.contribute_qty-empty {
 	
 	/*Größe und Position und Rahmen*/
 	margin: 0 3em 1em 0;
+}
+
+.empty-required-field {
+	/*Farben*/
+	color: #DBDBDB;
+	background-color: #343434;
+	
+	/*Text-Formatierung*/
+	font-family: Arial,sans-serif;
+	font-size: 1.2em;
+	
+	/*Größe und Position und Rahmen*/
+	width: 20em;
+	border: 1px solid #CD0000;
 }
 
 .template {
