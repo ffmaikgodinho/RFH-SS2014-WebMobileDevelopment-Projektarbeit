@@ -64,8 +64,10 @@ $.widget("event.eventCreate",
 		
 		$.ajax({
 			type: "PUT",
+			dataType: "json",
+			contentType: "application/json",
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
-			data: event,
+			data: JSON.stringify(event),
 			success: function() {
 				this._trigger("onEventSaved");
 				this.hide();

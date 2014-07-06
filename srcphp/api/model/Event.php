@@ -36,6 +36,16 @@
                 $this->type = $postData["Typ"];
         }
         public function parseJSON($json)  {
+            if (isset($json["title"]))
+                $this->title = $json["title"];
+            if (isset($json["date"]))
+                $this->date = $json["date"];
+            if (isset($json["location"]))
+                $this->location = $json["location"];
+            if (isset($json["description"]))
+                $this->description = $json["description"];
+            if (isset($json["type"]))
+                $this->type = $json["type"];
             
         }
         public function parseXML($xml)  {

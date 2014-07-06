@@ -32,6 +32,10 @@
             // Accept header is case insensitive, and whitespace isn’t important
             $this->m_AcceptType = strtolower(str_replace(' ', '', $_SERVER['HTTP_ACCEPT']));
             $this->m_ContentType = strtolower($_SERVER['HTTP_CONTENT_TYPE']);
+            if (strpos($this->m_ContentType,";"))  {    //Wenn ein charset dabei ist, dies weg schneiden.
+                $temp = explode(";",$this->m_ContentType);
+                $this->m_ContentType = $temp[0];
+            }
             $this->m_RequestHeader = apache_request_headers();
             if (isset($request_parts[1]))  {
                 if (is_numeric($request_parts[1]))  {
@@ -353,7 +357,8 @@
             $objReturn = new $strClassName;
             switch ($this->m_ContentType)  {
                 case "application/json":
-                    $objReturn->parseJSON("");      //not yet implemented
+                    $requestBody = @file_get_contents('php://input');
+                    $objReturn->parseJSON(json_decode($requestBody,true));      //not yet implemented
                     break;
                 case "application/xml":
                     $objReturn->parseXML("");      //not yet implemented
