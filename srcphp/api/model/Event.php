@@ -25,7 +25,7 @@
         
         public function parsePOST($postData)  {
             if (isset($postData["Datum"]))
-                $this->date = $postData["Datum"];
+                $this->date = new DateTime($postData["Datum"]);
             if (isset($postData["Ort"]))
                 $this->location = $postData["Ort"];
             if (isset($postData["Titel"]))
@@ -39,7 +39,7 @@
             if (isset($json["title"]))
                 $this->title = $json["title"];
             if (isset($json["date"]))
-                $this->date = $json["date"];
+                $this->date = new DateTime($json["date"]);
             if (isset($json["location"]))
                 $this->location = $json["location"];
             if (isset($json["description"]))
