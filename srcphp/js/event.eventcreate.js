@@ -32,13 +32,19 @@ $.widget("event.eventCreate",
 		});
 		this.element.find(".item_title").change(function() {
 			that._newItem();
+		});	
+		this.element.find(".item_title").on("keydown", function(e) {
+			if ((e.keyCode == 9) || (e.keyCode == 13)) { 
+				e.preventDefault();
+				that._newItem();
+			}
 		});			
 	},
 	
 	newEvent: function() {
 		var that = this;
 		this.element.find(".item-filled").remove();
-		this.element.find(".event-formfield").val("");
+		//this.element.find(".event-formfield").val("");
 		that._load();
 	},
 	
@@ -62,7 +68,6 @@ $.widget("event.eventCreate",
 		timeElement.removeClass("empty-required-field");
 		locationElement.addClass("event-formfield");
 		locationElement.removeClass("empty-required-field");
-		titleElement.focus();
 	},
 	
 	_saveEvent: function() 
@@ -94,9 +99,9 @@ $.widget("event.eventCreate",
 			contentType: "application/json",
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
 			data: JSON.stringify(event),
-			success: function() {
+			success: function(eventId) {
 				this._trigger("onEventSaved");
-				that._saveItems();
+				that._saveItems(eventId);
 			},
 			error: function(request) {
 				alert(request.responseText);
@@ -106,27 +111,37 @@ $.widget("event.eventCreate",
 		});
 	},
 	
-	_saveItems: function() {
-		$('.item-filled').each(function(i, obj) {
-			var itemTitle = obj.find('.item_title').value();
-			alert(itemTitle);
-		});
+	_saveItems: function(eventId) {
 		
-		// $.ajax({
-			// type: "PUT",
-			// dataType: "json",
-			// contentType: "application/json",
-			// url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
-			// data: JSON.stringify(event),
-			// success: function() {
-				// this._trigger("onEventSaved");
-			// },
-			// error: function(request) {
-				// alert(request.responseText);
-				// return;
-			// },
-		// context: this	
-		// });
+		$(".item-filled").each(function(index) {
+			var title = $(this).find(".item_title").val();
+			var total_qty = $(this).find(".item_qty").val();
+			var note = $(this).find(".item_note").val();
+			//alert(index + ": " + title + " | " + total_qty + " | " + note);
+		
+			var item = {
+				eventid: eventId,
+				title: title,
+				totalQuantity: total_qty,
+				note: note
+			};
+			
+			$.ajax({
+				type: "PUT",
+				dataType: "json",
+				contentType: "application/json",
+				url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/evententries",
+				data: JSON.stringify(item),
+				success: function() {
+
+				},
+				error: function(request) {
+					alert(request.responseText);
+					return;
+				},
+			context: this	
+			});
+		});
 	},
 	
 	_validateEntry: function()
@@ -155,7 +170,6 @@ $.widget("event.eventCreate",
 	
 	_newItem: function() {
 		var itemTitle = this.element.find(".item-template").find('.item_title');
-		var itemQty = this.element.find(".item-template").find(".item_qty");
 		if (itemTitle.val() != "") {
 			var itemElement = this.element.find(".item-template").clone().removeClass("item-template").addClass("item-filled");
 			this.element.find("#clone-item-here").before(itemElement);
@@ -168,8 +182,8 @@ $.widget("event.eventCreate",
 			{
 				itemElement.remove();
 			});	
-		};
-		
+			this.element.find(".item-template").find('.item_title').focus();
+		}		
 	}
 });
 

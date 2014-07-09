@@ -73,7 +73,7 @@
          * @return if successfull returns the inserted id
          */
         public function create($inputData)  {
-            if ($this->checkData($inputData))  {
+			if ($this->checkData($inputData))  {
                 $strSql =   "INSERT INTO `entry` (`eventid`, `title`, `note`, `total_qty`, `stamp`) ".
                         "VALUES ('".$inputData->eventid."', '".$inputData->title."', '".$inputData->note."', '".$inputData->totalQuantity."', '1');";
                 $result = $this->m_requestHandler->getDatabase()->query($strSql);
@@ -99,7 +99,7 @@
          * @return void
          */
         public function update($inputData)  {
-            //check wethere the user gave us a correct version (the latest)
+            //check whether the user gave us a correct version (the latest)
             $eventEntry = $this->getSingle(($inputData->id));
             if ($inputData->stamp == $eventEntry->stamp)  {
                 $strSql = "UPDATE entry SET title = '".$inputData->title."',note = '".$inputData->note."',total_qty = '".$inputData->totalQuantity."', stamp = stamp + 1 WHERE id = '" . $inputData->id . "'";
@@ -139,10 +139,10 @@
         /**
          * RequestEventEntry::checkData()
          *
-         * checks wethere the required fields are filled to insert data 
+         * checks whether the required fields are filled to insert data 
          *  
          * @param mixed $data
-         * @return boolean | True if all nesseccessary data are filled
+         * @return boolean | True if all necessary data are filled
          */
         private function checkData($data)  {
             if (is_numeric($data->eventid))  {
@@ -152,7 +152,7 @@
                     }
                 }
             }
-            return false;
+			return false;
         }
         
     }
