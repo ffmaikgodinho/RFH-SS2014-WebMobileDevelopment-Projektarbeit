@@ -6,13 +6,17 @@ Ext.define('PickIt.controller.EventListCtrl', {
 			mainView : 'mainView',
 			eventListView : 'eventListView',
 			eventListForm : 'eventListForm',
-			eventListDetailView : 'eventListDetailView'
+			eventListDetailView : 'eventListDetailView',
+			eventListSave: '#eventListSave'
 		},
 		control : {
 			eventListView : {
 				itemsingletap : 'onItemSingleTap',
 				itemdoubletap : 'onItemDoubleTap',
 				itemswipe : 'onItemSwipe'
+			},
+			eventListSave: {
+				tap: 'onSaveTap'
 			}
 		}
 	},
@@ -25,13 +29,14 @@ Ext.define('PickIt.controller.EventListCtrl', {
 		Ext.getStore('EventsStore').load({
 			callback : function (records, operation, success) {
 				// the operation object contains all of the details of the load operation
-				console.log(records); //debug
+				//console.log(records); //debug
 			},
 			scope : this
 		});
 
 	},
 
+	// open subitems
 	onItemSingleTap : function (list, index, target, record, e, eOpts) {
 		// call navigateTo event on subitem, which loads content for selected id
 		this.getApplication().getController('EventListDetailCtrl').navigateTo(record.get('id'));
@@ -75,11 +80,43 @@ Ext.define('PickIt.controller.EventListCtrl', {
 					method : 'DELETE',
 					success: function () {
 						// reload
-						list.reset();
 						Ext.getStore('EventsStore').load();
 					}
 				});
 			}
 		})
+	},
+	
+	// save item
+	onSaveTap : function (item, e, eOpts)  {
+
+		// get current Values in EventForm
+		var form = Ext.ComponentQuery.query('eventListForm')[0];
+		var values = form.getValues();
+		
+		// find current record from store
+		var store = Ext.getStore('EventsStore');
+		var record = store.findRecord('id', values.id);
+
+		// 
+		var jsonData = Ext.JSON.encode(values);
+		var update = Ext.create('PickIt.model.EventModel', jsonData);
+		record.set(update);
+		//store.add(update);
+		
+		// aktualisiere Änderungen im Store
+		store.sync();
+		
+		// destroy form and return to navigation view
+		this.getMainView().remove(form);
+		Ext.getCmp('eventListSave').destroy();
+		
+		/*
+		Ext.Ajax.request({
+			url : '/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events/' + record.get('id'),
+			method : 'POST',
+			jsonData: Ext.JSON.encode(values)
+		});
+		*/
 	}
 });

@@ -67,8 +67,6 @@ Ext.define('PickIt.controller.EventSubItemsCtrl', {
 					
 				});
 				
-				
-				
 			}
 			
 		});

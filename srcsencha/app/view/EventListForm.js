@@ -2,18 +2,23 @@ Ext.define('PickIt.view.EventListForm', {
 	
 	extend: 'Ext.form.Panel',
 	xtype: 'eventListForm',
+	requires: [
+		'Ext.field.DatePicker'
+	],
 	
 	config: {
 		modal: true,
 		items:
 		[
-		/*
+		
 			{
 				xtype: 'textfield',
 				name: 'id',
 				label: 'ID',
 				readOnly: true
 			},
+			
+			/*
 			{
 				xtype: 'datepickerfield',
 				name: 'add_date',
@@ -57,11 +62,11 @@ Ext.define('PickIt.view.EventListForm', {
 				]
 			},
 			
-			/*{
+			{
 				xtype: 'button',
-				text: 'save',
-				id: 'saveBtn'
-			}*/
+				text: 'Speichern',
+				id: 'eventListSave'
+			}
 		]
 	}	
 });
