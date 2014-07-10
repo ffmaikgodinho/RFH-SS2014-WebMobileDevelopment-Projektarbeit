@@ -23,9 +23,7 @@ Ext.define('PickIt.controller.EventListCtrl', {
 
 	//called when the Application is launched, remove if not needed
 	launch : function (app) {
-
 		console.log('EventListCtrl launched'); // debug
-
 		Ext.getStore('EventsStore').load({
 			callback : function (records, operation, success) {
 				// the operation object contains all of the details of the load operation
@@ -98,13 +96,14 @@ Ext.define('PickIt.controller.EventListCtrl', {
 		var store = Ext.getStore('EventsStore');
 		var record = store.findRecord('id', values.id);
 
-		// 
+		// set record to entered values
 		var jsonData = Ext.JSON.encode(values);
 		var update = Ext.create('PickIt.model.EventModel', jsonData);
 		record.set(update);
-		//store.add(update);
-		
-		// aktualisiere Änderungen im Store
+		// set id explicitely, because it's saved with internal id. Check for model misconfiguration.
+		record.set('id', values.id);
+
+		// update changes
 		store.sync();
 		
 		// destroy form and return to navigation view

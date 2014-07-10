@@ -17,13 +17,11 @@ Ext.define('PickIt.controller.EventListDetailCtrl', {
 	launch : function (app) {
 
 		console.log('EventListDetailCtrl launched'); // debug
-
 	},
 
 	navigateTo : function (param) {
 
 		console.log('gettin executed with param ' + param); // debug
-
 		Ext.getStore('EventDetailStore').removeAll();
 
 		//TODO: add param to url
