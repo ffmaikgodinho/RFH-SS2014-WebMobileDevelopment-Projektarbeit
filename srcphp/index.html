@@ -86,7 +86,8 @@
 				</div>
 				<div class="content-area">
 					<form action="addevent.php" method="post" class="form-container">
-							<span class="form-title">Titel:</span><input type="text" id="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-title" class="hint template"><span class="hint-sign">|</span>Titel fehlt</p>
+							<span id="id" class="event-id"/></span>
+							<span class="form-title event-title-formtitle">Titel:</span><input type="text" id="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-title" class="hint template"><span class="hint-sign">|</span>Titel fehlt</p>
 						<br><span class="form-title">Datum:</span><input type="date" id="date" class="event-date event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-date" class="hint template"><span class="hint-sign">|</span>Datum fehlt</p><p id="no-date" class="hint template"><span class="hint-sign">|</span>Datum ung&uuml;ltig</p><p id="past-date" class="hint template"><span class="hint-sign">|</span>Datum liegt in der Vergangenheit</p>
 						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" /><p id="no-time" class="hint template"><span class="hint-sign">|</span>Zeitangabe ung&uuml;ltig</p>
 						<br><span class="form-title">Ort:</span><input type="text" id="location" class="event-location event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-location" class="hint template"><span class="hint-sign">|</span>Ort fehlt</p>
@@ -124,7 +125,7 @@
 				<div class="content-area">
 					<form action="addevent.php" method="post" class="form-container">
 <!--						<input type="text" name="title" class="form-field" required="required" placeholder="Titel" value="" />
--->						<br><span class="form-title">Datum:</span><input type="date" name="date" class="event-date event-formfield" placeholder="Datum" value="" />
+-->						<br><span class="form-title">123Datum:</span><input type="date" name="date" class="event-date event-formfield" placeholder="Datum" value="" />
 						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-date event-formfield" placeholder="Urhzeit" value="" />
 						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-location event-formfield" placeholder="Ort" value="" />
 						<br><textarea rows="4" cols="50" name="desc" class="event-desc event-formfield" placeholder="Beschreibung" class="form-field"></textarea>
@@ -133,41 +134,15 @@
 <!-- ab hier die items -->
 				<div class="list">
 					Liste
-				</div>	
-				<div class="item">				
-					<form action="additem.php" method="post" class="item">
-							<input type="text" name="title" class="item_title" required="required" value="" />
-							<input type="number" name="total_qty" min="0" class="item_qty" value="" />
-							<textarea rows="3" name="note" class="item_note"></textarea>
-							<input type="hidden" name="id" value="" />
-							<input type="hidden" name="eventid" value="" />
-							<input type="hidden" name="editmode" value=""/>
-<!--							<div class="submit-container">
-							<input type="submit" name="submit" class="submit-button" value="Speichern">
-						</div> -->
-					</form>
-					<div class="contribution">
-						<input type="text" name="name" class="contribute_name" required="required" min="0" max="">
-						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="">
-					</div>
-					<div class="contribution">
-						<input type="text" name="name" class="contribute_name" required="required" min="0" max="">
-						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="">
-					</div>
 				</div>
-				<div class="item">				
-					<form action="additem.php" method="post" class="item">
-							<input type="text" name="title" class="item_title" required="required" value="" />
-							<input type="number" name="total_qty" min="0" class="item_qty" value="" />
-							<textarea rows="3" name="note" class="item_note"></textarea>
-<!--							<div class="submit-container">
-							<input type="submit" name="submit" class="submit-button" value="Speichern">
-						</div> -->
+				<div id="clone-item-here">
+				</div>
+				<div class="item item-template">				
+					<form action="additem.php" method="post">
+							<textarea rows="3" name="note" class="item_note item_note-empty" placeholder=""></textarea>
+							<span class="placeholder-item-delete"></span><span class="template item-delete">x</span><input type="text" name="title" class="item_title item_title-empty" required="required" value="" placeholder="" />
+							<input type="number" name="total_qty" min="0" class="item_qty item_qty-empty" value="" placeholder="" />
 					</form>
-					<div class="contribution">
-						<input type="text" name="name" class="contribute_name" required="required" min="0" max="">
-						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="">
-					</div>
 					<div class="contribution">
 						<input type="text" name="name" class="contribute_name" required="required" min="0" max="">
 						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="">
@@ -182,6 +157,9 @@
 <!-- Dialogboxen -->
 		<div id="cancel-dialog" title="Eingabe abbrechen" class="ui-widget">
 			<p class="message">Wollen Sie die Eingabe abbrechen?<br> Alle Angaben gehen damit verloren.</p>
+		</div>
+		<div id="delete-dialog" title="Eintrag löschen" class="ui-widget">
+			<p class="message">Wollen Sie diesen Eintrag wirklich löschen?</p>
 		</div>
 		<div id="error-dialog" title="Nachricht vom webservice" class="ui-widget">
 			<p class="message">Störung beim Zugriff auf den webservice:<br><span id="error-message"></span></p>

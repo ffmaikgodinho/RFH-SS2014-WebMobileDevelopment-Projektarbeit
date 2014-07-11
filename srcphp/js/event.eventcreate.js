@@ -11,8 +11,14 @@ $.widget("event.eventCreate",
 			});
 		this.element.find("#delete").click( function()
 		{
-			that._trigger("oncancelClicked");
-			return false;
+			var ID = that.element.find(".event-id").text()
+			// alert(ID);
+			// if (ID == "") {
+				that._trigger("oncancelClicked");
+			// } else {
+				// that._trigger("ondeleteClicked", ID);
+			// };
+			
 		});
 		this.element.find("#title").change(function() {
 			that._load();
@@ -44,8 +50,60 @@ $.widget("event.eventCreate",
 	newEvent: function() {
 		var that = this;
 		this.element.find(".item-filled").remove();
-		//this.element.find(".event-formfield").val("");
+		this.element.find(".event-formfield").val("").addClass("event-formfield-empty");
+		this.element.find(".event-title-formtitle").show();
+		this.element.find('.event-title').removeClass('template');
+		this.element.find(".event-id").text("")
 		that._load();
+	},
+	
+	
+	showEvent: function(eventUrl) {
+		var that = this;
+		$.ajax({
+			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp" + eventUrl,
+			dataType: "json",
+			success: function(event)
+			{
+				var eventId = event.id;
+				this.element.find(".content-title").text(event.title);
+				this.element.find(".event-id").text(event.id).addClass("template");
+				this.element.find(".event-title-formtitle").hide();
+				this.element.find(".event-title").val(event.title).addClass("template");
+				//this.element.find(".creator-name").val(event.creator);
+				// Split timestamp into [ Y, M, D, h, m, s ]
+				var t = event.date.split(/[- :]/);
+				// Apply each element to the Date function
+				var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+				this.element.find(".event-date").val(d.toLocaleDateString()).removeClass("event-formfield-empty");
+				this.element.find(".event-time").val(d.toLocaleTimeString()).removeClass("event-formfield-empty");
+				this.element.find(".event-location").val(event.location).removeClass("event-formfield-empty");
+				this.element.find(".event-desc").val(event.description).removeClass("event-formfield-empty");
+				for (var i = 0; i < event.entrys.length; i++) {
+					var entry = event.entrys[i];
+					var itemElement = this.element.find(".item-template").clone().removeClass("item-template").addClass("item-filled");
+					this.element.find("#clone-item-here").before(itemElement);
+					itemElement.find('.item_title').removeClass('item_title-empty');
+					itemElement.find('.item_qty').removeClass('item_qty-empty');
+					itemElement.find('.item_note').removeClass('item_note-empty');
+					itemElement.find('.item_title').val(entry.title);
+					itemElement.find('.item_qty').val(entry.total_qty);
+					itemElement.find('.item_note').val(entry.note);
+					itemElement.find('.item-delete').removeClass("template");
+					itemElement.find('.placeholder-item-delete').addClass("template");
+					itemElement.find('.item-delete').click(function()
+					{
+						itemElement.remove();
+						//hier muss noch delete befehl rein!
+					});
+				}
+			},
+			error: function(request) {
+				alert(request.responseText);
+				return;
+			},
+			context:this
+		});
 	},
 	
 	_load: function() {
@@ -79,28 +137,43 @@ $.widget("event.eventCreate",
 			return;
 		};
 		
+		var ID = this.element.find(".event-id").text();
+		var httpType = "";
+		if (ID != "") {
+			httpType = "POST";
+			addUrl = "/" + ID;
+		} else {
+			httpType = "PUT";
+			addUrl = "";
+		};
+		
 		alert(" title: " + this.element.find("#title").val() + 
+					"\n id: " + ID +
 					"\n date: " + this.element.find("#date").val() + " " + this.element.find("#time").val() +
 					"\n location: " + this.element.find("#location").val() +
 					"\n description: " + this.element.find("#desc").val() +
-					"\n type: " + 1);
+					"\n type: " + 1 +
+					"\n httpType: " + httpType + 
+					"\n url: /RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events" + addUrl);
 		
 		var event = {
 			title: this.element.find("#title").val(),
-			date: this.element.find("#date").val() + this.element.find("#time").val(),
+			date: this.element.find("#date").val() + " " + this.element.find("#time").val(),
 			location: this.element.find("#location").val(),
 			description: this.element.find("#desc").val(),
 			type: 1
 		};
 		
+		
 		$.ajax({
-			type: "PUT",
+			type: httpType,
 			dataType: "json",
 			contentType: "application/json",
-			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
+			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events" + addUrl,
 			data: JSON.stringify(event),
 			success: function(eventId) {
 				this._trigger("onEventSaved");
+				that.showEvent("/api/events/" + eventId);
 				that._saveItems(eventId);
 			},
 			error: function(request) {

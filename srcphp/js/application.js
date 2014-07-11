@@ -34,13 +34,13 @@ $(function() {
 	
 	$("#event_list").eventList({
 		oneventClicked: function(event, url) {
-			$("#event_show").eventDetails("load", url);
+			$("#event_create").eventCreate("showEvent", url);
 			$("#event_list").hide();
-			$("#event_show").show();
+			$("#event_create").show();
 		}
 	});
 	
-	$("#event_show").eventDetails({
+	$("#event_show").eventCreate({
 		onsaveClicked: function() {
 			alert("speichern geklickt");
 		},
@@ -51,6 +51,10 @@ $(function() {
 	
 	$("#event_create").eventCreate({
 		onsaveClicked: function() {
+		},
+		ondeleteClicked: function(ID) {
+			alert("ID: " + ID.ID);
+			$("#delete-dialog").deleteDialog("open", ID);
 		},
 		oncancelClicked: function() {
 			$("#cancel-dialog").cancelDialog("open");
@@ -63,6 +67,16 @@ $(function() {
 	
 	$("#cancel-dialog").cancelDialog({
 		oncanceld: function() {
+			$("#event_create").hide();
+			$("#event_list").hide();
+			$("#event_show").hide();
+			$("#content").show();
+		},
+	});
+	
+	$("#delete-dialog").deleteDialog({
+		oncanceld: function() {
+		alert("gelöscht");
 			$("#event_create").hide();
 			$("#event_list").hide();
 			$("#event_show").hide();

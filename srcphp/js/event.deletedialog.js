@@ -1,12 +1,14 @@
 $.widget("event.deleteDialog", $.ui.dialog, {
 	options: {
 		autoOpen: false,
-		modal: true
+		modal: true,
+		width: 400
 	},
 	
 	
-	open: function(event) {
-		this._event = event;
+	open: function(ID) {
+		this.ID = ID;
+		alert(ID);
 		this._super();
 	},
 	
@@ -34,7 +36,7 @@ $.widget("event.deleteDialog", $.ui.dialog, {
 		this.close();
 		$.ajax({
 			type: "DELETE",
-			url: this._event.url,
+			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp" + eventUrl,
 			success: function() {
 				this._trigger("oneventDeleted")
 			},
