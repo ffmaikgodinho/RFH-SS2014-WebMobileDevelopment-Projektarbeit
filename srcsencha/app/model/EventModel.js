@@ -21,7 +21,7 @@ Ext.define('PickIt.model.EventModel', {
 				name : 'id'
 			}, {
 				name : 'date',
-				type : 'datetime'
+				type : 'date',
 			}, {
 				name : 'title',
 				type : 'string'

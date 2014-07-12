@@ -88,12 +88,12 @@ Ext.define('PickIt.controller.EventListCtrl', {
 		// find current record from store
 		var store = Ext.getStore('EventsStore');
 		
-		debugger;
 		if (values.id == "") {
 		 // add new record
 			var item = Ext.create('PickIt.model.EventModel',
 			{
 				'title':values.title,
+				'date':values.date,
 				'location':values.location,
 				'description': values.description,
 				'type': values.type,
@@ -110,6 +110,7 @@ Ext.define('PickIt.controller.EventListCtrl', {
 			var update = Ext.create('PickIt.model.EventModel', jsonData);
 
 			record.set('title', values.title);
+			record.set('date', values.date);
 			record.set('location', values.location);
 			record.set('description', values.description);
 			record.set('type', values.type);
@@ -119,7 +120,7 @@ Ext.define('PickIt.controller.EventListCtrl', {
 				success: function(record) {
 					console.log('successfully saved record' + record.id);
 						// update changes
-					//store.sync();
+				store.sync();
 				}
 			});
 		}
