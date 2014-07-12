@@ -18,16 +18,6 @@ Ext.define('PickIt.store.EventsStore', {
 			}
 		},
 		
-		/*
-		proxy: {
-	        type: "ajax",
-	        url : "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
-	        reader: {
-	            type: "json"
-	        }
-	    },
-		*/
-		
 		// Hier muss der Name der Klasse vollständig, mit Namespace, angegeben
 		// werden, weil "ist halt einfach so".
 		model: 'PickIt.model.EventModel',

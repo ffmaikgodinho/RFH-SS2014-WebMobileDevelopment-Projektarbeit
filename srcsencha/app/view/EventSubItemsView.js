@@ -1,13 +1,19 @@
 Ext.define('PickIt.view.EventSubItemsView', {
 	
-	extend: 'Ext.form.Panel',
+	extend: 'Ext.dataview.List',
 	xtype: 'eventSubItemsView',
-	id: 'eventSubItemsView',
 	
 	requires: [
 		'Ext.field.Spinner'
 	],
 	
+	config: {
+		store: 'EventSubItemStore',
+		itemTpl: '<div><strong>{name}</strong><br /> <small>Menge: {quantity}</small></div>',
+		disableSelection: true
+	}
+	
+	/*
 	config: {
 		
 		items:[{
@@ -31,7 +37,7 @@ Ext.define('PickIt.view.EventSubItemsView', {
 			id: 'saveBtn'
 		}]
 	
-	}
+	}*/
 	
 	
 	

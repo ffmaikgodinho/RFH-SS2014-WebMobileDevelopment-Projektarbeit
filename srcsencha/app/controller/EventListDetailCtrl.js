@@ -8,7 +8,7 @@ Ext.define('PickIt.controller.EventListDetailCtrl', {
 		},
 		control : {
 			eventListDetailView : {
-				itemtap : 'onItemTap'
+				itemsingletap : 'onItemSingleTap'
 			}
 		}
 	},
@@ -24,7 +24,6 @@ Ext.define('PickIt.controller.EventListDetailCtrl', {
 		console.log('gettin executed with param ' + param); // debug
 		Ext.getStore('EventDetailStore').removeAll();
 
-		//TODO: add param to url
 		Ext.Ajax.request({
 			url : '/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events/' + param, 
 			success : function (response) {
@@ -50,11 +49,12 @@ Ext.define('PickIt.controller.EventListDetailCtrl', {
 
 	},
 
-	onItemTap : function (list, index, target, record, e, eOpts) {
+	onItemSingleTap : function (list, index, target, record, e, eOpts) {
 		console.log(record);
 		this.getApplication().getController('EventSubItemsCtrl').navigateTo(record.get('id'));
+		
 		this.getMainView().push({
-			title : 'Form',
+			title : record.get('title'),
 			xtype : 'eventSubItemsView'
 		});
 

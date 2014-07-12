@@ -4,17 +4,15 @@ Ext.define('PickIt.controller.EventSubItemsCtrl', {
 	config : {
 		refs : {
 			mainView : 'mainView',
-			
 			eventSubItemsView : 'eventSubItemsView',
-			
-			saveBtn : '#saveBtn'
+			//saveBtn : '#saveBtn'
 			
 		},
-		control : {
-			saveBtn:{
-				tap: 'onTapSaveBtn'
-			}
-		}
+		//control : {
+		//	saveBtn:{
+		//		tap: 'onTapSaveBtn'
+		//	}
+		//}
 	},
 
 	//called when the Application is launched, remove if not needed
@@ -25,55 +23,36 @@ Ext.define('PickIt.controller.EventSubItemsCtrl', {
 	},
 
 	navigateTo : function(param) {
-
-		console.log('gettin executed with param ' + param); // debug
-		
-		
-		// var saveBtn = this.getMainView().getNavigationBar().add({
-			// xtype: 'button',
-			// html: 'save',
-			// align: 'right'
-		// });
-		
-		
-		
+		console.log('gettin executed with param ' + param); // debug		
+		Ext.getStore('EventSubItemStore').removeAll();
+				
 		Ext.Ajax.request({
 			url : '/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/evententries/' + param,
-			scope : this,
-			
-			/*
-			params : {
-				id : param
-			},
-			*/
 			success : function(response) {
 				
 				
 				var data = Ext.JSON.decode(response.responseText.trim());
-				
-				var that = this;
-				
+
 				//loop through entries
 				Ext.Array.each(data.contributions, function(entry, index, entries){
-					
+				
 					var subItem = Ext.create('PickIt.model.EventSubItemModel', {
 						id : entry.id,
 					    userid : entry.userid,
 					    name  : entry.name,
 					    quantity: entry.quantity
 					});
-					
-					that.getEventSubItemsView().setRecord(subItem);
-					
+					Ext.getStore('EventSubItemStore').add(eventDetail);
 				});
 				
+				
+				
 			}
-			
 		});
-		
 
 	},
 	
+	/*
 	onTapSaveBtn : function(saveBtn, e, eOpts){
 		
 		var model = this.getEventSubItemsView().getRecord();
@@ -90,6 +69,6 @@ Ext.define('PickIt.controller.EventSubItemsCtrl', {
 		this.getMainView().pop();
 		
 	}
-	
+	*/
 	
 });

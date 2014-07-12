@@ -7,7 +7,7 @@ Ext.define('PickIt.controller.EventListCtrl', {
 			eventListView : 'eventListView',
 			eventListForm : 'eventListForm',
 			eventListDetailView : 'eventListDetailView',
-			eventListSave: '#eventListSave'
+			eventListSave : '#eventListSave'
 		},
 		control : {
 			eventListView : {
@@ -15,8 +15,11 @@ Ext.define('PickIt.controller.EventListCtrl', {
 				itemdoubletap : 'onItemDoubleTap',
 				itemswipe : 'onItemSwipe'
 			},
-			eventListSave: {
-				tap: 'onSaveTap'
+			mainView : {
+				back : 'onBack'
+			},
+			eventListSave : {
+				tap : 'onSaveTap'
 			}
 		}
 	},
@@ -24,6 +27,7 @@ Ext.define('PickIt.controller.EventListCtrl', {
 	//called when the Application is launched, remove if not needed
 	launch : function (app) {
 		console.log('EventListCtrl launched'); // debug
+
 		Ext.getStore('EventsStore').load({
 			callback : function (records, operation, success) {
 				// the operation object contains all of the details of the load operation
@@ -31,7 +35,6 @@ Ext.define('PickIt.controller.EventListCtrl', {
 			},
 			scope : this
 		});
-
 	},
 
 	// open subitems
@@ -54,16 +57,6 @@ Ext.define('PickIt.controller.EventListCtrl', {
 		var eventform = Ext.widget('eventListForm');
 		eventform.setRecord(record);
 		this.getMainView().add(eventform);
-		//eventform.show();
-		//main.push(eventform);
-
-
-		//this.getEventListForm().setRecord(record);
-
-		//this.getMainView().push({
-		//	title: record.get('title'),
-		//	xtype: 'eventListForm'
-		//});
 	},
 
 	// open confirm window and delete current item when clicked on 'yes'
@@ -76,7 +69,7 @@ Ext.define('PickIt.controller.EventListCtrl', {
 					url : '/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events/' + record.get('id'),
 					scope : this,
 					method : 'DELETE',
-					success: function () {
+					success : function () {
 						// reload
 						Ext.getStore('EventsStore').load();
 					}
@@ -84,14 +77,14 @@ Ext.define('PickIt.controller.EventListCtrl', {
 			}
 		})
 	},
-	
+
 	// save item
-	onSaveTap : function (item, e, eOpts)  {
+	onSaveTap : function (item, e, eOpts) {
 
 		// get current Values in EventForm
 		var form = Ext.ComponentQuery.query('eventListForm')[0];
 		var values = form.getValues();
-		
+
 		// find current record from store
 		var store = Ext.getStore('EventsStore');
 		var record = store.findRecord('id', values.id);
@@ -99,23 +92,27 @@ Ext.define('PickIt.controller.EventListCtrl', {
 		// set record to entered values
 		var jsonData = Ext.JSON.encode(values);
 		var update = Ext.create('PickIt.model.EventModel', jsonData);
-		record.set(update);
+		console.log(record);
+		debugger;
+		record.setData(update);
+		
 		// set id explicitely, because it's saved with internal id. Check for model misconfiguration.
 		record.set('id', values.id);
-
+		console.log(record);
+		console.log(update);
+		//record.save();
 		// update changes
 		store.sync();
 		
 		// destroy form and return to navigation view
-		this.getMainView().remove(form);
+		this.getMainView().pop(form);
+		//this.getMainView().remove(form);
 		Ext.getCmp('eventListSave').destroy();
-		
-		/*
-		Ext.Ajax.request({
-			url : '/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events/' + record.get('id'),
-			method : 'POST',
-			jsonData: Ext.JSON.encode(values)
-		});
-		*/
+	},
+
+	// destroy save button, when clicked on 'back'
+	// perform specific operations only for this list
+	onBack : function (view, eOpts) {
+		//Ext.getCmp('eventListSave').destroy();
 	}
 });

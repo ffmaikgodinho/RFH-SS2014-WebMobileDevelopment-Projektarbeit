@@ -29,8 +29,9 @@ Ext.define('PickIt.controller.MainCtrl', {
 	onButtonTap: function(button, e, eOpts){
 		console.log('addButton tap not implemented');
 		
-		/*
+		debugger;
 		this.getMainView().getActiveItem().id
+		/*
 		var item = Ext.create('<model>',{<field>:<value>};
 		var store = Ext.getStore('<store>);
 		store.add(item);
