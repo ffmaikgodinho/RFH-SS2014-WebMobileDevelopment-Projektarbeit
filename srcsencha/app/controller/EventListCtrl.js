@@ -87,26 +87,42 @@ Ext.define('PickIt.controller.EventListCtrl', {
 
 		// find current record from store
 		var store = Ext.getStore('EventsStore');
-		var record = store.findRecord('id', values.id);
-
-		// set record to entered values
-		var jsonData = Ext.JSON.encode(values);
-		var update = Ext.create('PickIt.model.EventModel', jsonData);
-
-		record.set('title', values.title);
-		record.set('location', values.location);
-		record.set('description', values.description);
-		record.set('type', values.type);
-		record.set('id', values.id); // set id explicitely, because it's saved with internal id. Check for model misconfiguration.
-
-		record.save({
-			success: function(record) {
-				console.log('successfully saved record' + record.id);
-					// update changes
-				store.sync();
-			}
-		});
 		
+		debugger;
+		if (values.id == "") {
+		 // add new record
+			var item = Ext.create('PickIt.model.EventModel',
+			{
+				'title':values.title,
+				'location':values.location,
+				'description': values.description,
+				'type': values.type,
+				'id' : 0
+			})
+			store.add(item);
+			store.sync();
+		} else {
+		//update existing record
+			var record = store.findRecord('id', values.id);
+
+			// set record to entered values
+			var jsonData = Ext.JSON.encode(values);
+			var update = Ext.create('PickIt.model.EventModel', jsonData);
+
+			record.set('title', values.title);
+			record.set('location', values.location);
+			record.set('description', values.description);
+			record.set('type', values.type);
+			record.set('id', values.id); // set id explicitely, because it's saved with internal id. Check for model misconfiguration.
+
+			record.save({
+				success: function(record) {
+					console.log('successfully saved record' + record.id);
+						// update changes
+					//store.sync();
+				}
+			});
+		}
 		// destroy form and return to navigation view
 		this.getMainView().pop(form);
 		//this.getMainView().remove(form);

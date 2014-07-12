@@ -27,10 +27,17 @@ Ext.define('PickIt.controller.MainCtrl', {
 	},
 
 	onButtonTap : function (button, e, eOpts) {
-		console.log('addButton tap not implemented');
-
-		debugger;
-		this.getMainView().getActiveItem().id
+		console.log(this.getMainView().getActiveItem().id);
+		if (this.getMainView().getActiveItem().id == 'ext-container-1') {
+			var eventform = Ext.widget('eventListForm');
+			this.getMainView().add(eventform);
+		} else {
+			console.log('AddItem not implemented for this list');
+		}
+		// ext-container-1  (main View)
+		// ext-eventListDetailView-1 
+		// ext-eventSubItemsView-1 
+		
 		/*
 		var item = Ext.create('<model>',{<field>:<value>};
 		var store = Ext.getStore('<store>);
