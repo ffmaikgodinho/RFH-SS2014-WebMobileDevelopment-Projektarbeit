@@ -19,5 +19,11 @@ $.widget("event.menuBar",
 				that._trigger("onloginClicked");
 				return false;
 			});
+			
+		this.element.find("#nav_search").click( function()
+			{
+				that._trigger("onsearchClicked");
+				return false;
+			});
 	}
 });

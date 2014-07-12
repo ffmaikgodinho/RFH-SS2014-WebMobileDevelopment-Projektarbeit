@@ -11,16 +11,16 @@ $.widget("event.eventList",
 		});		
 	},
 		  
-	_load: function()
-	{
-		$.ajax(
-		{
-		   url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
-		   dataType: "json",
-		   success: this._appendEvents,
-		   context: this
-		});		
-	},
+	// _load: function()
+	// {
+		// $.ajax(
+		// {
+		   // url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
+		   // dataType: "json",
+		   // success: this._appendEvents,
+		   // context: this
+		// });		
+	// },
 		
 	reload: function()
 	{
@@ -31,6 +31,32 @@ $.widget("event.eventList",
 		   dataType: "json",
 		   success: this._appendEvents,
 		   context: this
+		});		
+	},
+	
+	search: function()
+	{
+		var searchString = $("#search_string").val();
+		$.ajax(
+		{
+		   url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events/" + searchString,
+		   dataType: "json",
+		   context: this,
+		   statusCode: {
+				200: function(data) {
+					this.element.find("#list-advice").text("");
+					this._appendEvents(data);
+				},
+				204: function() {
+					this.element.find(".list-entry:not(.template)").remove();
+					this.element.find("#list-advice").text("Ihre Suche ergab keine Treffer...");
+					return;
+				}
+			},
+		   error: function(request) {
+				alert(request.responseText);
+				return;
+			},
 		});		
 	},
 	

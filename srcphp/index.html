@@ -7,7 +7,9 @@
 		<link rel="stylesheet" href="./css/jquery-ui-1.10.4.custom.css" />
 		<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
 		<script src="js/jquery-ui-1.10.4.custom.js" type="text/javascript"></script>
+		<script src="js/jquery.blockUI.js" type="text/javascript"></script>
 		<script src="js/event.menubar.js" type="text/javascript"></script>
+		<script src="js/event.menusearch.js" type="text/javascript"></script>
 		<script src="js/event.eventlist.js" type="text/javascript"></script>
 		<script src="js/event.eventdetails.js" type="text/javascript"></script>
 		<script src="js/event.eventcreate.js" type="text/javascript"></script>
@@ -29,9 +31,9 @@
 					<li id="nav_new" class="navigation">New</li>
 					<li id="nav_login" class="navigation">Login</li>
 				</menu>
-				<form action="test.php" id="search" method="get">
-					<input class="search" type="search" lang="de" name="search" placeholder="Search" maxlength="30">
-					<input class="search" type="image" src="img/search.png" alt="Suche">
+				<form action="#" id="search" method="get">
+					<input id="search_string" class="search" type="search" lang="de" name="search" placeholder="Search" maxlength="30">
+					<input id="search_button" class="search" type="image" src="img/search.png" alt="Suche">
 				</form>
 			</div>
 		</div>
@@ -50,6 +52,7 @@
 						<span class="list-entry-item">Wann:&nbsp;</span><span class="list-entry-fact-date">19.08.2014 - 18:00 Uhr</span><span class="list-entry-item">Wo:&nbsp;</span><span class="list-entry-fact-location">Luxemburger Str. 227, 50937 Köln</span>
 					</div>
 				</div>
+				<div id="list-advice"></div>
 			</div>
 <!--Anzeige Einzelcontent-->
 			<div class="content-item" id="content">
@@ -86,7 +89,7 @@
 				</div>
 				<div class="content-area">
 					<form action="addevent.php" method="post" class="form-container">
-							<span id="id" class="event-id"/></span>
+							<span class="event-id"></span>
 							<span class="form-title event-title-formtitle">Titel:</span><input type="text" id="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-title" class="hint template"><span class="hint-sign">|</span>Titel fehlt</p>
 						<br><span class="form-title">Datum:</span><input type="date" id="date" class="event-date event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-date" class="hint template"><span class="hint-sign">|</span>Datum fehlt</p><p id="no-date" class="hint template"><span class="hint-sign">|</span>Datum ung&uuml;ltig</p><p id="past-date" class="hint template"><span class="hint-sign">|</span>Datum liegt in der Vergangenheit</p>
 						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" /><p id="no-time" class="hint template"><span class="hint-sign">|</span>Zeitangabe ung&uuml;ltig</p>
@@ -100,7 +103,8 @@
 				</div>
 				<div id="clone-item-here">
 				</div>
-				<div class="item item-template">				
+				<div class="item item-template">
+					<span class="item-id template"></span>				
 					<form action="additem.php" method="post" class="item">
 							<textarea rows="3" name="note" class="item_note item_note-empty" placeholder=""></textarea>
 							<span class="placeholder-item-delete"></span><span class="template item-delete">x</span><input type="text" name="title" class="item_title item_title-empty" required="required" value="" placeholder="" />

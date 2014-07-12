@@ -1,5 +1,5 @@
 $.widget("event.eventCreate", 
-{
+{	
 	_create: function() 
 	{
 		var that = this;
@@ -12,12 +12,12 @@ $.widget("event.eventCreate",
 		this.element.find("#delete").click( function()
 		{
 			var ID = that.element.find(".event-id").text()
-			// alert(ID);
-			// if (ID == "") {
+			alert(ID);
+			if (ID == "") {
 				that._trigger("oncancelClicked");
-			// } else {
-				// that._trigger("ondeleteClicked", ID);
-			// };
+			} else {
+				that._trigger("ondeleteClicked", null, ID);
+			};
 			
 		});
 		this.element.find("#title").change(function() {
@@ -44,12 +44,14 @@ $.widget("event.eventCreate",
 				e.preventDefault();
 				that._newItem();
 			}
-		});			
+		});	
 	},
 	
 	newEvent: function() {
 		var that = this;
 		this.element.find(".item-filled").remove();
+		this.element.find(".item_note").val("");
+		this.element.find(".item_qty").val("");
 		this.element.find(".event-formfield").val("").addClass("event-formfield-empty");
 		this.element.find(".event-title-formtitle").show();
 		this.element.find('.event-title').removeClass('template');
@@ -60,6 +62,7 @@ $.widget("event.eventCreate",
 	
 	showEvent: function(eventUrl) {
 		var that = this;
+		that.newEvent();
 		$.ajax({
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp" + eventUrl,
 			dataType: "json",
@@ -83,9 +86,10 @@ $.widget("event.eventCreate",
 					var entry = event.entrys[i];
 					var itemElement = this.element.find(".item-template").clone().removeClass("item-template").addClass("item-filled");
 					this.element.find("#clone-item-here").before(itemElement);
-					itemElement.find('.item_title').removeClass('item_title-empty');
-					itemElement.find('.item_qty').removeClass('item_qty-empty');
-					itemElement.find('.item_note').removeClass('item_note-empty');
+					itemElement.find('.item_title').removeClass('item_title-empty').attr("readonly", true);
+					itemElement.find('.item_qty').removeClass('item_qty-empty').attr("readonly", true);
+					itemElement.find('.item_note').removeClass('item_note-empty').attr("readonly", true);
+					itemElement.find('.item-id').text(entry.id);
 					itemElement.find('.item_title').val(entry.title);
 					itemElement.find('.item_qty').val(entry.total_qty);
 					itemElement.find('.item_note').val(entry.note);
@@ -93,8 +97,8 @@ $.widget("event.eventCreate",
 					itemElement.find('.placeholder-item-delete').addClass("template");
 					itemElement.find('.item-delete').click(function()
 					{
-						itemElement.remove();
-						//hier muss noch delete befehl rein!
+						alert("entry löschen");
+						that._deleteItem(itemElement, entry.id);
 					});
 				}
 			},
@@ -132,7 +136,7 @@ $.widget("event.eventCreate",
 	{
 		var that = this;
 		
-		var valid = that._validateEntry("valid");
+		var valid = that._validateEvent("valid");
 		if (!valid) {
 			return;
 		};
@@ -206,7 +210,7 @@ $.widget("event.eventCreate",
 				url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/evententries",
 				data: JSON.stringify(item),
 				success: function() {
-
+					alert("item gespeichert!");
 				},
 				error: function(request) {
 					alert(request.responseText);
@@ -217,7 +221,7 @@ $.widget("event.eventCreate",
 		});
 	},
 	
-	_validateEntry: function()
+	_validateEvent: function()
 	{
 		var that = this;
 		var valid = true;
@@ -257,6 +261,29 @@ $.widget("event.eventCreate",
 			});	
 			this.element.find(".item-template").find('.item_title').focus();
 		}		
+	},
+	
+	_deleteItem: function(itemElement, itemId) {
+		alert(itemId);
+		$.ajax({
+			type: "DELETE",
+			dataType: "json",
+			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/evententries/" + itemId,
+			success: function() {
+				alert("gelöscht!");
+				itemElement.remove();
+			},
+			error: function(request) {
+				alert("ist gelöscht worden, läuft aber ins error!");
+				if (request.status == "404") {
+					itemElement.remove();
+				}
+				else {
+				alert(request.responseText);
+				}
+			},
+		context: this	
+		});
 	}
 });
 

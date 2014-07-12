@@ -8,6 +8,13 @@ $(function() {
 		};
 	});
 	
+	// $(document).ajaxStart(function() {
+		// $.blockUI({message:null});
+	// });
+	// $(document).ajaxStop(function() {
+		// $.unblockUI({message:null});
+	// });
+	
 	$("#error-dialog").errorDialog();
 	
 	$("#navigation").menuBar({
@@ -29,32 +36,48 @@ $(function() {
 			$("#event_list").hide();
 			$("#event_show").hide();
 			$("#content").show();
+		},
+		onsearchClicked: function() {
+			alert("suche geklickt");
+			$("#event_create").hide();
+			$("#event_show").hide();
+			$("#content").hide();
+			$("#event_list").show().eventList("search");
+		},
+	});
+	
+	$("#search").menuSearch({
+		onsearchClicked: function() {
+			$("#event_create").hide();
+			$("#event_show").hide();
+			$("#content").hide();
+			$("#event_list").show().eventList("search");
 		}
 	});
 	
 	$("#event_list").eventList({
 		oneventClicked: function(event, url) {
-			$("#event_create").eventCreate("showEvent", url);
 			$("#event_list").hide();
 			$("#event_create").show();
+			$("#event_create").eventCreate("showEvent", url);
 		}
 	});
 	
-	$("#event_show").eventCreate({
-		onsaveClicked: function() {
-			alert("speichern geklickt");
-		},
-		ondeleteClicked: function() {
-			alert("löschen geklickt");
-		}
-	});
+	// $("#event_show").eventCreate({
+		// onsaveClicked: function() {
+			// alert("speichern geklickt");
+		// },
+		// ondeleteClicked: function() {
+			// alert("löschen geklickt");
+		// }
+	// });
 	
 	$("#event_create").eventCreate({
 		onsaveClicked: function() {
 		},
-		ondeleteClicked: function(ID) {
-			alert("ID: " + ID.ID);
-			$("#delete-dialog").deleteDialog("open", ID);
+		ondeleteClicked: function(item, eventId) {
+			alert("ID: " + eventId);
+			$("#delete-dialog").deleteDialog("open", eventId);
 		},
 		oncancelClicked: function() {
 			$("#cancel-dialog").cancelDialog("open");
