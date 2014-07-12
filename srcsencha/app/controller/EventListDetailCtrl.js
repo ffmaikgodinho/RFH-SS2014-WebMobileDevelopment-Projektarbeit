@@ -25,7 +25,7 @@ Ext.define('PickIt.controller.EventListDetailCtrl', {
 		Ext.getStore('EventDetailStore').removeAll();
 
 		Ext.Ajax.request({
-			url : '/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events/' + param, 
+			url : '/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events/' + param,
 			success : function (response) {
 
 				var data = Ext.JSON.decode(response.responseText.trim());
@@ -41,7 +41,7 @@ Ext.define('PickIt.controller.EventListDetailCtrl', {
 						});
 					Ext.getStore('EventDetailStore').add(eventDetail);
 				});
-				
+
 				// add new button?
 
 			}
@@ -50,9 +50,9 @@ Ext.define('PickIt.controller.EventListDetailCtrl', {
 	},
 
 	onItemSingleTap : function (list, index, target, record, e, eOpts) {
-		console.log(record);
+
 		this.getApplication().getController('EventSubItemsCtrl').navigateTo(record.get('id'));
-		
+
 		this.getMainView().push({
 			title : record.get('title'),
 			xtype : 'eventSubItemsView'

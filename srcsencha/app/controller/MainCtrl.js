@@ -1,34 +1,34 @@
 Ext.define('PickIt.controller.MainCtrl', {
 	extend : 'Ext.app.Controller',
-	
+
 	config : {
 		refs : {
 			mainView : 'mainView',
-			addButton: '#addButton'
+			addButton : '#addButton'
 		},
 		control : {
-			mainView:{
+			mainView : {
 				back : 'onBack'
 			},
-			addButton: {
-				tap: 'onButtonTap'
+			addButton : {
+				tap : 'onButtonTap'
 			}
 		}
 	},
 
 	//called when the Application is launched, remove if not needed
-	launch : function(app) {
+	launch : function (app) {
 		console.log('MainCtrl launched'); //debug
 	},
 
-	onBack : function(view, eOpts){
+	onBack : function (view, eOpts) {
 		// destroys view when clicked on back button to ensure proper references
 		this.getMainView().pop(view);
 	},
-	
-	onButtonTap: function(button, e, eOpts){
+
+	onButtonTap : function (button, e, eOpts) {
 		console.log('addButton tap not implemented');
-		
+
 		debugger;
 		this.getMainView().getActiveItem().id
 		/*
@@ -36,6 +36,6 @@ Ext.define('PickIt.controller.MainCtrl', {
 		var store = Ext.getStore('<store>);
 		store.add(item);
 		store.sync();
-	 */
+		 */
 	}
 });
