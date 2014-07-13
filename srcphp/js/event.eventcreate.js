@@ -55,7 +55,8 @@ $.widget("event.eventCreate",
 		this.element.find(".content-title").text("Neues Event anlegen");
 		this.element.find(".event-title-formtitle").show();
 		this.element.find('.event-title').removeClass('template');
-		this.element.find(".event-id").text("")
+		this.element.find(".event-id").text("");
+		this.element.find(".event-stamp").text("")
 		that._load();
 	},
 	
@@ -70,7 +71,8 @@ $.widget("event.eventCreate",
 			{
 				var eventId = event.id;
 				this.element.find(".content-title").text(event.title);
-				this.element.find(".event-id").text(event.id).addClass("template");
+				this.element.find(".event-id").text(event.id);
+				this.element.find(".event-stamp").text(event.stamp);
 				this.element.find(".event-title-formtitle").hide();
 				this.element.find(".event-title").val(event.title).addClass("template");
 				//this.element.find(".creator-name").val(event.creator);
@@ -157,14 +159,16 @@ $.widget("event.eventCreate",
 					"\n location: " + this.element.find("#location").val() +
 					"\n description: " + this.element.find("#desc").val() +
 					"\n type: " + 1 +
+					"\n stamp: " + this.element.find(".event-stamp").text() +
 					"\n httpType: " + httpType + 
 					"\n url: /RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events" + addUrl);
 		
 		var event = {
-			title: this.element.find("#title").val(),
-			date: this.element.find("#date").val() + " " + this.element.find("#time").val(),
-			location: this.element.find("#location").val(),
-			description: this.element.find("#desc").val(),
+			title: this.element.find(".event-title").val(),
+			date: this.element.find(".event-date").val() + " " + this.element.find("#time").val(),
+			location: this.element.find(".event-location").val(),
+			description: this.element.find(".event-desc").val(),
+			stamp: this.element.find(".event-stamp").text(),
 			type: 1
 		};
 		
@@ -176,11 +180,13 @@ $.widget("event.eventCreate",
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events" + addUrl,
 			data: JSON.stringify(event),
 			success: function(eventId) {
+				alert("success");
 				that._saveItems(eventId);
 				that.showEvent("/api/events/" + eventId);
 				this._trigger("onEventSaved");
 			},
 			error: function(request) {
+				alert("success aber error");
 				alert(request.responseText);
 				return;
 			},

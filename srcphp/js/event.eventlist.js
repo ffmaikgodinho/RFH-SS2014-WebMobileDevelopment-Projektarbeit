@@ -91,7 +91,9 @@ $.widget("event.eventList",
 			};
 			var numPages = Math.ceil(events.length / 20)
 			for (var page = 0; page < numPages; page++) {
-				var pageElement = this.element.find(".template").clone();
+				var pageElement = this.element.find(".page-template").clone();
+				pageElement.text(page);
+				pageElement.removeClass(".page-template");
 			}
 		} else {
 			var event = events;
