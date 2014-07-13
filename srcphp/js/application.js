@@ -8,12 +8,12 @@ $(function() {
 		};
 	});
 	
-	// $(document).ajaxStart(function() {
-		// $.blockUI({message:null});
-	// });
-	// $(document).ajaxStop(function() {
-		// $.unblockUI({message:null});
-	// });
+	$(document).ajaxStart(function() {
+		$.blockUI({message:null});
+	});
+	$(document).ajaxStop(function() {
+		$.unblockUI({message:null});
+	});
 	
 	$("#error-dialog").errorDialog();
 	
@@ -76,7 +76,6 @@ $(function() {
 		onsaveClicked: function() {
 		},
 		ondeleteClicked: function(item, eventId) {
-			alert("ID: " + eventId);
 			$("#delete-dialog").deleteDialog("open", eventId);
 		},
 		oncancelClicked: function() {
@@ -107,9 +106,10 @@ $(function() {
 		},
 	});
 	
-	$("#content").hide();
+	$("#content").show();
 	$("#event_show").hide();
 	$("#event_create").hide();
+	$("#event_list").hide();
 	
 		
 });

@@ -10,7 +10,6 @@ $.widget("event.deleteDialog", $.ui.dialog, {
 	
 	open: function(eventId) {
 		this.eventId = eventId;
-		alert(eventId);
 		this._super();
 	},
 	
@@ -38,7 +37,7 @@ $.widget("event.deleteDialog", $.ui.dialog, {
 		this.close();
 		$.ajax({
 			type: "DELETE",
-			dataType: "json",
+			// dataType: "json",
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events/" + this.eventId,
 			success: function() {
 				alert("gelöscht!");
