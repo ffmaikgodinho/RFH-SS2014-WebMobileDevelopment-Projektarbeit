@@ -1,12 +1,15 @@
-$.widget("event.errorDialog", $.ui.dialog, {
+$.widget("event.saveDialog", $.ui.dialog, {
+	obj: "",
+	
 	options: {
 		autoOpen: false,
 		modal: true,
 		width: 400
 	},
 	
-	open: function(message) {
-		this.element.find("#error-message").text(message);
+	
+	open: function(obj) {
+		this.obj = obj;
 		this._super();
 	},
 	
@@ -14,7 +17,14 @@ $.widget("event.errorDialog", $.ui.dialog, {
 		var that = this;
 		this.options.buttons = [
 			{
-				text: "Schließen",
+				text: "Speichern",
+				click: function() {
+					that.close();
+					that.obj._saveEvent();
+				}
+			},
+			{
+				text: "Abbrechen",
 				click: function() {
 					that.close();
 				}

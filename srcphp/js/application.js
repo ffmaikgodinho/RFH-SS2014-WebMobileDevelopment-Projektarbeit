@@ -1,11 +1,10 @@
 $(function() {
 	$(document).ajaxError(function(event, request) {
-		$("#error_dialog").errorDialog("open", request.statusText);
-		$("#event_details").hide();
-		$("#event_list").show();	
-		if (request.status == "404") {
-			$("#event_list").eventList("reload");
-		};
+		// if (request.status == "404") {
+			// $("#error-dialog").errorDialog("open", "Der webservice ist derzeit nicht erreichbar. Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.");
+			// $("#content").show();
+			// $("#event_list").hide();
+		// };
 	});
 	
 	$(document).ajaxStart(function() {
@@ -16,6 +15,7 @@ $(function() {
 	});
 	
 	$("#error-dialog").errorDialog();
+	
 	
 	$("#navigation").menuBar({
 		onaboutClicked: function() {
@@ -37,13 +37,9 @@ $(function() {
 			$("#event_show").hide();
 			$("#content").show();
 		},
-		onsearchClicked: function() {
-			alert("suche geklickt");
-			$("#event_create").hide();
-			$("#event_show").hide();
-			$("#content").hide();
-			$("#event_list").show().eventList("search");
-		},
+		onerror: function(error, message) {
+			$("#error-dialog").errorDialog("open", message);
+		}
 	});
 	
 	$("#search").menuSearch({
@@ -52,6 +48,9 @@ $(function() {
 			$("#event_show").hide();
 			$("#content").hide();
 			$("#event_list").show().eventList("search");
+		},
+		onerror: function(error, message) {
+			$("#error-dialog").errorDialog("open", message);
 		}
 	});
 	
@@ -60,6 +59,9 @@ $(function() {
 			$("#event_list").hide();
 			$("#event_create").show();
 			$("#event_create").eventCreate("showEvent", url);
+		},
+		onerror: function(error, message) {
+			$("#error-dialog").errorDialog("open", message);
 		}
 	});
 	
@@ -73,17 +75,24 @@ $(function() {
 	// });
 	
 	$("#event_create").eventCreate({
-		onsaveClicked: function() {
+		onsaveClicked: function(event, obj) {
+			if (obj.element.find(".event-id").text() != "") {
+			// alert(obj.element.find(".event-id").text());
+			$("#save-dialog").saveDialog("open", obj);
+			}
 		},
-		ondeleteClicked: function(item, eventId) {
+		ondeleteClicked: function(event, eventId) {
 			$("#delete-dialog").deleteDialog("open", eventId);
 		},
 		oncancelClicked: function() {
 			$("#cancel-dialog").cancelDialog("open");
 		},
-		onEventSaved: function() {
-			alert("gespeichert!");
+		oneventSaved: function() {
+			// alert("gespeichert!");
 			// $("#event_show").eventDetails(url);
+		},
+		onerror: function(error, message) {
+			$("#error-dialog").errorDialog("open", message);
 		}
 	});
 	
@@ -93,18 +102,23 @@ $(function() {
 			$("#event_list").hide();
 			$("#event_show").hide();
 			$("#content").show();
-		},
+		}
 	});
 	
 	$("#delete-dialog").deleteDialog({
-		oncanceld: function() {
-		alert("gelöscht");
+		ondeleted: function() {
+			alert("gelöscht");
 			$("#event_create").hide();
 			$("#event_list").hide();
 			$("#event_show").hide();
 			$("#content").show();
 		},
+		onerror: function(error, message) {
+			$("#error-dialog").errorDialog("open", message);
+		}
 	});
+	
+	$("#save-dialog").saveDialog();
 	
 	$("#content").show();
 	$("#event_show").hide();

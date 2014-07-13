@@ -1,15 +1,15 @@
 $.widget("event.eventList", 
 {
-    _create: function() 
-    {
-		$.ajax(
-		{
-		   url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
-		   dataType: "json",
-		   success: this._appendEvents,
-		   context: this
-		});		
-	},
+    // _create: function() 
+    // {
+		// $.ajax(
+		// {
+		   // url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events",
+		   // dataType: "json",
+		   // success: this._appendEvents,
+		   // context: this
+		// });		
+	// },
 		  
 	// _load: function()
 	// {
@@ -56,15 +56,14 @@ $.widget("event.eventList",
 				}
 			},
 		   error: function(request) {
-				alert(request.responseText);
-				return;
-			},
+			}
 		});		
 	},
 	
 	_appendEvents: function(events)
 	{
 		var that = this;
+		var test = 1;
 		if (Array.isArray(events)) {
 			for (var i = 0; i < events.length; i++) 
 			{
@@ -88,12 +87,6 @@ $.widget("event.eventList",
 					that._trigger("oneventClicked", null, event.data);
 				});			
 				this.element.append(eventElement);
-			};
-			var numPages = Math.ceil(events.length / 20)
-			for (var page = 0; page < numPages; page++) {
-				var pageElement = this.element.find(".page-template").clone();
-				pageElement.text(page);
-				pageElement.removeClass(".page-template");
 			}
 		} else {
 			var event = events;

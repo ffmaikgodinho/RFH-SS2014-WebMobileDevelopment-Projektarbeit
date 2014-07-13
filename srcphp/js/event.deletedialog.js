@@ -40,19 +40,15 @@ $.widget("event.deleteDialog", $.ui.dialog, {
 			// dataType: "json",
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events/" + this.eventId,
 			success: function() {
-				alert("gelöscht!");
-				// this._trigger("oneventDeleted")
+				this._trigger("ondeleted");
 			},
 			error: function(request) {
-				alert("ist gelöscht worden, läuft aber ins error!");
 				if (request.status == "404") {
-					$("#event_create").hide();
-					$("#event_list").hide();
-					$("#event_show").hide();
-					$("#content").show();
+					this._trigger("ondeleted");
 				}
 				else {
-				alert(request.responseText);
+					this._trigger("onerror", null, request.responseText);
+					return;
 				}
 			},
 		context: this	

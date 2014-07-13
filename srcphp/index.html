@@ -17,6 +17,7 @@
 		<script src="js/event.errordialog.js" type="text/javascript"></script>
 		<script src="js/event.deletedialog.js" type="text/javascript"></script>
 		<script src="js/event.canceldialog.js" type="text/javascript"></script>
+		<script src="js/event.savedialog.js" type="text/javascript"></script>
 		<script src="js/application.js" type="text/javascript"></script>
 		<title>Mainpage</title>
 	</head>
@@ -86,7 +87,7 @@
 							<span class="event-stamp"></span>
 							<span class="form-title event-title-formtitle">Titel:</span><input type="text" id="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-title" class="hint template"><span class="hint-sign">|</span>Titel fehlt</p>
 						<br><span class="form-title">Datum:</span><input type="date" id="date" class="event-date event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-date" class="hint template"><span class="hint-sign">|</span>Datum fehlt</p><p id="no-date" class="hint template"><span class="hint-sign">|</span>Datum ung&uuml;ltig</p><p id="past-date" class="hint template"><span class="hint-sign">|</span>Datum liegt in der Vergangenheit</p>
-						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" /><p id="no-time" class="hint template"><span class="hint-sign">|</span>Zeitangabe ung&uuml;ltig</p>
+						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" /><p id="no-time" class="hint template"><span class="hint-sign">|</span>Zeitangabe ung&uuml;ltig (hh:mm)</p>
 						<br><span class="form-title">Ort:</span><input type="text" id="location" class="event-location event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-location" class="hint template"><span class="hint-sign">|</span>Ort fehlt</p>
 						<br><textarea rows="4" cols="50" id="desc" class="event-desc event-formfield event-formfield-empty" placeholder="Beschreibung"></textarea>
 					</form>
@@ -156,11 +157,14 @@
 		<div id="cancel-dialog" title="Eingabe abbrechen" class="ui-widget">
 			<p class="message">Wollen Sie die Eingabe abbrechen?<br> Alle Angaben gehen damit verloren.</p>
 		</div>
-		<div id="delete-dialog" title="Eintrag löschen" class="ui-widget">
-			<p class="message">Wollen Sie diesen Eintrag wirklich löschen?</p>
+		<div id="delete-dialog" title="Eintrag l&ouml;schen" class="ui-widget">
+			<p class="message">Wollen Sie diesen Eintrag wirklich l&ouml;schen?</p>
+		</div>
+		<div id="save-dialog" title="Eintrag speichern" class="ui-widget">
+			<p class="message">Wollen Sie den Eintrag wirklich speichern?<br>Alle &uuml;berschriebenen Daten gehen verloren.</p>
 		</div>
 		<div id="error-dialog" title="Nachricht vom webservice" class="ui-widget">
-			<p class="message">Störung beim Zugriff auf den webservice:<br><span id="error-message"></span></p>
+			<p class="message">Hinweis:<br><span id="error-message"></span></p>
 		</div>
 	</body>
 </html>

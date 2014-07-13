@@ -40,7 +40,7 @@
 		var timeElement = that.element.find("#time");
 		
 		if (timeElement.val() != "") {
-			var t = timeElement.val().split(/[- :]/);
+			var t = timeElement.val().split(/[:]/);
 			var d = new Date(0,0,0,t[0], t[1], 0);
 			
 			if ((t[0]<0) || (t[0]>23)) {

@@ -6,8 +6,12 @@ $.widget("event.eventCreate",
 		
 		this.element.find("#save").click( function()
 			{
-				that._trigger("onsaveClicked");
-				that._saveEvent();
+				var ID = that.element.find(".event-id").text()
+				if (ID == "") {
+					that._saveEvent();
+				} else {
+					that._trigger("onsaveClicked", null, that);
+				};
 			});
 		this.element.find("#delete").click( function()
 		{
@@ -17,7 +21,6 @@ $.widget("event.eventCreate",
 			} else {
 				that._trigger("ondeleteClicked", null, ID);
 			};
-			
 		});
 		this.element.find("#title").change(function() {
 			that._load();
@@ -67,46 +70,49 @@ $.widget("event.eventCreate",
 		$.ajax({
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp" + eventUrl,
 			dataType: "json",
-			success: function(event)
-			{
-				var eventId = event.id;
-				this.element.find(".content-title").text(event.title);
-				this.element.find(".event-id").text(event.id);
-				this.element.find(".event-stamp").text(event.stamp);
-				this.element.find(".event-title-formtitle").hide();
-				this.element.find(".event-title").val(event.title).addClass("template");
-				//this.element.find(".creator-name").val(event.creator);
-				// Split timestamp into [ Y, M, D, h, m, s ]
-				var t = event.date.split(/[- :]/);
-				// Apply each element to the Date function
-				// var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-				this.element.find(".event-date").val(t[2] + "." + t[1] + "." + t[0]).removeClass("event-formfield-empty");
-				this.element.find(".event-time").val(t[3] + ":" + t[4]).removeClass("event-formfield-empty");
-				this.element.find(".event-location").val(event.location).removeClass("event-formfield-empty");
-				this.element.find(".event-desc").val(event.description).removeClass("event-formfield-empty");
-				for (var i = 0; i < event.entrys.length; i++) {
-					var entry = event.entrys[i];
-					var itemElement = this.element.find(".item-template").clone().removeClass("item-template").addClass("item-filled");
-					this.element.find("#clone-item-here").before(itemElement);
-					itemElement.find('.item_title').removeClass('item_title-empty').attr("readonly", true);
-					itemElement.find('.item_qty').removeClass('item_qty-empty').attr("readonly", true);
-					itemElement.find('.item_note').removeClass('item_note-empty').attr("readonly", true);
-					itemElement.find('.item-id').text(entry.id);
-					itemElement.find('.item_title').val(entry.title);
-					itemElement.find('.item_qty').val(entry.total_qty);
-					itemElement.find('.item_note').val(entry.note);
-					itemElement.find('.item-delete').removeClass("template");
-					itemElement.find('.placeholder-item-delete').addClass("template");
-					itemElement.find('.item-delete').click(function()
-					{
-						alert("entry löschen");
-						that._deleteItem(itemElement, entry.id);
-					});
+			statusCode: {
+				200: function(event) {
+					var eventId = event.id;
+					this.element.find(".content-title").text(event.title);
+					this.element.find(".event-id").text(event.id);
+					this.element.find(".event-stamp").text(event.stamp);
+					this.element.find(".event-title-formtitle").hide();
+					this.element.find(".event-title").val(event.title).addClass("template");
+					//this.element.find(".creator-name").val(event.creator);
+					// Split timestamp into [ Y, M, D, h, m, s ]
+					var t = event.date.split(/[- :]/);
+					// Apply each element to the Date function
+					// var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+					this.element.find(".event-date").val(t[2] + "." + t[1] + "." + t[0]).removeClass("event-formfield-empty");
+					this.element.find(".event-time").val(t[3] + ":" + t[4]).removeClass("event-formfield-empty");
+					this.element.find(".event-location").val(event.location).removeClass("event-formfield-empty");
+					this.element.find(".event-desc").val(event.description).removeClass("event-formfield-empty");
+					for (var i = 0; i < event.entrys.length; i++) {
+						var entry = event.entrys[i];
+						var itemElement = this.element.find(".item-template").clone().removeClass("item-template").addClass("item-filled");
+						this.element.find("#clone-item-here").before(itemElement);
+						itemElement.find('.item_title').removeClass('item_title-empty').attr("readonly", true);
+						itemElement.find('.item_qty').removeClass('item_qty-empty').attr("readonly", true);
+						itemElement.find('.item_note').removeClass('item_note-empty').attr("readonly", true);
+						itemElement.find('.item-id').text(entry.id);
+						itemElement.find('.item_title').val(entry.title);
+						itemElement.find('.item_qty').val(entry.total_qty);
+						itemElement.find('.item_note').val(entry.note);
+						itemElement.find('.item-delete').removeClass("template");
+						itemElement.find('.placeholder-item-delete').addClass("template");
+						itemElement.find('.item-delete').click(function()
+						{
+							that._deleteItem(itemElement, entry.id);
+						});
+					}
+				},
+				204: function() {
+					this._trigger("onerror", null, "Der Eintrag existiert nicht mehr! Eventuell wurde dieser zwischenzeitlich durch einen anderen Benutzer gelöscht.");
 				}
 			},
 			error: function(request) {
-				alert(request.responseText);
-				return;
+					this._trigger("onerror", null, request.responseText);
+					return;
 			},
 			context:this
 		});
@@ -175,20 +181,26 @@ $.widget("event.eventCreate",
 		
 		$.ajax({
 			type: httpType,
-			dataType: "json",
 			contentType: "application/json",
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events" + addUrl,
 			data: JSON.stringify(event),
 			success: function(eventId) {
-				alert("success");
 				that._saveItems(eventId);
-				that.showEvent("/api/events/" + eventId);
-				this._trigger("onEventSaved");
+				if (ID != "") {
+					that.showEvent("/api/events/" + ID);
+				} else {
+					that.showEvent("/api/events/" + eventId);
+				};
+				this._trigger("oneventSaved");
 			},
 			error: function(request) {
-				alert("success aber error");
-				alert(request.responseText);
-				return;
+				if (request.status == "412") {
+					this._trigger("onerror", null, "Der Eintrag wurde zwischenzeitlich verändert oder gelöscht.");
+					that.showEvent("/api/events/" + ID);
+				} else {
+					this._trigger("onerror", null, request.responseText);
+					return;
+				}
 			},
 		context: this	
 		});
@@ -196,6 +208,7 @@ $.widget("event.eventCreate",
 	
 	_saveItems: function(eventId) {
 		
+		var that = this;
 		$(".item-filled").each(function(index) {
 			var title = $(this).find(".item_title").val();
 			var total_qty = $(this).find(".item_qty").val();
@@ -219,7 +232,7 @@ $.widget("event.eventCreate",
 					alert("item gespeichert!");
 				},
 				error: function(request) {
-					alert(request.responseText);
+					that._trigger("onerror", null, request.responseText);
 					return;
 				},
 			context: this	
@@ -285,7 +298,8 @@ $.widget("event.eventCreate",
 					itemElement.remove();
 				}
 				else {
-				alert(request.responseText);
+					this._trigger("onerror", null, request.responseText);
+					return;
 				}
 			},
 		context: this	
