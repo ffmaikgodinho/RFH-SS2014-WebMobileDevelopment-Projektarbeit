@@ -299,6 +299,7 @@
                     break;
                 case "post":
                     if (is_numeric($strID) && $strID > 0)  {
+                        $inputData->id = $strID;
                         $returnObject = $object->update($inputData);
                     }
                     else  {

@@ -34,6 +34,8 @@
                 $this->description = $postData["Beschreibung"];
             if (isset($postData["Typ"]))
                 $this->type = $postData["Typ"];
+            if (isset($postData["Stamp"]))
+                $this->stamp = $postData["Stamp"];
         }
         public function parseJSON($json)  {
             if (isset($json["title"]))
@@ -46,6 +48,8 @@
                 $this->description = $json["description"];
             if (isset($json["type"]))
                 $this->type = $json["type"];
+            if (isset($json["stamp"]))
+                $this->stamp = $json["stamp"];
             
         }
         public function parseXML($xml)  {
