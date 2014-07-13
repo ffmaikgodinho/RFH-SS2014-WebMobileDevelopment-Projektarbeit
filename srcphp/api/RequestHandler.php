@@ -66,8 +66,6 @@
          * handles all incoming request 
          */
         public function handleRequest()  {
-            header("Content-type:application/json");    // Yes this ignores the Accept Header of the Request
-            
             $this->requireFile("requestMapping","IBaseRequest.php");
             switch (strtolower($this->m_Entity))  {
                 
@@ -280,6 +278,7 @@
             $object = new $strRequestMapper($this);
             switch (strtolower($strCommand))  {
                 case "get":
+                    header("Content-type:application/json");    // Yes this ignores the Accept Header of the Request
                     if (strlen($strID) == 0)  {
                         $returnObject = $object->getAll($this->m_SearchString);
                     }
