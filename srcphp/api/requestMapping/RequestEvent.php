@@ -166,7 +166,7 @@
         private function checkData($data)  {
             if (is_numeric($data->type) AND $data->type >= 0 AND $data->type <= 999)  {
                 if (strlen($data->location) > 0)  {
-                    if (strlen($data->date) > 0)  {
+                    if (isset($data->date))  {
                         return true;   
                     }
                 }
