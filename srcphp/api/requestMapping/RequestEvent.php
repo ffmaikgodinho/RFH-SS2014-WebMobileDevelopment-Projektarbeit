@@ -36,7 +36,7 @@
             //Search handling
             $searchQuery = "";
             if (strlen($searchString) > 0)  {
-                $searchQuery = " WHERE event.location LIKE '%".$searchString."%' OR event.description LIKE '%".$searchString."%'";   
+                $searchQuery = " WHERE event.title LIKE '%".$searchString."%' OR event.location LIKE '%".$searchString."%' OR event.description LIKE '%".$searchString."%'";   
             }
             
             $strSql = "Select * FROM event".$searchQuery;
