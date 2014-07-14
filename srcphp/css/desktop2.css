@@ -435,6 +435,7 @@ input.item_qty {
 	border:0;
 	border: none;
 	width:1.2em;
+	-moz-appearance:textfield;
 }
 
 textarea.item_note {
@@ -453,6 +454,7 @@ textarea.item_note {
 	border:none;
 	float:right;
 	resize:none;
+	overflow: auto;
 }
 
 .placeholder-item-delete {
