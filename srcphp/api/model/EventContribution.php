@@ -23,7 +23,16 @@
             
         }
         public function parseJSON($json)  {
-            
+            if (isset($json["eventEntryID"]))
+                $this->eventEntryID = $json["eventEntryID"];
+            if (isset($json["userid"]))
+                $this->userid = $json["userid"];
+            if (isset($json["name"]))
+                $this->name = $json["name"];
+            if (isset($json["quantity"]))
+                $this->quantity = $json["quantity"];
+            if (isset($json["stamp"]))
+                $this->stamp = $json["stamp"];
         }
         public function parseXML($xml)  {
             
