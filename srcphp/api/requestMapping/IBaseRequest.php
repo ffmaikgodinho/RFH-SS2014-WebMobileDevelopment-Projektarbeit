@@ -1,4 +1,13 @@
 <?php
+    /**
+     * IBaseRequest
+     * 
+     * @package api   
+     * @author Maik Godinho
+     * @copyright 
+     * @version 1.0.0
+     * @access public
+     */
     interface IBaseRequest  {
        
         public function __construct($requestHandler);
