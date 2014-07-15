@@ -24,8 +24,6 @@
 			<ul>
 				<li class="active"><a href="package-api.html">api</a>
 						</li>
-				<li><a href="package-None.html">None</a>
-						</li>
 			</ul>
 		</div>
 
@@ -35,14 +33,25 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Event.html">Event</a></li>
+				<li><a href="class-EventContribution.html">EventContribution</a></li>
+				<li><a href="class-EventEntry.html">EventEntry</a></li>
+				<li><a href="class-IOUtil.html">IOUtil</a></li>
 				<li class="active"><a href="class-MySQL.html">MySQL</a></li>
 				<li><a href="class-RequestEvent.html">RequestEvent</a></li>
 				<li><a href="class-RequestEventContribution.html">RequestEventContribution</a></li>
 				<li><a href="class-RequestEventEntry.html">RequestEventEntry</a></li>
 				<li><a href="class-RequestHandler.html">RequestHandler</a></li>
 				<li><a href="class-RequestUser.html">RequestUser</a></li>
+				<li><a href="class-Settings.html">Settings</a></li>
+				<li><a href="class-User.html">User</a></li>
 			</ul>
 
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-IBaseModel.html">IBaseModel</a></li>
+				<li><a href="class-IBaseRequest.html">IBaseRequest</a></li>
+			</ul>
 
 
 
@@ -202,38 +211,50 @@
 </span><span id="117" class="l"><a class="l" href="#117">117: </a>    }
 </span><span id="118" class="l"><a class="l" href="#118">118: </a>    
 </span><span id="119" class="l"><a class="l" href="#119">119: </a>    <span class="php-comment">/**
-</span></span><span id="120" class="l"><a class="l" href="#120">120: </a><span class="php-comment">     * MySQL::getNumRows()
-</span></span><span id="121" class="l"><a class="l" href="#121">121: </a><span class="php-comment">     *
-</span></span><span id="122" class="l"><a class="l" href="#122">122: </a><span class="php-comment">     * * Just a Wrapper for mysqli_num_rows
-</span></span><span id="123" class="l"><a class="l" href="#123">123: </a><span class="php-comment">     *  
+</span></span><span id="120" class="l"><a class="l" href="#120">120: </a><span class="php-comment">     * MySQL::fetch_assoc()
+</span></span><span id="121" class="l"><a class="l" href="#121">121: </a><span class="php-comment">     * 
+</span></span><span id="122" class="l"><a class="l" href="#122">122: </a><span class="php-comment">     * Just a wrapper for mysqli_fetch_assoc
+</span></span><span id="123" class="l"><a class="l" href="#123">123: </a><span class="php-comment">     * 
 </span></span><span id="124" class="l"><a class="l" href="#124">124: </a><span class="php-comment">     * @param mixed $result
 </span></span><span id="125" class="l"><a class="l" href="#125">125: </a><span class="php-comment">     * @return
 </span></span><span id="126" class="l"><a class="l" href="#126">126: </a><span class="php-comment">     */</span>
-</span><span id="127" class="l"><a class="l" href="#127">127: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getNumRows" href="#_getNumRows">getNumRows</a>(<span class="php-var">$result</span>)  {
-</span><span id="128" class="l"><a class="l" href="#128">128: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">mysqli_num_rows</span>(<span class="php-var">$result</span>);
+</span><span id="127" class="l"><a class="l" href="#127">127: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_fetch_assoc" href="#_fetch_assoc">fetch_assoc</a>(<span class="php-var">$result</span>)  {
+</span><span id="128" class="l"><a class="l" href="#128">128: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">mysqli_fetch_assoc</span>(<span class="php-var">$result</span>);
 </span><span id="129" class="l"><a class="l" href="#129">129: </a>    }
 </span><span id="130" class="l"><a class="l" href="#130">130: </a>    
 </span><span id="131" class="l"><a class="l" href="#131">131: </a>    <span class="php-comment">/**
-</span></span><span id="132" class="l"><a class="l" href="#132">132: </a><span class="php-comment">     * MySQL::getLastInsertID()
+</span></span><span id="132" class="l"><a class="l" href="#132">132: </a><span class="php-comment">     * MySQL::getNumRows()
 </span></span><span id="133" class="l"><a class="l" href="#133">133: </a><span class="php-comment">     *
-</span></span><span id="134" class="l"><a class="l" href="#134">134: </a><span class="php-comment">     * Returns the last inserted it in a table using AUTO_INCREMENT
+</span></span><span id="134" class="l"><a class="l" href="#134">134: </a><span class="php-comment">     * * Just a Wrapper for mysqli_num_rows
 </span></span><span id="135" class="l"><a class="l" href="#135">135: </a><span class="php-comment">     *  
-</span></span><span id="136" class="l"><a class="l" href="#136">136: </a><span class="php-comment">     * @return
-</span></span><span id="137" class="l"><a class="l" href="#137">137: </a><span class="php-comment">     */</span>
-</span><span id="138" class="l"><a class="l" href="#138">138: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getLastInsertID" href="#_getLastInsertID">getLastInsertID</a>()  {
-</span><span id="139" class="l"><a class="l" href="#139">139: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">mysqli_insert_id</span>(<span class="php-var">$this</span>-&gt;databaseLink);
-</span><span id="140" class="l"><a class="l" href="#140">140: </a>    }
-</span><span id="141" class="l"><a class="l" href="#141">141: </a>    
-</span><span id="142" class="l"><a class="l" href="#142">142: </a>    <span class="php-comment">/**
-</span></span><span id="143" class="l"><a class="l" href="#143">143: </a><span class="php-comment">     * MySQL::getAffectedRows()
-</span></span><span id="144" class="l"><a class="l" href="#144">144: </a><span class="php-comment">     * 
-</span></span><span id="145" class="l"><a class="l" href="#145">145: </a><span class="php-comment">     * @return the count of affected rows of the last query
-</span></span><span id="146" class="l"><a class="l" href="#146">146: </a><span class="php-comment">     */</span>
-</span><span id="147" class="l"><a class="l" href="#147">147: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getAffectedRows" href="#_getAffectedRows">getAffectedRows</a>()  {
-</span><span id="148" class="l"><a class="l" href="#148">148: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">mysqli_affected_rows</span>(<span class="php-var">$this</span>-&gt;databaseLink);
-</span><span id="149" class="l"><a class="l" href="#149">149: </a>    }
-</span><span id="150" class="l"><a class="l" href="#150">150: </a>}
-</span><span id="151" class="l"><a class="l" href="#151">151: </a></span><span class="xlang">?&gt;</span></code></pre>
+</span></span><span id="136" class="l"><a class="l" href="#136">136: </a><span class="php-comment">     * @param mixed $result
+</span></span><span id="137" class="l"><a class="l" href="#137">137: </a><span class="php-comment">     * @return
+</span></span><span id="138" class="l"><a class="l" href="#138">138: </a><span class="php-comment">     */</span>
+</span><span id="139" class="l"><a class="l" href="#139">139: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getNumRows" href="#_getNumRows">getNumRows</a>(<span class="php-var">$result</span>)  {
+</span><span id="140" class="l"><a class="l" href="#140">140: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">mysqli_num_rows</span>(<span class="php-var">$result</span>);
+</span><span id="141" class="l"><a class="l" href="#141">141: </a>    }
+</span><span id="142" class="l"><a class="l" href="#142">142: </a>    
+</span><span id="143" class="l"><a class="l" href="#143">143: </a>    <span class="php-comment">/**
+</span></span><span id="144" class="l"><a class="l" href="#144">144: </a><span class="php-comment">     * MySQL::getLastInsertID()
+</span></span><span id="145" class="l"><a class="l" href="#145">145: </a><span class="php-comment">     *
+</span></span><span id="146" class="l"><a class="l" href="#146">146: </a><span class="php-comment">     * Returns the last inserted it in a table using AUTO_INCREMENT
+</span></span><span id="147" class="l"><a class="l" href="#147">147: </a><span class="php-comment">     *  
+</span></span><span id="148" class="l"><a class="l" href="#148">148: </a><span class="php-comment">     * @return
+</span></span><span id="149" class="l"><a class="l" href="#149">149: </a><span class="php-comment">     */</span>
+</span><span id="150" class="l"><a class="l" href="#150">150: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getLastInsertID" href="#_getLastInsertID">getLastInsertID</a>()  {
+</span><span id="151" class="l"><a class="l" href="#151">151: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">mysqli_insert_id</span>(<span class="php-var">$this</span>-&gt;databaseLink);
+</span><span id="152" class="l"><a class="l" href="#152">152: </a>    }
+</span><span id="153" class="l"><a class="l" href="#153">153: </a>    
+</span><span id="154" class="l"><a class="l" href="#154">154: </a>    <span class="php-comment">/**
+</span></span><span id="155" class="l"><a class="l" href="#155">155: </a><span class="php-comment">     * MySQL::getAffectedRows()
+</span></span><span id="156" class="l"><a class="l" href="#156">156: </a><span class="php-comment">     * 
+</span></span><span id="157" class="l"><a class="l" href="#157">157: </a><span class="php-comment">     * @return the count of affected rows of the last query
+</span></span><span id="158" class="l"><a class="l" href="#158">158: </a><span class="php-comment">     */</span>
+</span><span id="159" class="l"><a class="l" href="#159">159: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getAffectedRows" href="#_getAffectedRows">getAffectedRows</a>()  {
+</span><span id="160" class="l"><a class="l" href="#160">160: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">mysqli_affected_rows</span>(<span class="php-var">$this</span>-&gt;databaseLink);
+</span><span id="161" class="l"><a class="l" href="#161">161: </a>    }
+</span><span id="162" class="l"><a class="l" href="#162">162: </a>}
+</span><span id="163" class="l"><a class="l" href="#163">163: </a></span><span class="xlang">?&gt;</span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

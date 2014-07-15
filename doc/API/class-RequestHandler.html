@@ -23,8 +23,6 @@
 			<ul>
 				<li class="active"><a href="package-api.html">api</a>
 						</li>
-				<li><a href="package-None.html">None</a>
-						</li>
 			</ul>
 		</div>
 
@@ -34,14 +32,25 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Event.html">Event</a></li>
+				<li><a href="class-EventContribution.html">EventContribution</a></li>
+				<li><a href="class-EventEntry.html">EventEntry</a></li>
+				<li><a href="class-IOUtil.html">IOUtil</a></li>
 				<li><a href="class-MySQL.html">MySQL</a></li>
 				<li><a href="class-RequestEvent.html">RequestEvent</a></li>
 				<li><a href="class-RequestEventContribution.html">RequestEventContribution</a></li>
 				<li><a href="class-RequestEventEntry.html">RequestEventEntry</a></li>
 				<li class="active"><a href="class-RequestHandler.html">RequestHandler</a></li>
 				<li><a href="class-RequestUser.html">RequestUser</a></li>
+				<li><a href="class-Settings.html">Settings</a></li>
+				<li><a href="class-User.html">User</a></li>
 			</ul>
 
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-IBaseModel.html">IBaseModel</a></li>
+				<li><a href="class-IBaseRequest.html">IBaseRequest</a></li>
+			</ul>
 
 
 
@@ -113,7 +122,7 @@ This has the advantage to seperate handling of entities.</p>
 				Maik Godinho<br />
 				<b>Version:</b>
 				1.0.0<br />
-		<b>Located at</b> <a href="source-class-RequestHandler.html#2-386" title="Go to source code">RequestHandler.php</a><br />
+		<b>Located at</b> <a href="source-class-RequestHandler.html#2-444" title="Go to source code">RequestHandler.php</a><br />
 	</div>
 
 
@@ -131,7 +140,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-RequestHandler.html#24-48" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-RequestHandler.html#25-66" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -164,7 +173,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#___destruct">#</a>
-		<code><a href="source-class-RequestHandler.html#50-57" title="Go to source code">__destruct</a>( )</code>
+		<code><a href="source-class-RequestHandler.html#68-75" title="Go to source code">__destruct</a>( )</code>
 
 		<div class="description short">
 			
@@ -197,7 +206,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_handleRequest">#</a>
-		<code><a href="source-class-RequestHandler.html#59-85" title="Go to source code">handleRequest</a>( )</code>
+		<code><a href="source-class-RequestHandler.html#77-101" title="Go to source code">handleRequest</a>( )</code>
 
 		<div class="description short">
 			
@@ -232,7 +241,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_responseOK">#</a>
-		<code><a href="source-class-RequestHandler.html#87-96" title="Go to source code">responseOK</a>( <span>mixed <var>$strMessage</var></span> )</code>
+		<code><a href="source-class-RequestHandler.html#103-112" title="Go to source code">responseOK</a>( <span>mixed <var>$strMessage</var></span> )</code>
 
 		<div class="description short">
 			
@@ -270,7 +279,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_responseNoContent">#</a>
-		<code><a href="source-class-RequestHandler.html#98-108" title="Go to source code">responseNoContent</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+		<code><a href="source-class-RequestHandler.html#114-124" title="Go to source code">responseNoContent</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
 
 		<div class="description short">
 			
@@ -310,7 +319,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_responseBadRequest">#</a>
-		<code><a href="source-class-RequestHandler.html#111-121" title="Go to source code">responseBadRequest</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+		<code><a href="source-class-RequestHandler.html#127-137" title="Go to source code">responseBadRequest</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
 
 		<div class="description short">
 			
@@ -350,7 +359,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_responseNotFound">#</a>
-		<code><a href="source-class-RequestHandler.html#123-133" title="Go to source code">responseNotFound</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+		<code><a href="source-class-RequestHandler.html#139-149" title="Go to source code">responseNotFound</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
 
 		<div class="description short">
 			
@@ -390,7 +399,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_responseNotAcceptable">#</a>
-		<code><a href="source-class-RequestHandler.html#135-145" title="Go to source code">responseNotAcceptable</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+		<code><a href="source-class-RequestHandler.html#151-161" title="Go to source code">responseNotAcceptable</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
 
 		<div class="description short">
 			
@@ -430,7 +439,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_responsePreconditionFailes">#</a>
-		<code><a href="source-class-RequestHandler.html#147-158" title="Go to source code">responsePreconditionFailes</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+		<code><a href="source-class-RequestHandler.html#163-174" title="Go to source code">responsePreconditionFailes</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
 
 		<div class="description short">
 			
@@ -470,7 +479,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_responseInternalServerError">#</a>
-		<code><a href="source-class-RequestHandler.html#162-172" title="Go to source code">responseInternalServerError</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+		<code><a href="source-class-RequestHandler.html#178-188" title="Go to source code">responseInternalServerError</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
 
 		<div class="description short">
 			
@@ -510,7 +519,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_responseNotImplemented">#</a>
-		<code><a href="source-class-RequestHandler.html#174-185" title="Go to source code">responseNotImplemented</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
+		<code><a href="source-class-RequestHandler.html#190-201" title="Go to source code">responseNotImplemented</a>( <span>mixed <var>$strErrorMessage</var></span> )</code>
 
 		<div class="description short">
 			
@@ -550,7 +559,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getDatabase">#</a>
-		<code><a href="source-class-RequestHandler.html#187-194" title="Go to source code">getDatabase</a>( )</code>
+		<code><a href="source-class-RequestHandler.html#203-210" title="Go to source code">getDatabase</a>( )</code>
 
 		<div class="description short">
 			
@@ -585,7 +594,7 @@ This has the advantage to seperate handling of entities.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_initDatabase">#</a>
-		<code><a href="source-class-RequestHandler.html#196-206" title="Go to source code">initDatabase</a>( )</code>
+		<code><a href="source-class-RequestHandler.html#212-222" title="Go to source code">initDatabase</a>( )</code>
 
 		<div class="description short">
 			
@@ -602,6 +611,45 @@ This has the advantage to seperate handling of entities.</p>
 
 
 
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDirtyPagingString" id="_getDirtyPagingString">
+
+		<td class="attributes"><code>
+			 public 
+			MySql
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDirtyPagingString">#</a>
+		<code><a href="source-class-RequestHandler.html#224-239" title="Go to source code">getDirtyPagingString</a>( )</code>
+
+		<div class="description short">
+			
+<p>RequestHandler::getDirtyPagingString()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>RequestHandler::getDirtyPagingString()</p>
+
+<p>returns the mysql optimized LIMIT String to realize paging functionality</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>MySql</code><br>Limit String<br />
+				</div>
 
 
 
@@ -797,6 +845,29 @@ This has the advantage to seperate handling of entities.</p>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
 			<a href="#$m_RequestHeader" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="m_Page" id="$m_Page">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-RequestHandler.html#23" title="Go to source code"><var>$m_Page</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$m_Page" class="anchor">#</a>
 
 			<div class="description short">
 				

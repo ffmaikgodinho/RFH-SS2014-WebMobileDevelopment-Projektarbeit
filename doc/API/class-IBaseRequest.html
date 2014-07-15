@@ -21,9 +21,7 @@
 		<div id="groups">
 			<h3>Packages</h3>
 			<ul>
-				<li><a href="package-api.html">api</a>
-						</li>
-				<li class="active"><a href="package-None.html">None</a>
+				<li class="active"><a href="package-api.html">api</a>
 						</li>
 			</ul>
 		</div>
@@ -38,6 +36,12 @@
 				<li><a href="class-EventContribution.html">EventContribution</a></li>
 				<li><a href="class-EventEntry.html">EventEntry</a></li>
 				<li><a href="class-IOUtil.html">IOUtil</a></li>
+				<li><a href="class-MySQL.html">MySQL</a></li>
+				<li><a href="class-RequestEvent.html">RequestEvent</a></li>
+				<li><a href="class-RequestEventContribution.html">RequestEventContribution</a></li>
+				<li><a href="class-RequestEventEntry.html">RequestEventEntry</a></li>
+				<li><a href="class-RequestHandler.html">RequestHandler</a></li>
+				<li><a href="class-RequestUser.html">RequestUser</a></li>
 				<li><a href="class-Settings.html">Settings</a></li>
 				<li><a href="class-User.html">User</a></li>
 			</ul>
@@ -72,7 +76,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="package-None.html" title="Summary of None"><span>Package</span></a>
+				<a href="package-api.html" title="Summary of api"><span>Package</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -90,6 +94,11 @@
 	<h1>Interface IBaseRequest</h1>
 
 
+	<div class="description">
+	
+<p>IBaseRequest</p>
+
+	</div>
 
 
 
@@ -110,9 +119,15 @@
 		
 		
 		
-		
+		<b>Package:</b> <a href="package-api.html">api</a><br />
 
-		<b>Located at</b> <a href="source-class-IBaseRequest.html#2-11" title="Go to source code">requestMapping/IBaseRequest.php</a><br />
+				<b>Copyright</b>
+				<br />
+				<b>Author:</b>
+				Maik Godinho<br />
+				<b>Version:</b>
+				1.0.0<br />
+		<b>Located at</b> <a href="source-class-IBaseRequest.html#2-20" title="Go to source code">requestMapping/IBaseRequest.php</a><br />
 	</div>
 
 
@@ -130,7 +145,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-IBaseRequest.html#4" title="Go to source code">__construct</a>( <span>mixed <var>$requestHandler</var></span> )</code>
+		<code><a href="source-class-IBaseRequest.html#13" title="Go to source code">__construct</a>( <span>mixed <var>$requestHandler</var></span> )</code>
 
 		<div class="description short">
 			
@@ -159,7 +174,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAll">#</a>
-		<code><a href="source-class-IBaseRequest.html#5" title="Go to source code">getAll</a>( <span>mixed <var>$searchString</var></span> )</code>
+		<code><a href="source-class-IBaseRequest.html#14" title="Go to source code">getAll</a>( <span>mixed <var>$searchString</var></span> )</code>
 
 		<div class="description short">
 			
@@ -188,7 +203,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSingle">#</a>
-		<code><a href="source-class-IBaseRequest.html#6" title="Go to source code">getSingle</a>( <span>mixed <var>$id</var></span> )</code>
+		<code><a href="source-class-IBaseRequest.html#15" title="Go to source code">getSingle</a>( <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			
@@ -217,7 +232,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_create">#</a>
-		<code><a href="source-class-IBaseRequest.html#7" title="Go to source code">create</a>( <span>mixed <var>$inputData</var></span> )</code>
+		<code><a href="source-class-IBaseRequest.html#16" title="Go to source code">create</a>( <span>mixed <var>$inputData</var></span> )</code>
 
 		<div class="description short">
 			
@@ -246,7 +261,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_update">#</a>
-		<code><a href="source-class-IBaseRequest.html#8" title="Go to source code">update</a>( <span>mixed <var>$inputData</var></span> )</code>
+		<code><a href="source-class-IBaseRequest.html#17" title="Go to source code">update</a>( <span>mixed <var>$inputData</var></span> )</code>
 
 		<div class="description short">
 			
@@ -275,7 +290,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_delete">#</a>
-		<code><a href="source-class-IBaseRequest.html#9" title="Go to source code">delete</a>( <span>mixed <var>$id</var></span> )</code>
+		<code><a href="source-class-IBaseRequest.html#18" title="Go to source code">delete</a>( <span>mixed <var>$id</var></span> )</code>
 
 		<div class="description short">
 			

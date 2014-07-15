@@ -23,8 +23,6 @@
 			<ul>
 				<li class="active"><a href="package-api.html">api</a>
 						</li>
-				<li><a href="package-None.html">None</a>
-						</li>
 			</ul>
 		</div>
 
@@ -34,14 +32,25 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Event.html">Event</a></li>
+				<li><a href="class-EventContribution.html">EventContribution</a></li>
+				<li><a href="class-EventEntry.html">EventEntry</a></li>
+				<li><a href="class-IOUtil.html">IOUtil</a></li>
 				<li class="active"><a href="class-MySQL.html">MySQL</a></li>
 				<li><a href="class-RequestEvent.html">RequestEvent</a></li>
 				<li><a href="class-RequestEventContribution.html">RequestEventContribution</a></li>
 				<li><a href="class-RequestEventEntry.html">RequestEventEntry</a></li>
 				<li><a href="class-RequestHandler.html">RequestHandler</a></li>
 				<li><a href="class-RequestUser.html">RequestUser</a></li>
+				<li><a href="class-Settings.html">Settings</a></li>
+				<li><a href="class-User.html">User</a></li>
 			</ul>
 
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-IBaseModel.html">IBaseModel</a></li>
+				<li><a href="class-IBaseRequest.html">IBaseRequest</a></li>
+			</ul>
 
 
 
@@ -114,7 +123,7 @@ with it like connect, disconnect, query e.g.</p>
 				Maik Godinho<br />
 				<b>Version:</b>
 				1.0.0<br />
-		<b>Located at</b> <a href="source-class-MySQL.html#2-150" title="Go to source code">MySql.php</a><br />
+		<b>Located at</b> <a href="source-class-MySQL.html#2-162" title="Go to source code">MySql.php</a><br />
 	</div>
 
 
@@ -296,6 +305,50 @@ with it like connect, disconnect, query e.g.</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="fetch_assoc" id="_fetch_assoc">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fetch_assoc">#</a>
+		<code><a href="source-class-MySQL.html#119-129" title="Go to source code">fetch_assoc</a>( <span>mixed <var>$result</var></span> )</code>
+
+		<div class="description short">
+			
+<p>MySQL::fetch_assoc()</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>MySQL::fetch_assoc()</p>
+
+<p>Just a wrapper for mysqli_fetch_assoc</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$result</var></dt>
+					<dd><code>mixed</code><br>$result</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="getNumRows" id="_getNumRows">
 
 		<td class="attributes"><code>
@@ -307,7 +360,7 @@ with it like connect, disconnect, query e.g.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getNumRows">#</a>
-		<code><a href="source-class-MySQL.html#119-129" title="Go to source code">getNumRows</a>( <span>mixed <var>$result</var></span> )</code>
+		<code><a href="source-class-MySQL.html#131-141" title="Go to source code">getNumRows</a>( <span>mixed <var>$result</var></span> )</code>
 
 		<div class="description short">
 			
@@ -353,7 +406,7 @@ with it like connect, disconnect, query e.g.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLastInsertID">#</a>
-		<code><a href="source-class-MySQL.html#131-140" title="Go to source code">getLastInsertID</a>( )</code>
+		<code><a href="source-class-MySQL.html#143-152" title="Go to source code">getLastInsertID</a>( )</code>
 
 		<div class="description short">
 			
@@ -392,7 +445,7 @@ with it like connect, disconnect, query e.g.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAffectedRows">#</a>
-		<code><a href="source-class-MySQL.html#142-149" title="Go to source code">getAffectedRows</a>( )</code>
+		<code><a href="source-class-MySQL.html#154-161" title="Go to source code">getAffectedRows</a>( )</code>
 
 		<div class="description short">
 			
