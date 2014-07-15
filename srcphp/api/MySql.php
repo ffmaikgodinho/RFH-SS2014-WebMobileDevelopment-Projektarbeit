@@ -117,6 +117,18 @@ class MySQL {
     }
     
     /**
+     * MySQL::fetch_assoc()
+     * 
+     * Just a wrapper for mysqli_fetch_assoc
+     * 
+     * @param mixed $result
+     * @return
+     */
+    public function fetch_assoc($result)  {
+        return mysqli_fetch_assoc($result);
+    }
+    
+    /**
      * MySQL::getNumRows()
      *
      * * Just a Wrapper for mysqli_num_rows

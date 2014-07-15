@@ -20,6 +20,7 @@
         var $m_AcceptType;
         var $m_ContentType;
         var $m_RequestHeader;
+        var $m_Page;
         
         /**
          * RequestHandler::__construct()
@@ -37,18 +38,31 @@
                 $this->m_ContentType = $temp[0];
             }
             $this->m_RequestHeader = apache_request_headers();
+            $this->m_Page = 1;
             if (isset($request_parts[1]))  {
                 if (is_numeric($request_parts[1]))  {
                     $this->m_ID = $request_parts[1];    
                 }
                 else  {
-                    $this->m_SearchString = $request_parts[1];
+                    if (substr($request_parts[1],0,4) != "page")  {
+                        $this->m_SearchString = $request_parts[1];
+                        if (isset($request_parts[2]))  {
+                            if (substr($request_parts[2],0,4) == "page")  {
+                                $this->m_Page = substr($request_parts[2],4);
+                            }
+                        }
+                    }
+                    else  {
+                        if (substr($request_parts[1],0,4) == "page")  {
+                            $this->m_Page = substr($request_parts[1],4);
+                        }
+                    }
                 }
             }
             $this->requireSettings();
             $this->requireUtils();
             $this->requireModels();
-            $this->initDatabase(); 
+            $this->initDatabase();
         }
         
         /**
@@ -208,6 +222,23 @@
         }
         
         /**
+         * RequestHandler::getDirtyPagingString()
+         * 
+         * returns the mysql optimized LIMIT String to realize paging functionality
+         * 
+         * @todo Refactor
+         * @return MySql Limit String
+         */
+        public function getDirtyPagingString()  {
+            $strReturn = " LIMIT ";
+            $strReturn .= ($this->m_Page-1) * Settings::EntriesPerPage;
+            $strReturn .= ",";
+            $strReturn .= Settings::EntriesPerPage;
+            $strReturn .= " ";
+            return $strReturn;
+        }
+        
+        /**
          * RequestHandler::getURLParam()
          * 
          * @param string $strName
@@ -318,11 +349,32 @@
                     $this->responseNotFound();
                     break;
             }
-            $this->getDatabase()->closeConnection();
-            
             if (isset($returnObject))  {
                 $this->handleOutput($returnObject);    
-            }    
+            }
+            $this->getDatabase()->closeConnection();    
+        }
+        
+        /**
+         * RequestHandler::handleMaxPages()
+         * 
+         * calculates the maximum available page count and sets a custom Header
+         * Header called X-MaxPages
+         * 
+         * @return void
+         */
+        private function handleMaxPages()  {
+            $strSQL = "SELECT FOUND_ROWS() AS Anzahl";
+            $result = $this->m_mysql->query($strSQL);
+            $row = $this->getDatabase()->fetch_assoc($result);
+            $lngAnzahlDatensaetze = $row["Anzahl"];
+            $maxPages = ceil($lngAnzahlDatensaetze / Settings::EntriesPerPage);
+            if ($maxPages > 1)  {
+                header("X-MaxPages: ".$maxPages);
+            }
+            else  {
+                header("X-MaxPages: 1");
+            }
         }
         
         /**
@@ -332,6 +384,7 @@
          * @return void
          */
         private function handleOutput($returnObject)  {
+            $this->handleMaxPages();
             switch ($this->m_AcceptType)  {
                 case "application/json":
                     echo json_encode($returnObject);
