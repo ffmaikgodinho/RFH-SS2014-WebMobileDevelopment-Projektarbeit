@@ -16,7 +16,7 @@ class Settings  {
     const DB_Password = "";
     const DB_Name = "pick-it";
     
-    const EntriesPerPage = 3;
+    const EntriesPerPage = 10;
 }
     
 ?>
