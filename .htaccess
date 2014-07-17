@@ -1,0 +1,4 @@
+AuthName "PickIT! Veranstaltungsmanagement"
+AuthType Basic
+AuthUserFile G:\Git\RFH-SS2014-WebMobileDevelopment-Projektarbeit\.htpasswd
+require valid-user
