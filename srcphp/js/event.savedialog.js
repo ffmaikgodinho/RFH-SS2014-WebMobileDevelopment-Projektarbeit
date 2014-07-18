@@ -1,3 +1,6 @@
+// Dialog zum Updaten eines Events
+// Autor: Denis Kündgen
+
 $.widget("event.saveDialog", $.ui.dialog, {
 	obj: "",
 	

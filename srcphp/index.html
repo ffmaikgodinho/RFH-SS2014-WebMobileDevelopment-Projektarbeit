@@ -1,17 +1,20 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- Charset deklarieren -->
 		<meta charset="utf-8">
+		
+		<!-- Stylesheets laden -->
 		<link rel="stylesheet" type="text/css" href="css/desktop2.css">
 		<link rel="stylesheet" href="./css/jquery-ui-1.10.4.custom.css" />
+		
+		<!-- Javascript laden -->
 		<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
 		<script src="js/jquery-ui-1.10.4.custom.js" type="text/javascript"></script>
 		<script src="js/jquery.blockUI.js" type="text/javascript"></script>
 		<script src="js/event.menubar.js" type="text/javascript"></script>
 		<script src="js/event.menusearch.js" type="text/javascript"></script>
 		<script src="js/event.eventlist.js" type="text/javascript"></script>
-		<!--<script src="js/event.eventdetails.js" type="text/javascript"></script>-->
 		<script src="js/event.eventcreate.js" type="text/javascript"></script>
 		<script src="js/event.eventvalidation.js" type="text/javascript"></script>
 		<script src="js/event.errordialog.js" type="text/javascript"></script>
@@ -19,49 +22,67 @@
 		<script src="js/event.canceldialog.js" type="text/javascript"></script>
 		<script src="js/event.savedialog.js" type="text/javascript"></script>
 		<script src="js/application.js" type="text/javascript"></script>
-		<title>Mainpage</title>
+		
+		<title>pick-it!</title>
 	</head>
 	<body>
-		<div id="outer-header">
-			<div id="inner-header">
-				<h1 id="logo">
-					pick-it!
-				</h1>
+		<div id="outer-header"> <!-- Weiße Menuleiste 100% Breite -->
+			<div id="inner-header"> <!-- Begrenzung der Menuleiste -->
+				<div id="logo-space">
+					<h1 id="logo">
+						pick-it!
+					</h1>
+				</div>
+				
+				<!-- Navigationsmenu -->
 				<menu id="navigation" class="navigation">
 					<li id="nav_about" class="navigation">About</li>
 					<li id="nav_new" class="navigation">New</li>
 					<li id="nav_login" class="navigation">Login</li>
 				</menu>
+
+				<!-- Suchfunktion -->
 				<form action="#" id="search" method="get">
 					<input id="search_string" class="search" type="search" lang="de" name="search" placeholder="Suche" maxlength="30">
 					<input id="search_button" class="search" type="image" src="img/search.png" alt="Suche">
 				</form>
 			</div>
 		</div>
-		<div id="content-limiter">
-<!--Anzeige Liste-->
+		<div id="content-limiter"> <!-- Begrenzung des Content-Bereichs auf maximale Breite -->
+			
+			<!-- Content: Liste anzeigen -->
 			<div class="content-item" id="event_list">
+				<!-- Seitenauswahl, wenn mehrere Seiten mit Treffern -->
+				<div class="content-page" >
+					<span class="page-title">Seite</span>
+					<select class="page-selector" size="1"></select>
+					<span class="page-title">von&nbsp;</span><span class="page-title numpages"></span>
+				</div>
+				<!-- Kopfbereich -->
 				<div class="content-head">
 					<p class="content-title">
 						Eventliste
 					</p>
 				</div>
+				<!-- Listenbereich -->
 				<div class="list-area">
 					<div class="list-entry template">
 						<p class="list-entry-title"></p>
 						<span class="list-entry-item">Wann:&nbsp;</span><span class="list-entry-fact-date"></span><span class="list-entry-item">Wo:&nbsp;</span><span class="list-entry-fact-location"></span>
 					</div>
 				</div>
-				<div id="list-advice"></div>
-				<span class="page page-template"></span>
+				<div id="list-advice"></div> <!-- Platzhalter für Texte, wenn Liste ohne Ergebnisse bleibt -->
 			</div>
-<!--Anzeige Einzelcontent-->
+
+			<!-- Content: About-Text -->
 			<div class="content-item" id="content">
+				<!-- Kopfbereich -->
 				<div class="content-head">
 					<p class="content-title">
 						pick-it! - einfach organisiert...
 					</p>
 				</div>
+				<!-- Inhaltbereich -->
 				<div class="content-area">
 					Mit pick-it! Erstellen Sie ganz einfach und schnell Ihre persönliche Veranstaltung.
 					<br>Sei es ein Geburtstag, eine Grillparty oder einfach ein Treffen im Park. Hier haben Sie die M&ouml;glichkeit ein Event zu erstellen und eine Einkaufsliste zu generieren. Jeder kann sich an dieser Einkaufsliste beteiligen und sich für einzelne Dinge eintragen.
@@ -71,100 +92,89 @@
 				</div>
 			</div>
 
-<!-- Ab hier addevent -->
-<!-- Ab hier Additem -->
+			<!-- Content: Event anlegen/editieren/löschen -->
 			<div class="content-item" id="event_create">
+				<!-- Menu zum speichern/löschen von Events -->
 				<menu id="content-menu" class="content-menu">
 					<li id="delete" class="content-menu delete">x</li>
 					<li id="save" class="content-menu save">a<!--&#10003;--></li>
 				</menu>
+				<!-- Kopfbereich (wird dynamisch gefüllt) -->
 				<div class="content-head">
 					<p class="content-title"></p>
 				</div>
+				<!-- Anzeigen/Editieren von Eventdaten -->
 				<div class="content-area">
 					<form action="addevent.php" method="post" class="form-container">
 							<span class="event-id template"></span>
 							<span class="event-stamp template"></span>
 							<span class="form-title event-title-formtitle">Titel:</span><input type="text" id="title" class="event-title event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-title" class="hint template"><span class="hint-sign">|</span>Titel fehlt</p>
 						<br><span class="form-title">Datum:</span><input type="text" id="date" class="event-date event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-date" class="hint template"><span class="hint-sign">|</span>Datum fehlt</p><p id="no-date" class="hint template"><span class="hint-sign">|</span>Datum ung&uuml;ltig</p><p id="past-date" class="hint template"><span class="hint-sign">|</span>Datum liegt in der Vergangenheit</p>
-						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value="" /><p id="no-time" class="hint template"><span class="hint-sign">|</span>Zeitangabe ung&uuml;ltig (hh:mm)</p>
+						<br><span class="form-title">Uhrzeit:</span><input type="time" id="time" class="event-time event-formfield event-formfield-empty" placeholder="" value=""><p id="no-time" class="hint template"><span class="hint-sign">|</span>Zeitangabe ung&uuml;ltig (hh:mm)</p>
 						<br><span class="form-title">Ort:</span><input type="text" id="location" class="event-location event-formfield event-formfield-empty" required="required" placeholder="" value="" /><p id="empty-location" class="hint template"><span class="hint-sign">|</span>Ort fehlt</p>
 						<br><textarea rows="4" cols="50" id="desc" class="event-desc event-formfield event-formfield-empty" placeholder="Beschreibung"></textarea>
 					</form>
 				</div>
-<!-- ab hier die items -->
+				<!-- Liste einzelner Einträge zum Event (entries) -->
 				<div class="list">
 					Liste
 				</div>
-				<div id="clone-item-here">
+				<div id="clone-item-here"> <!-- Platzhalter zum Klonen von Template-Elementen oberhalb des Platzhalters -->
 				</div>
-				<div class="item item-template">
-					<span class="item-id template"></span>				
+				<div class="item item-template"> <!-- Vorlage für ein Eintrag/Item (entry) -->
+					<span class="item-id template"></span> <!-- Platzhalter zum Speichern der Eintragsnummer -->		
 					<form action="additem.php" method="post" class="item">
 							<textarea rows="3" name="note" class="item_note item_note-empty" placeholder=""></textarea>
 							<span class="placeholder-item-delete"></span><span class="template item-delete">x</span><input type="text" name="title" class="item_title item_title-empty" required="required" value="" placeholder="" />
 							<input type="number" name="total_qty" min="0" class="item_qty item_qty-empty" value="" placeholder="" />
 					</form>
+					<!-- Bereich der Contributions (noch nicht implementiert) -->
 					<div class="contribution">
 						<br><br>
 					</div>
 				</div>
 			</div>
-<!-- Additem ende -->
-<!-- Addevent ende -->			
-<!-- Ab hier Additem -->
-<!--			<div class="content-item" id="event_show">
+			
+			<!-- Content: Loginbereich -->
+			<div class="content-item" id="login">
+				<!-- Kopfbereich -->
 				<div class="content-head">
-					<p class="content-creator">
-<!--					erstellt von <span id="creator" class="creator-name"></span>
-					</p>
 					<p class="content-title">
+						Login
 					</p>
 				</div>
+				<!-- Inhaltsbereich -->
 				<div class="content-area">
-					<form action="addevent.php" method="post" class="form-container">
-<!--						<input type="text" name="title" class="form-field" required="required" placeholder="Titel" value="" />
-					<br><span class="form-title">123Datum:</span><input type="date" name="date" class="event-date event-formfield" placeholder="Datum" value="" />
-						<br><span class="form-title">Uhrzeit:</span><input type="time" name="time" class="event-date event-formfield" placeholder="Urhzeit" value="" />
-						<br><span class="form-title">Ort:</span><input type="text" name="location" class="event-location event-formfield" placeholder="Ort" value="" />
-						<br><textarea rows="4" cols="50" name="desc" class="event-desc event-formfield" placeholder="Beschreibung" class="form-field"></textarea>
-					</form>
-				</div>
-<!-- ab hier die items
-				<div class="list">
-					Liste
-				</div>
-				<div id="clone-item-here">
-				</div>
-				<div class="item item-template">				
-					<form action="additem.php" method="post">
-							<textarea rows="3" name="note" class="item_note item_note-empty" placeholder=""></textarea>
-							<span class="placeholder-item-delete"></span><span class="template item-delete">x</span><input type="text" name="title" class="item_title item_title-empty" required="required" value="" placeholder="" />
-							<input type="number" name="total_qty" min="0" class="item_qty item_qty-empty" value="" placeholder="" />
-					</form>
-					<div class="contribution">
-						<input type="text" name="name" class="contribute_name" required="required" min="0" max="">
-						<input type="number" name="quantity" class="contribute_qty" required="required" min="0" max="">
-					</div>
+					Derzeit bietet pick-it! noch keine M&ouml;glichkeit zur Registrierung.
+					<br> Um Eintr&auml;ge in Zukunft in Abh&auml;ngigkeit vom registrierten Benutzer bearbeitbar oder zugreifbar zu machen arbeiten wir schon jetzt an einer Benutzerverwaltung.
+					<br>
+					<br>Vielen Dank für Ihr Verst&auml;ndnis!
 				</div>
 			</div>
-<!-- Additem ende -->
+			
+			<!-- Fußzeile (wird immer angezeigt) -->
 			<div id="footer">
-			copyright 2014 bla bla blub | Impressum
+			copyright 2014 K&uuml;ndgen, Ziegler, Godinho
 			</div>
 		</div>
-<!-- Dialogboxen -->
+		
+		<!-- Dialogboxen -->
+		<!-- Dialog zum Abbrechen einer Eventeingabe -->
 		<div id="cancel-dialog" title="Eingabe abbrechen" class="ui-widget">
 			<p class="message">Wollen Sie die Eingabe abbrechen? Alle Angaben gehen damit verloren.</p>
 		</div>
+		<!-- Dialog zum löschen eines Events -->
 		<div id="delete-dialog" title="Eintrag l&ouml;schen" class="ui-widget">
 			<p class="message">Wollen Sie diesen Eintrag wirklich l&ouml;schen?</p>
 		</div>
+		<!-- Dialog zum Aktualisieren eines bestehenden Events -->
 		<div id="save-dialog" title="Eintrag speichern" class="ui-widget">
 			<p class="message">Wollen Sie den Eintrag wirklich speichern? Alle &uuml;berschriebenen Daten gehen verloren.</p>
 		</div>
+		<!-- Allgemeiner Fehlerdialog -->
 		<div id="error-dialog" title="Nachricht vom webservice" class="ui-widget">
 			<p class="message">Hinweis:<br><span id="error-message"></span></p>
 		</div>
 	</body>
 </html>
+<!-- Autor: Denis Kündgen -->

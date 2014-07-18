@@ -1,3 +1,6 @@
+// Dialog zum Bestätigen des Löschens eines Events
+// Autor: Denis Kündgen
+
 $.widget("event.deleteDialog", $.ui.dialog, {
 	eventId: "",
 	
@@ -37,7 +40,6 @@ $.widget("event.deleteDialog", $.ui.dialog, {
 		this.close();
 		$.ajax({
 			type: "DELETE",
-			// dataType: "json",
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events/" + this.eventId,
 			success: function() {
 				this._trigger("ondeleted");

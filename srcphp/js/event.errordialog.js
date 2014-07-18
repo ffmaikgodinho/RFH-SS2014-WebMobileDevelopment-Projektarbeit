@@ -1,3 +1,6 @@
+// Dialog zur Anzeige von Fehlermeldungen
+// Autor: Denis Kündgen
+
 $.widget("event.errorDialog", $.ui.dialog, {
 	options: {
 		autoOpen: false,

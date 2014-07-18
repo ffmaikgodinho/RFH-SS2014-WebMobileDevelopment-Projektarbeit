@@ -1,3 +1,6 @@
+// Dialog zum Bestätigen eines Abbruchs einer Event-Eingabe
+// Autor: Denis Kündgen
+
 $.widget("event.cancelDialog", $.ui.dialog, 
 {
 	options: {

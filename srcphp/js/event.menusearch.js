@@ -1,3 +1,6 @@
+// Suchfunktion
+// Autor: Denis Kündgen
+
 $.widget("event.menuSearch", 
 {
 	_create: function() {

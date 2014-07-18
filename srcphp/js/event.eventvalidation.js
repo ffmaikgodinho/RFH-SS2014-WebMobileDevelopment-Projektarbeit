@@ -1,9 +1,14 @@
+// Methodensammlung zur Validierung von Eingaben in Formulare
+// Autor: Denis Kündgen
 
+
+	// Datum validieren
 	function validateDate(that) {
 		
 		var dateElement = that.element.find("#date");
 		
 		if (dateElement.val() == "") {
+			// Datum darf nicht leer sein (Pflichtfeld)
 			that.element.find("#empty-date").removeClass("template");
 			dateElement.removeClass("event-formfield");
 			dateElement.addClass("empty-required-field");
@@ -13,6 +18,7 @@
 			var t = dateElement.val().split(/[- .]/);
 			var d = new Date(t[2], t[1]-1, t[0]);
 			
+			// Plausibilitätsprüfung (keine genaue Prüfung auf Schaltjahr, Monatstage etc.)
 			if ((t[2]<0) || (t[2]>3000)) {
 				d = "Invalid Date";
 			};
@@ -24,7 +30,6 @@
 			};
 			
 			if (d == "Invalid Date") {
-				valid = false;
 				that.element.find("#no-date").removeClass("template");
 				dateElement.removeClass("event-formfield");
 				dateElement.addClass("empty-required-field");
@@ -35,6 +40,8 @@
 		};
 	}
 	
+	
+	// Urhzeit validieren
 	function validateTime(that) {
 		
 		var timeElement = that.element.find("#time");
@@ -43,6 +50,7 @@
 			var t = timeElement.val().split(/[:]/);
 			var d = new Date(0,0,0,t[0], t[1], 0);
 			
+			// Plausibilitätsprüfung
 			if ((t[0]<0) || (t[0]>23)) {
 				d = "Invalid Date";
 			};
@@ -50,7 +58,6 @@
 				d = "Invalid Date";
 			};
 			if (d == "Invalid Date") {
-				valid = false;
 				that.element.find("#no-time").removeClass("template");
 				timeElement.removeClass("event-formfield");
 				timeElement.addClass("empty-required-field");
@@ -62,6 +69,7 @@
 	}
 	
 	
+	// Titel darf nicht leer sein (Pflichtfeld)
 	function validateTitle(that) {
 		
 		var titleElement = that.element.find("#title");
@@ -77,6 +85,7 @@
 		};
 	}
 	
+	// Ort darf nicht leer sein (Pflichtfeld)
 	function validateLocation(that) {
 		
 		var locationElement = that.element.find("#location");

@@ -1,7 +1,15 @@
+// Menuleiste
+// Autor: Denis Kündgen
+
 $.widget("event.menuBar", 
 {
 	_create: function() {
 		var that = this;
+		this.element.find("#logo").click( function()
+			{
+				that._trigger("onlogoClicked");
+				return false;
+			});
 		this.element.find("#nav_about").click( function()
 			{
 				that._trigger("onaboutClicked");

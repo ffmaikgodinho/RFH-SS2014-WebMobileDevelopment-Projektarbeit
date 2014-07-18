@@ -1,9 +1,15 @@
+// Event anzeigen
+// Event Erstellen/Löschen/Ändern
+// Einträge speichern/ergänzen/löschen
+// Autor: Denis Kündgen
+
 $.widget("event.eventCreate", 
 {	
 	_create: function() 
 	{
 		var that = this;
 		
+		// Speichern-Knopf belegen (speichern/updaten)
 		this.element.find("#save").click( function()
 			{
 				var ID = that.element.find(".event-id").text()
@@ -13,6 +19,8 @@ $.widget("event.eventCreate",
 					that._trigger("onsaveClicked", null, that);
 				};
 			});
+			
+		// Löschen-Knopf belegen (löschen/abbrechen)
 		this.element.find("#delete").click( function()
 		{
 			var ID = that.element.find(".event-id").text()
@@ -22,25 +30,37 @@ $.widget("event.eventCreate",
 				that._trigger("ondeleteClicked", null, ID);
 			};
 		});
+		
+		// Validierung: Titel als Pflichtfeld
 		this.element.find("#title").change(function() {
 			that._load();
 			validateTitle(that);
 		});
+		
+		// Validierung: Datumformat und Eingabe überprüfen
 		this.element.find("#date").change(function() {
 			that._load();
 			validateDate(that);
 		});
+		
+		// Validierung: Ort als Pflichtfeld
 		this.element.find("#location").change(function() {
 			that._load();
 			validateLocation(that);
 		});
+		
+		// Validierung: Zeitformat und Eingabe überprüfen
 		this.element.find("#time").change(function() {
 			that._load();
 			validateTime(that);
 		});
+		
+		// Nach Eingabe eines Items eine neue Eingabemaske zur Verfügung stellen
 		this.element.find(".item_title").change(function() {
 			that._newItem();
 		});	
+		
+		// Wenn "Enter" oder "Tab" verwendet wird, eine neue Eingabemaske zur Verfügung stellen
 		this.element.find(".item_title").on("keydown", function(e) {
 			if ((e.keyCode == 9) || (e.keyCode == 13)) { 
 				e.preventDefault();
@@ -49,6 +69,8 @@ $.widget("event.eventCreate",
 		});	
 	},
 	
+	
+	// Neues Event/Maske leeren
 	newEvent: function() {
 		var that = this;
 		this.element.find(".item-filled").remove();
@@ -65,29 +87,33 @@ $.widget("event.eventCreate",
 	},
 	
 	
+	// Event laden
 	showEvent: function(eventUrl) {
 		var that = this;
+		
+		// Vorherige Elemente entfernen
 		that.newEvent();
+		
+		// Daten abfragen
 		$.ajax({
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp" + eventUrl,
 			dataType: "json",
 			statusCode: {
 				200: function(event) {
+					// Inhalte füllen
 					var eventId = event.id;
 					this.element.find(".content-title").text(event.title);
 					this.element.find(".event-id").text(event.id);
 					this.element.find(".event-stamp").text(event.stamp);
 					this.element.find(".event-title-formtitle").hide();
 					this.element.find(".event-title").val(event.title).addClass("template");
-					//this.element.find(".creator-name").val(event.creator);
-					// Split timestamp into [ Y, M, D, h, m, s ]
 					var t = event.date.split(/[- :]/);
-					// Apply each element to the Date function
-					// var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
 					this.element.find(".event-date").val(t[2] + "." + t[1] + "." + t[0]).removeClass("event-formfield-empty");
 					this.element.find(".event-time").val(t[3] + ":" + t[4]).removeClass("event-formfield-empty");
 					this.element.find(".event-location").val(event.location).removeClass("event-formfield-empty");
 					this.element.find(".event-desc").val(event.description).removeClass("event-formfield-empty");
+					
+					// Einträge (entries) laden
 					for (var i = 0; i < event.entrys.length; i++) {
 						var entry = event.entrys[i];
 						var itemElement = this.element.find(".item-template").clone().removeClass("item-template").addClass("item-show");
@@ -102,6 +128,7 @@ $.widget("event.eventCreate",
 						itemElement.find('.item-delete').removeClass("template");
 						itemElement.find('.placeholder-item-delete').addClass("template");
 						itemElement.find('.item-delete').attr("data-id",entry.id.toString()) 
+						// Löschen-Knopf mit Klickfunktion belegen
 						itemElement.find('.item-delete').click(function()
 						{
 							that._deleteItem(this, this.getAttribute("data-id"));
@@ -109,17 +136,21 @@ $.widget("event.eventCreate",
 					}
 				},
 				204: function() {
+					// Rückmeldung wenn keine Einträge gefunden wurden
 					this._trigger("onerror", null, "Der Eintrag existiert nicht mehr! Eventuell wurde dieser zwischenzeitlich durch einen anderen Benutzer gelöscht.");
 				}
 			},
 			error: function(request) {
-					this._trigger("onerror", null, request.responseText);
-					return;
+				// Rückmeldung bei sonstigen Fehlern
+				this._trigger("onerror", null, request.responseText);
+				return;
 			},
 			context:this
 		});
 	},
 	
+	
+	// Hilfsfunktion zum entfernen aller Styles 
 	_load: function() {
 		var titleElement = this.element.find("#title");
 		var dateElement = this.element.find("#date");
@@ -142,17 +173,23 @@ $.widget("event.eventCreate",
 		locationElement.removeClass("empty-required-field");
 	},
 	
+	
+	// Event speichern/updaten
 	_saveEvent: function() 
 	{
 		var that = this;
 		
+		// Prüfen ob alle Eingabe valide sind
 		var valid = that._validateEvent("valid");
 		if (!valid) {
 			return;
 		};
 		
+		// auslesen der ID, sofern vorhanden
 		var ID = this.element.find(".event-id").text();
 		var httpType = "";
+		
+		// Wenn ID gefüllt, handelt es sich um ein Update
 		if (ID != "") {
 			httpType = "POST";
 			addUrl = "/" + ID;
@@ -161,16 +198,7 @@ $.widget("event.eventCreate",
 			addUrl = "";
 		};
 		
-		alert(" title: " + this.element.find("#title").val() + 
-					"\n id: " + ID +
-					"\n date: " + this.element.find("#date").val() + " " + this.element.find("#time").val() +
-					"\n location: " + this.element.find("#location").val() +
-					"\n description: " + this.element.find("#desc").val() +
-					"\n type: " + 1 +
-					"\n stamp: " + this.element.find(".event-stamp").text() +
-					"\n httpType: " + httpType + 
-					"\n url: /RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events" + addUrl);
-		
+		// Objekt zusammenstellen
 		var event = {
 			title: this.element.find(".event-title").val(),
 			date: this.element.find(".event-date").val() + " " + this.element.find("#time").val(),
@@ -180,24 +208,31 @@ $.widget("event.eventCreate",
 			type: 1
 		};
 		
-		
+		// Event speichern/updaten - Aufruf des Webservice
 		$.ajax({
 			type: httpType,
 			contentType: "application/json",
+			headers: {"If-Match": this.element.find(".event-stamp").text()},
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/events" + addUrl,
 			data: JSON.stringify(event),
 			success: function(eventId) {
 				var eventIdNumber = ""
+				
+				// Bei Erfolg ID holen
 				if (ID != "") {
 					eventIdNumber = ID;
 				} else {
 					eventIdNumber = eventId;
-				};				
+				};		
+				
+				// Einträge (entries) speichern 
 				that._saveItems(eventIdNumber);
+				
+				// Event anzeigen
 				that.showEvent("/api/events/" + eventIdNumber);
-				this._trigger("oneventSaved");
 			},
 			error: function(request) {
+				// Fehlerbehandlung
 				if (request.status == "412") {
 					this._trigger("onerror", null, "Der Eintrag wurde zwischenzeitlich verändert und wird nun neu geladen.");
 					that.showEvent("/api/events/" + ID);
@@ -213,15 +248,19 @@ $.widget("event.eventCreate",
 		});
 	},
 	
+	
+	// Einträge (entries) speichern
 	_saveItems: function(eventId) {
 		
 		var that = this;
+		
+		// Durch einzelne Einträge (entries) iterieren
 		$(".item-filled").each(function(index) {
 			var title = $(this).find(".item_title").val();
 			var total_qty = $(this).find(".item_qty").val();
 			var note = $(this).find(".item_note").val();
-			// alert(index + ": " + title + " | " + total_qty + " | " + note);
 		
+			// Objekt zusammenstellen
 			var item = {
 				eventid: eventId,
 				title: title,
@@ -229,6 +268,7 @@ $.widget("event.eventCreate",
 				note: note
 			};
 			
+			// Eintrag speichern - Aufruf des Webservice
 			$.ajax({
 				type: "PUT",
 				dataType: "json",
@@ -236,7 +276,6 @@ $.widget("event.eventCreate",
 				url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/evententries",
 				data: JSON.stringify(item),
 				success: function() {
-					// alert("item gespeichert!");
 				},
 				error: function(request) {
 					that._trigger("onerror", null, request.responseText);
@@ -247,6 +286,8 @@ $.widget("event.eventCreate",
 		});
 	},
 	
+	
+	// Hilfsmethode zum Validieren aller Einträge vor dem Speichern
 	_validateEvent: function()
 	{
 		var that = this;
@@ -271,6 +312,8 @@ $.widget("event.eventCreate",
 		return valid;
 	},
 	
+	
+	// Erstellen einer neuen Eingabemaske nach Eingabe eines Eintrags (entries)
 	_newItem: function() {
 		var itemTitle = this.element.find(".item-template").find('.item_title');
 		if (itemTitle.val() != "") {
@@ -292,18 +335,16 @@ $.widget("event.eventCreate",
 		}		
 	},
 	
+	
+	// Löschen eines Eintrags (entries)
 	_deleteItem: function(itemElement, itemId) {
-		// alert(itemId);
 		$.ajax({
 			type: "DELETE",
-			// dataType: "json",
 			url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/evententries/" + itemId,
 			success: function() {
-				// alert("gelöscht!");
 				$(itemElement).parent().parent().remove();
 			},
 			error: function(request) {
-				// alert("ist gelöscht worden, läuft aber ins error!");
 				if (request.status == "404") {
 					$(itemElement).parent().parent().remove();
 				}
