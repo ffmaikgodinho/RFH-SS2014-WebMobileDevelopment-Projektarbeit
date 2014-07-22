@@ -10,7 +10,7 @@
 class Settings  {
     //Access to MySql Database
     
-    const DB_Server = "localhost";
+    const DB_Server = "1localhost";
     const DB_Port = "3306";
     const DB_Username = "root";
     const DB_Password = "";

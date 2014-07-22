@@ -105,7 +105,7 @@
                 $strSql = "UPDATE entry SET title = '".$inputData->title."',note = '".$inputData->note."',total_qty = '".$inputData->totalQuantity."', stamp = stamp + 1 WHERE id = '" . $inputData->id . "'";
                 $result = $this->m_requestHandler->getDatabase()->query($strSql);
                 if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
-                    $this->m_requestHandler->responseNotFound("The given id was not found and therefore could not be updated..");
+                    $this->m_requestHandler->responseInternalServerError("The given id was not found and therefore could not be updated..");
                 }
                 else  {
                     $this->m_requestHandler->responseOK("EventEntry successfully updated.");
@@ -128,7 +128,7 @@
             $strSql = "DELETE FROM entry WHERE id = '" . $id . "'";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
-                $this->m_requestHandler->responseNotFound("The given entry was not found and therefore could not be deleted.");
+                $this->m_requestHandler->responseNoContent("The given entry was not found and therefore could not be deleted.");
             }
             else  {
                 $this->m_requestHandler->responseOK("Entry successfully deleted.");

@@ -3,6 +3,23 @@
 
 $(function() {
 	
+	//allgemeine Fehlerbehandlung
+	$(document).ajaxError(function(event, request) {
+		if (request.status == "400") {
+				return;
+			};
+		if (request.status == "404") {
+			$("#error-dialog").errorDialog("open", "Der Webservice steht derzeit nicht zur Verfügung, bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.");
+		} else {
+			$("#error-dialog").errorDialog("open", request.statusText);
+		};
+		$("#login").hide();
+		$("#event_create").hide();
+		$("#event_list").hide();
+		$("#event_show").hide();
+		$("#content").show();
+	});
+	
 	// Blocken der UI beim Verarbeiten
 	$(document).ajaxStart(function() {
 		$.blockUI({message:null});

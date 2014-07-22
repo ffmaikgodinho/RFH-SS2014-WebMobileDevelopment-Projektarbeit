@@ -126,7 +126,7 @@
                     $strSql = "UPDATE event SET title = '".$inputData->title."',description = '".$inputData->description."',location = '".$inputData->location."',date = '".date("Y-m-d H:i:s",$inputData->date->getTimestamp())."',type = '".$inputData->type."', stamp = stamp + 1 WHERE id = '" . $inputData->id . "'";
                     $result = $this->m_requestHandler->getDatabase()->query($strSql);
                     if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
-                        $this->m_requestHandler->responseNotFound("The given id was not found and therefore could not be updated..");
+                        $this->m_requestHandler->responseInternalServerError("The given id was not found and therefore could not be updated..");
                     }
                     else  {
                         $this->m_requestHandler->responseOK("Event successfully updated.");
@@ -137,7 +137,7 @@
                 }
             }
             else  {
-                $this->m_requestHandler->responseNotFound("");
+                $this->m_requestHandler->responseBadRequest("");
             }
         }
         
@@ -156,7 +156,7 @@
             $strSql = "DELETE FROM event WHERE id = '" . $id . "'";
             $result = $this->m_requestHandler->getDatabase()->query($strSql);
             if ($this->m_requestHandler->getDatabase()->getAffectedRows() != 1)  {
-                $this->m_requestHandler->responseNotFound("The given event was not found and therefore could not be deleted.");
+                $this->m_requestHandler->responseNoContent("The given event was not found and therefore could not be deleted.");
             }
             else  {
                 $this->m_requestHandler->responseOK("Event successfully deleted.");

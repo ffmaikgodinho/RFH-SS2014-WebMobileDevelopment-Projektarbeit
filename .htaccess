@@ -1,4 +1,4 @@
 AuthName "PickIT! Veranstaltungsmanagement"
 AuthType Basic
-AuthUserFile .htpasswd
+AuthUserFile C:\xampp\htdocs\RFH-SS2014-WebMobileDevelopment-Projektarbeit\.htpasswd
 require valid-user

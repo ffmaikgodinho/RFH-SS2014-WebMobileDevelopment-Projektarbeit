@@ -229,14 +229,14 @@ $.widget("event.eventCreate",
 				that._saveItems(eventIdNumber);
 				
 				// Event anzeigen
-				that.showEvent("/api/events/" + eventIdNumber);
+				//that.showEvent("/api/events/" + eventIdNumber);
 			},
 			error: function(request) {
 				// Fehlerbehandlung
 				if (request.status == "412") {
 					this._trigger("onerror", null, "Der Eintrag wurde zwischenzeitlich verändert und wird nun neu geladen.");
 					that.showEvent("/api/events/" + ID);
-				} else if (request.status == "404") {
+				} else if (request.status == "400") {
 					this._trigger("onerror", null, "Der Eintrag wurde zwischenzeitlich gelöscht. Sie haben nun die Möglichkeit ein neues Event anzulegen.");
 					that.newEvent();
 				} else {
@@ -253,6 +253,7 @@ $.widget("event.eventCreate",
 	_saveItems: function(eventId) {
 		
 		var that = this;
+		var results = [];
 		
 		// Durch einzelne Einträge (entries) iterieren
 		$(".item-filled").each(function(index) {
@@ -269,13 +270,14 @@ $.widget("event.eventCreate",
 			};
 			
 			// Eintrag speichern - Aufruf des Webservice
-			$.ajax({
+			var async = $.ajax({
 				type: "PUT",
 				dataType: "json",
 				contentType: "application/json",
 				url: "/RFH-SS2014-WebMobileDevelopment-Projektarbeit/srcphp/api/evententries",
 				data: JSON.stringify(item),
 				success: function() {
+					
 				},
 				error: function(request) {
 					that._trigger("onerror", null, request.responseText);
@@ -283,7 +285,14 @@ $.widget("event.eventCreate",
 				},
 			context: this	
 			});
+			results.push(async);
 		});
+		
+		
+		$.when.apply(this, results).done(function() {
+			that.showEvent("/api/events/" + eventId);
+		});
+		
 	},
 	
 	
@@ -345,7 +354,7 @@ $.widget("event.eventCreate",
 				$(itemElement).parent().parent().remove();
 			},
 			error: function(request) {
-				if (request.status == "404") {
+				if (request.status == "204") {
 					$(itemElement).parent().parent().remove();
 				}
 				else {
