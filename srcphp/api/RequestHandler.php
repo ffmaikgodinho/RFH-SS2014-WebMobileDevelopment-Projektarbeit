@@ -219,6 +219,10 @@
         public function initDatabase()  {
             $this->requireFile("","MySql.php");
             $this->m_mysql = new MySQL(Settings::DB_Name,Settings::DB_Username,Settings::DB_Password,Settings::DB_Server,Settings::DB_Port);
+            if (strlen($this->m_mysql->lastError) > 0)  {       //Wenn es Verbindungsfehler gibt, einen internen Serverfehler ausgeben
+                $this->responseInternalServerError($this->m_mysql->lastError);
+                die();
+            }
         }
         
         /**

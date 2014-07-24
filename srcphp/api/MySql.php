@@ -52,10 +52,10 @@ class MySQL {
 	private function Connect(){
 		$this->CloseConnection();
 		
-        $this->databaseLink = mysqli_connect($this->hostname, $this->username, $this->password);
+        $this->databaseLink = @mysqli_connect($this->hostname, $this->username, $this->password);
 	
 		if(!$this->databaseLink){
-            $this->lastError = 'Could not connect to server: ' . mysqli_error($this->databaseLink);
+            $this->lastError = 'Could not connect to server.';
             return false;
 		}
 		
